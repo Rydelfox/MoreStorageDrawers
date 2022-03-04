@@ -7,12 +7,12 @@ Currently only supports Minecraft 1.16.5, but expanding to 1.17 and 1.18 is plan
 Planned Expansion
 -----------------
 Planned support for the following mods:
-Astral Sorcery
-Botania
-Eidolon
-Hexblades
-Nature's Aura
-The Twilight Forest
+Astral Sorcery,
+Botania,
+Eidolon,
+Hexblades,
+Nature's Aura,
+The Twilight Forest,
 Biomes o' Plenty
 
 Planned support for Minecraft 1.17 and 1.18
