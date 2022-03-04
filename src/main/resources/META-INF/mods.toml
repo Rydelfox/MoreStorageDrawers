@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="MIT"
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+
+[[mods]]
+    modId="morestoragedrawers"
+    # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
+    # ${file.jarVersion} will substitute the value of the Implementation-Version as read from the mod's JAR file metadata
+    # see the associated build.gradle script for how to populate this completely automatically during a build
+    version="${file.jarVersion}"
+    displayName="More Storage Drawers"
+    # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
+    #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
+    # A URL for the "homepage" for this mod, displayed in the mod UI
+    #displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
+    logoFile="morestoragedrawers.png" #optional
+    authors="Rydelfox"
+    description='''
+    Adds new storage drawers for additional wood types
+    '''
+
+[[dependencies.morestoragedrawers]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.morestoragedrawers]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
