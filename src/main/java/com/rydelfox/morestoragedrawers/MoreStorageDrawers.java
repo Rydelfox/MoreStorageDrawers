@@ -6,9 +6,11 @@ import com.jaquadro.minecraft.storagedrawers.config.CompTierRegistry;
 import com.jaquadro.minecraft.storagedrawers.core.ClientProxy;
 import com.jaquadro.minecraft.storagedrawers.core.CommonProxy;
 import com.rydelfox.morestoragedrawers.block.ModBlocks;
+import com.rydelfox.morestoragedrawers.client.renderer.TileEntityDrawersRenderer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -54,6 +56,11 @@ public class MoreStorageDrawers {
 
     private void clientSetup(final FMLClientSetupEvent event) {
         ModBlocks.Registration.bindRenderTypes();
+        logInfo("Register renderers in clientSetup");
+        MoreStorageDrawers.logInfo("STANDARD_DRAWERS_1 is "+ ModBlocks.Tile.STANDARD_DRAWERS_1.getRegistryName().getNamespace()+":"+ ModBlocks.Tile.STANDARD_DRAWERS_1.getRegistryName().getPath());
+        ClientRegistry.bindTileEntityRenderer(ModBlocks.Tile.STANDARD_DRAWERS_1, TileEntityDrawersRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModBlocks.Tile.STANDARD_DRAWERS_2, TileEntityDrawersRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModBlocks.Tile.STANDARD_DRAWERS_4, TileEntityDrawersRenderer::new);
     }
 
     @SuppressWarnings("Convert2MethodRef")

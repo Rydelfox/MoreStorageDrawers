@@ -1,12 +1,11 @@
 package com.rydelfox.morestoragedrawers.block;
 
-import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.BlockStandardDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.BlockTrim;
-import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawersStandard;
 //import com.jaquadro.minecraft.storagedrawers.client.renderer.TileEntityDrawersRenderer;
 import com.jaquadro.minecraft.storagedrawers.item.ItemDrawers;
+import com.rydelfox.morestoragedrawers.block.tile.TileEntityDrawersMore;
 import com.rydelfox.morestoragedrawers.client.renderer.TileEntityDrawersRenderer;
 import com.rydelfox.morestoragedrawers.MoreCreative;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
@@ -48,9 +47,9 @@ public class ModBlocks {
 
     @ObjectHolder(MoreStorageDrawers.MOD_ID)
     public static final class Tile {
-        public static final TileEntityType<TileEntityDrawersStandard> STANDARD_DRAWERS_1 = null;
-        public static final TileEntityType<TileEntityDrawersStandard> STANDARD_DRAWERS_2 = null;
-        public static final TileEntityType<TileEntityDrawersStandard> STANDARD_DRAWERS_4 = null;
+        public static final TileEntityType<TileEntityDrawersMore> STANDARD_DRAWERS_1 = null;
+        public static final TileEntityType<TileEntityDrawersMore> STANDARD_DRAWERS_2 = null;
+        public static final TileEntityType<TileEntityDrawersMore> STANDARD_DRAWERS_4 = null;
     }
 
     @Mod.EventBusSubscriber(modid = MoreStorageDrawers.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -137,19 +136,19 @@ public class ModBlocks {
             MoreStorageDrawers.logInfo("MoreStorageDrawers: Registering Tile Entities");
             List<BlockStandardDrawers> addDrawers = new ArrayList<>(fullOne.values());
             addDrawers.addAll(halfOne.values());
-            registerTileEntity(event, "standard_drawers_1", TileEntityDrawersStandard.Slot1::new, addDrawers.toArray(new Block[0]));
+            registerTileEntity(event, "standard_drawers_1", TileEntityDrawersMore.Slot1::new, addDrawers.toArray(new Block[0]));
             for (Block block : addDrawers) {
                 MoreStorageDrawers.logInfo("standard_drawers_1 Added "+block.getDescriptionId());
             }
             addDrawers = new ArrayList<>(fullTwo.values());
             addDrawers.addAll(halfTwo.values());
-            registerTileEntity(event, "standard_drawers_2", TileEntityDrawersStandard.Slot2::new, addDrawers.toArray(new Block[0]));
+            registerTileEntity(event, "standard_drawers_2", TileEntityDrawersMore.Slot2::new, addDrawers.toArray(new Block[0]));
             for (Block block : addDrawers) {
                 MoreStorageDrawers.logInfo("Added "+block.getDescriptionId());
             }
             addDrawers = new ArrayList<>(fullFour.values());
             addDrawers.addAll(halfFour.values());
-            registerTileEntity(event, "standard_drawers_4", TileEntityDrawersStandard.Slot4::new, addDrawers.toArray(new Block[0]));
+            registerTileEntity(event, "standard_drawers_4", TileEntityDrawersMore.Slot4::new, addDrawers.toArray(new Block[0]));
             for (Block block : addDrawers) {
                 MoreStorageDrawers.logInfo("Added "+block.getDescriptionId());
             }
@@ -193,11 +192,14 @@ public class ModBlocks {
         @SubscribeEvent
         @OnlyIn(Dist.CLIENT)
         public static void registerModels (ModelBakeEvent event) {
+            /*
             MoreStorageDrawers.logInfo("MoreStorageDrawers: Registering Models, binding Tile Entity Renderer");
             MoreStorageDrawers.logInfo("STANDARD_DRAWERS_1 is "+Tile.STANDARD_DRAWERS_1.getRegistryName().getNamespace()+":"+Tile.STANDARD_DRAWERS_1.getRegistryName().getPath());
             ClientRegistry.bindTileEntityRenderer(Tile.STANDARD_DRAWERS_1, TileEntityDrawersRenderer::new);
             ClientRegistry.bindTileEntityRenderer(Tile.STANDARD_DRAWERS_2, TileEntityDrawersRenderer::new);
             ClientRegistry.bindTileEntityRenderer(Tile.STANDARD_DRAWERS_4, TileEntityDrawersRenderer::new);
+
+             */
             // Check and confirm these are registered
         }
 
