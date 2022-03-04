@@ -5,15 +5,14 @@ import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerAttributes;
 import com.jaquadro.minecraft.storagedrawers.api.storage.attribute.LockAttribute;
 import com.jaquadro.minecraft.storagedrawers.block.BlockCompDrawers;
-import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
-import com.jaquadro.minecraft.storagedrawers.block.BlockStandardDrawers;
+//import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawers;
 import com.mojang.datafixers.util.Either;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
-import com.rydelfox.morestoragedrawers.block.EnumMod;
+import com.rydelfox.morestoragedrawers.block.BlockDrawers;
+import com.rydelfox.morestoragedrawers.block.BlockMoreDrawers;
 import com.rydelfox.morestoragedrawers.block.EnumVariant;
 import com.rydelfox.morestoragedrawers.block.ModBlocks;
-import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -84,19 +83,19 @@ public class MoreDrawerModel {
                 return;
             geometryDataLoaded = true;
 
-            List<BlockStandardDrawers> fullDrawers1 = new ArrayList<>(ModBlocks.fullOne.values());
-            List<BlockStandardDrawers> fullDrawers2 = new ArrayList<>(ModBlocks.fullTwo.values());
-            List<BlockStandardDrawers> fullDrawers4 = new ArrayList<>(ModBlocks.fullFour.values());
-            List<BlockStandardDrawers> halfDrawers1 = new ArrayList<>(ModBlocks.halfOne.values());
-            List<BlockStandardDrawers> halfDrawers2 = new ArrayList<>(ModBlocks.halfTwo.values());
-            List<BlockStandardDrawers> halfDrawers4 = new ArrayList<>(ModBlocks.halfFour.values());
+            List<BlockMoreDrawers> fullDrawers1 = new ArrayList<>(ModBlocks.fullOne.values());
+            List<BlockMoreDrawers> fullDrawers2 = new ArrayList<>(ModBlocks.fullTwo.values());
+            List<BlockMoreDrawers> fullDrawers4 = new ArrayList<>(ModBlocks.fullFour.values());
+            List<BlockMoreDrawers> halfDrawers1 = new ArrayList<>(ModBlocks.halfOne.values());
+            List<BlockMoreDrawers> halfDrawers2 = new ArrayList<>(ModBlocks.halfTwo.values());
+            List<BlockMoreDrawers> halfDrawers4 = new ArrayList<>(ModBlocks.halfFour.values());
 
             MoreStorageDrawers.logInfo("MoreStorageDrawers: Populating Geometry");
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_icon_area_1.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_count_area_1.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_ind_area_1.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_indbase_area_1.json"),
-                    fullDrawers1.stream().toArray(BlockDrawers[]::new));
+                    fullDrawers1.stream().toArray(BlockMoreDrawers[]::new));
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_icon_area_2.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_count_area_2.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_ind_area_2.json"),
@@ -144,21 +143,23 @@ public class MoreDrawerModel {
                     Vector3f to = slotInfo.getElements().get(i).to;
                     MoreStorageDrawers.logInfo("MoreStorageDrawers: Icon from xyz "+from.x()+","+from.y()+","+from.z()+" to "+to.x()+","+to.y()+","+to.z());
                     block.labelGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
+                    MoreStorageDrawers.logInfo("Recorded min "+block.labelGeometry[i].minX+","+block.labelGeometry[i].minY+","+block.labelGeometry[i].minZ);
+                    MoreStorageDrawers.logInfo("Recorded max "+block.labelGeometry[i].maxX+","+block.labelGeometry[i].maxY+","+block.labelGeometry[i].maxZ);
                 }
                 for (int i = 0; i < block.getDrawerCount(); i++) {
                     Vector3f from = countInfo.getElements().get(i).from;
                     Vector3f to = countInfo.getElements().get(i).to;
-                    block.labelGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
+                    block.countGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
                 }
                 for (int i = 0; i < block.getDrawerCount(); i++) {
                     Vector3f from = indInfo.getElements().get(i).from;
                     Vector3f to = indInfo.getElements().get(i).to;
-                    block.labelGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
+                    block.indGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
                 }
                 for (int i = 0; i < block.getDrawerCount(); i++) {
                     Vector3f from = indBaseInfo.getElements().get(i).from;
                     Vector3f to = indBaseInfo.getElements().get(i).to;
-                    block.labelGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.x(), to.z(), to.y(), to.z());
+                    block.indBaseGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.x(), to.z(), to.y(), to.z());
                 }
             }
         }
@@ -221,6 +222,27 @@ public class MoreDrawerModel {
         }
 
         public static void replaceBlock(ModelBakeEvent event, BlockDrawers block) {
+            MoreStorageDrawers.logInfo("MoreStorageDrawers: Replacing block for "+block.getDescriptionId());
+            for (BlockState state : block.getStateDefinition().getPossibleStates()) {
+                ModelResourceLocation modelResource = BlockModelShapes.stateToModelLocation(state);
+                IBakedModel parentModel = event.getModelManager().getModel(modelResource);
+                if (parentModel == null) {
+                    MoreStorageDrawers.LOGGER.warn("Got back null model from ModelBakeEvent.ModelManager for " + modelResource.toString());
+                    continue;
+                } else if (parentModel == event.getModelManager().getMissingModel()) {
+                    MoreStorageDrawers.logInfo("MoreStorageDrawers: Parent missing model");
+                    continue;
+                }
+
+                MoreStorageDrawers.logInfo("Registering Model "+ block.getRegistryName().getPath());
+                if (block.isHalfDepth())
+                    event.getModelRegistry().put(modelResource, new Model2.HalfModel(parentModel));
+                else
+                    event.getModelRegistry().put(modelResource, new Model2.FullModel(parentModel));
+            }
+        }
+
+        public static void replaceBlock(ModelBakeEvent event, BlockMoreDrawers block) {
             MoreStorageDrawers.logInfo("MoreStorageDrawers: Replacing block for "+block.getDescriptionId());
             for (BlockState state : block.getStateDefinition().getPossibleStates()) {
                 ModelResourceLocation modelResource = BlockModelShapes.stateToModelLocation(state);

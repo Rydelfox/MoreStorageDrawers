@@ -1,12 +1,11 @@
 package com.rydelfox.morestoragedrawers.block;
 
-import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
-import com.jaquadro.minecraft.storagedrawers.block.BlockStandardDrawers;
+//import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.BlockTrim;
-//import com.jaquadro.minecraft.storagedrawers.client.renderer.TileEntityDrawersRenderer;
 import com.jaquadro.minecraft.storagedrawers.item.ItemDrawers;
+import com.rydelfox.morestoragedrawers.block.BlockDrawers;
+import com.rydelfox.morestoragedrawers.block.BlockStandardDrawers;
 import com.rydelfox.morestoragedrawers.block.tile.TileEntityDrawersMore;
-import com.rydelfox.morestoragedrawers.client.renderer.TileEntityDrawersRenderer;
 import com.rydelfox.morestoragedrawers.MoreCreative;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import net.minecraft.block.AbstractBlock;
@@ -38,12 +37,12 @@ import java.util.function.Supplier;
 public class ModBlocks {
 
     public static Map<EnumVariant, BlockTrim> moreTrims;
-    public static Map<EnumVariant, BlockStandardDrawers> fullOne;
-    public static Map<EnumVariant, BlockStandardDrawers> fullTwo;
-    public static Map<EnumVariant, BlockStandardDrawers> fullFour;
-    public static Map<EnumVariant, BlockStandardDrawers> halfOne;
-    public static Map<EnumVariant, BlockStandardDrawers> halfTwo;
-    public static Map<EnumVariant, BlockStandardDrawers> halfFour;
+    public static Map<EnumVariant, BlockMoreDrawers> fullOne;
+    public static Map<EnumVariant, BlockMoreDrawers> fullTwo;
+    public static Map<EnumVariant, BlockMoreDrawers> fullFour;
+    public static Map<EnumVariant, BlockMoreDrawers> halfOne;
+    public static Map<EnumVariant, BlockMoreDrawers> halfTwo;
+    public static Map<EnumVariant, BlockMoreDrawers> halfFour;
 
     @ObjectHolder(MoreStorageDrawers.MOD_ID)
     public static final class Tile {
@@ -75,7 +74,7 @@ public class ModBlocks {
 
 
             BlockTrim blockTrim;
-            BlockStandardDrawers newFullOne, newFullTwo, newFullFour, newHalfOne, newHalfTwo, newHalfFour;
+            BlockMoreDrawers newFullOne, newFullTwo, newFullFour, newHalfOne, newHalfTwo, newHalfFour;
 
             for (EnumVariant variant : EnumVariant.values()) {
                 MoreStorageDrawers.logInfo("MoreStorageDrawers: Attempting to load " + variant.getNamespace() + " Drawers");
@@ -134,7 +133,7 @@ public class ModBlocks {
         @SubscribeEvent
         public static void registerTileEntities(RegistryEvent.Register<TileEntityType<?>> event) {
             MoreStorageDrawers.logInfo("MoreStorageDrawers: Registering Tile Entities");
-            List<BlockStandardDrawers> addDrawers = new ArrayList<>(fullOne.values());
+            List<BlockMoreDrawers> addDrawers = new ArrayList<>(fullOne.values());
             addDrawers.addAll(halfOne.values());
             registerTileEntity(event, "standard_drawers_1", TileEntityDrawersMore.Slot1::new, addDrawers.toArray(new Block[0]));
             for (Block block : addDrawers) {
@@ -205,7 +204,7 @@ public class ModBlocks {
 
         @OnlyIn(Dist.CLIENT)
         public static void bindRenderTypes() {
-            List<BlockStandardDrawers> alldrawers = new ArrayList<>(fullOne.values());
+            List<BlockMoreDrawers> alldrawers = new ArrayList<>(fullOne.values());
             alldrawers.addAll(fullTwo.values());
             alldrawers.addAll(fullFour.values());
             alldrawers.addAll(halfOne.values());
@@ -219,7 +218,7 @@ public class ModBlocks {
         }
 
         private static Block registerDrawerBlock(RegistryEvent.Register<Block> event, EnumVariant variant, String name, int drawerCount, boolean halfDepth, AbstractBlock.Properties properties) {
-            BlockStandardDrawers newBlock = new BlockStandardDrawers(drawerCount, halfDepth, properties);
+            BlockMoreDrawers newBlock = new BlockMoreDrawers(drawerCount, halfDepth, properties);
             if (halfDepth) {
                 switch(drawerCount) {
                     case 4:

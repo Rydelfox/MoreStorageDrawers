@@ -1,5 +1,6 @@
 package com.rydelfox.morestoragedrawers;
 
+//import com.jaquadro.minecraft.storagedrawers.client.renderer.TileEntityDrawersRenderer;
 import com.jaquadro.minecraft.storagedrawers.config.ClientConfig;
 import com.jaquadro.minecraft.storagedrawers.config.CommonConfig;
 import com.jaquadro.minecraft.storagedrawers.config.CompTierRegistry;
