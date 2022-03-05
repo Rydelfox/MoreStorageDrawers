@@ -1,0 +1,9 @@
+{
+  "parent": "storagedrawers:block/full_drawers_orientable",
+  "textures": {
+    "top": "morestoragedrawers:blocks/botania_mossy_dreamwood_side",
+    "front": "morestoragedrawers:blocks/botania_mossy_dreamwood_front_1",
+    "side": "morestoragedrawers:blocks/botania_mossy_dreamwood_side",
+    "trim": "morestoragedrawers:blocks/botania_mossy_dreamwood_trim"
+  }
+}

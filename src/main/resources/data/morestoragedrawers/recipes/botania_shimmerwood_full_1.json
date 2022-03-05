@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "///",
+    " x ",
+    "///"
+  ],
+  "key": {
+    "/": { "item": "botania:shimmerwood_planks"},
+    "x": { "tag":  "forge:chests/wooden" }
+  },
+  "result": { "item":  "morestoragedrawers:botania_shimmerwood_full_1", "count":  1 }
+}

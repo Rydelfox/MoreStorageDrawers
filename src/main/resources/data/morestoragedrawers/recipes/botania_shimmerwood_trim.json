@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X/X",
+    "/X/",
+    "X/X"
+  ],
+  "key": {
+    "/": { "tag": "forge:rods/wooden" },
+    "X": { "item": "botania:shimmerwood_planks" }
+  },
+  "result": { "item": "morestoragedrawers:botania_shimmerwood_trim", "count": 4 }
+}

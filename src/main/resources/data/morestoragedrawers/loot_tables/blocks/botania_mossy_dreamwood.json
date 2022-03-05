@@ -1,0 +1,19 @@
+{
+  "type": "morestoragedrawers:botania_mossy_dreamwood_trim",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "morestoragedrawers:botania_mossy_dreamwood_trim"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}
