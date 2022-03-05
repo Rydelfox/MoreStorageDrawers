@@ -9,7 +9,7 @@ import com.jaquadro.minecraft.storagedrawers.block.BlockCompDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawers;
 import com.mojang.datafixers.util.Either;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
-import com.rydelfox.morestoragedrawers.block.BlockDrawers;
+import com.rydelfox.morestoragedrawers.block.BlockDrawersExtended;
 import com.rydelfox.morestoragedrawers.block.BlockMoreDrawers;
 import com.rydelfox.morestoragedrawers.block.EnumVariant;
 import com.rydelfox.morestoragedrawers.block.ModBlocks;
@@ -100,39 +100,39 @@ public class MoreDrawerModel {
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_count_area_2.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_ind_area_2.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_indbase_area_2.json"),
-                    fullDrawers2.stream().toArray(BlockDrawers[]::new));
+                    fullDrawers2.stream().toArray(BlockDrawersExtended[]::new));
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_icon_area_4.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_count_area_4.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_ind_area_4.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_indbase_area_4.json"),
-                    fullDrawers4.stream().toArray(BlockDrawers[]::new));
+                    fullDrawers4.stream().toArray(BlockDrawersExtended[]::new));
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_icon_area_1.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_count_area_1.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_ind_area_1.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_indbase_area_1.json"),
-                    halfDrawers1.stream().toArray(BlockDrawers[]::new));
+                    halfDrawers1.stream().toArray(BlockDrawersExtended[]::new));
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_icon_area_2.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_count_area_2.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_ind_area_2.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_indbase_area_2.json"),
-                    halfDrawers2.stream().toArray(BlockDrawers[]::new));
+                    halfDrawers2.stream().toArray(BlockDrawersExtended[]::new));
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_icon_area_4.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_count_area_4.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_ind_area_4.json"),
                     new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_indbase_area_4.json"),
-                    halfDrawers4.stream().toArray(BlockDrawers[]::new));
+                    halfDrawers4.stream().toArray(BlockDrawersExtended[]::new));
         }
 
         private static void populateGeometryData(ResourceLocation locationIcon,
                                                  ResourceLocation locationCount,
                                                  ResourceLocation locationInd,
                                                  ResourceLocation locationIndBase,
-                                                 BlockDrawers... blocks) {
+                                                 BlockDrawersExtended... blocks) {
             BlockModel slotInfo = getBlockModel(locationIcon);
             BlockModel countInfo = getBlockModel(locationCount);
             BlockModel indInfo = getBlockModel(locationInd);
             BlockModel indBaseInfo = getBlockModel(locationIndBase);
-            for (BlockDrawers block : blocks) {
+            for (BlockDrawersExtended block : blocks) {
                 if (block == null)
                     continue;
 
@@ -221,7 +221,7 @@ public class MoreDrawerModel {
             }
         }
 
-        public static void replaceBlock(ModelBakeEvent event, BlockDrawers block) {
+        public static void replaceBlock(ModelBakeEvent event, BlockDrawersExtended block) {
             MoreStorageDrawers.logInfo("MoreStorageDrawers: Replacing block for "+block.getDescriptionId());
             for (BlockState state : block.getStateDefinition().getPossibleStates()) {
                 ModelResourceLocation modelResource = BlockModelShapes.stateToModelLocation(state);
@@ -316,7 +316,7 @@ public class MoreDrawerModel {
 
                 if (state != null && extraData.hasProperty(TileEntityDrawers.ATTRIBUTES)) {
                     IDrawerAttributes attr = extraData.getData(TileEntityDrawers.ATTRIBUTES);
-                    Direction dir = state.getValue(BlockDrawers.FACING);
+                    Direction dir = state.getValue(BlockDrawersExtended.FACING);
 
                     if (attr.isItemLocked(LockAttribute.LOCK_EMPTY) || attr.isItemLocked(LockAttribute.LOCK_POPULATED))
                         quads.addAll(lockOverlay.get(dir).getQuads(state, side, rand, extraData));
@@ -328,8 +328,8 @@ public class MoreDrawerModel {
                         Block block = state.getBlock();
                         if (block instanceof BlockCompDrawers)
                             quads.addAll((indicatorCompOverlay.get(dir).getQuads(state, side, rand, extraData)));
-                        else if (block instanceof BlockDrawers) {
-                            int count = ((BlockDrawers) block).getDrawerCount();
+                        else if (block instanceof BlockDrawersExtended) {
+                            int count = ((BlockDrawersExtended) block).getDrawerCount();
                             if (count == 1)
                                 quads.addAll((indicator1Overlay.get(dir).getQuads(state, side, rand, extraData)));
                             else if (count == 2)

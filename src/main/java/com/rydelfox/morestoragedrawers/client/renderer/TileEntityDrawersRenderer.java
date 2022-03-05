@@ -10,7 +10,7 @@ import com.jaquadro.minecraft.storagedrawers.config.ClientConfig;
 import com.jaquadro.minecraft.storagedrawers.util.CountFormatter;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.rydelfox.morestoragedrawers.block.BlockDrawers;
+import com.rydelfox.morestoragedrawers.block.BlockDrawersExtended;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -56,28 +56,28 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
 
     @Override
     public void render (TileEntityDrawers tile, float partialTickTime, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
-        MoreStorageDrawers.logInfo("Calling TileEntityDrawersRenderer.render(...)");
+        //MoreStorageDrawers.logInfo("Calling TileEntityDrawersRenderer.render(...)");
         if (tile == null) {
-            MoreStorageDrawers.logInfo("tile is null");
+            //MoreStorageDrawers.logInfo("tile is null");
             return;
         }
 
-        MoreStorageDrawers.logInfo("Rendering tile "+tile.toString());
+        //MoreStorageDrawers.logInfo("Rendering tile "+tile.toString());
         World world = tile.getLevel();
         if (world == null) {
-            MoreStorageDrawers.logInfo("World is null");
+            //MoreStorageDrawers.logInfo("World is null");
             return;
         }
 
         BlockState state = tile.getBlockState();
-        if (!(state.getBlock() instanceof BlockDrawers)) {
-            MoreStorageDrawers.logInfo("BlockState not instance of BlockDrawers");
+        if (!(state.getBlock() instanceof BlockDrawersExtended)) {
+            //MoreStorageDrawers.logInfo("BlockState not instance of BlockDrawers");
             return;
         }
 
-        Direction side = state.getValue(BlockDrawers.FACING);
+        Direction side = state.getValue(BlockDrawersExtended.FACING);
         if (playerBehindBlock(tile.getBlockPos(), side)) {
-            MoreStorageDrawers.logInfo("Facing issue");
+            //MoreStorageDrawers.logInfo("Facing issue");
             return;
         }
 
@@ -87,7 +87,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
 
         double renderDistance = ClientConfig.RENDER.labelRenderDistance.get();
         if (renderDistance > 0 && distance > renderDistance) {
-            MoreStorageDrawers.logInfo("out of render distance");
+            //MoreStorageDrawers.logInfo("out of render distance");
             return;
         }
 
@@ -106,7 +106,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
             renderFastItemSet(tile, state, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime, distance);
 
         if (tile.getDrawerAttributes().hasFillLevel())
-            renderIndicator((BlockDrawers)state.getBlock(), tile, matrix, buffer, state.getValue(BlockDrawers.FACING), combinedLight, combinedOverlay);
+            renderIndicator((BlockDrawersExtended)state.getBlock(), tile, matrix, buffer, state.getValue(BlockDrawersExtended.FACING), combinedLight, combinedOverlay);
 
         mc.options.graphicsMode = cache;
 
@@ -137,7 +137,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
 
     private void renderFastItemSet (TileEntityDrawers tile, BlockState state, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime, float distance) {
         int drawerCount = tile.getGroup().getDrawerCount();
-        MoreStorageDrawers.logInfo("Rendering item");
+        //MoreStorageDrawers.logInfo("Rendering item");
 
         for (int i = 0; i < drawerCount; i++) {
             renderStacks[i] = ItemStack.EMPTY;
@@ -148,7 +148,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
             ItemStack itemStack = drawer.getStoredItemPrototype();
             renderStacks[i] = itemStack;
             renderAsBlock[i] = isItemBlockType(itemStack);
-            MoreStorageDrawers.logInfo("Found item "+itemStack.getDisplayName());
+            //MoreStorageDrawers.logInfo("Found item "+itemStack.getDisplayName());
         }
 
         for (int i = 0; i < drawerCount; i++) {
@@ -185,7 +185,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
 
         FontRenderer fontRenderer = this.renderer.getFont();
 
-        BlockDrawers block = (BlockDrawers)state.getBlock();
+        BlockDrawersExtended block = (BlockDrawersExtended)state.getBlock();
         AxisAlignedBB labelGeometry = block.countGeometry[slot];
         int textWidth = fontRenderer.width(text);
 
@@ -205,7 +205,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
     }
 
     private void renderFastItem (@Nonnull ItemStack itemStack, TileEntityDrawers tile, BlockState state, int slot, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime) {
-        BlockDrawers block = (BlockDrawers)state.getBlock();
+        BlockDrawersExtended block = (BlockDrawersExtended)state.getBlock();
         AxisAlignedBB labelGeometry = block.labelGeometry[slot];
 
         float scaleX = (float)labelGeometry.getXsize() / 16;
@@ -292,7 +292,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
     public static final ResourceLocation TEXTURE_IND_4 = new ResourceLocation(StorageDrawers.MOD_ID, "blocks/indicator/indicator_4_on");
     public static final ResourceLocation TEXTURE_IND_COMP = new ResourceLocation(StorageDrawers.MOD_ID, "blocks/indicator/indicator_comp_on");
 
-    private void renderIndicator (BlockDrawers block, TileEntityDrawers tile, MatrixStack matrixStack, IRenderTypeBuffer buffer, Direction side, int combinedLight, int combinedOverlay) {
+    private void renderIndicator (BlockDrawersExtended block, TileEntityDrawers tile, MatrixStack matrixStack, IRenderTypeBuffer buffer, Direction side, int combinedLight, int combinedOverlay) {
         int count = (tile instanceof TileEntityDrawersComp) ? 1 : block.getDrawerCount();
 
         ResourceLocation resource = TEXTURE_IND_1;

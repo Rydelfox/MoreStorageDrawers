@@ -2,17 +2,13 @@ package com.rydelfox.morestoragedrawers.block;
 
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawersStandard;
-import com.rydelfox.morestoragedrawers.block.BlockDrawers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 
-import java.util.Vector;
-
-public class BlockStandardDrawers extends BlockDrawers
+public class BlockStandardDrawers extends BlockDrawersExtended
 {
     //public static final EnumProperty<EnumBasicDrawer> BLOCK = EnumProperty.create("block", EnumBasicDrawer.class);
 

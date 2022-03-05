@@ -3,6 +3,7 @@ package com.rydelfox.morestoragedrawers.block;
 import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.jaquadro.minecraft.storagedrawers.api.storage.*;
 import com.jaquadro.minecraft.storagedrawers.api.storage.attribute.LockAttribute;
+import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawers;
 import com.jaquadro.minecraft.storagedrawers.capabilities.CapabilityDrawerAttributes;
 import com.jaquadro.minecraft.storagedrawers.config.ClientConfig;
@@ -15,6 +16,7 @@ import com.jaquadro.minecraft.storagedrawers.inventory.ContainerDrawersComp;
 import com.jaquadro.minecraft.storagedrawers.item.ItemKey;
 import com.jaquadro.minecraft.storagedrawers.item.ItemUpgrade;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
+import com.rydelfox.morestoragedrawers.block.tile.TileEntityDrawersMore;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -52,7 +54,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BlockDrawers extends HorizontalBlock implements INetworked
+public abstract class BlockDrawersExtended extends BlockDrawers
 {
 
     // TODO: TE.getModelData()
@@ -68,19 +70,6 @@ public abstract class BlockDrawers extends HorizontalBlock implements INetworked
     private static final VoxelShape AABB_WEST_HALF = Block.box(8, 0, 0, 16, 16, 16);
     private static final VoxelShape AABB_EAST_HALF = Block.box(0, 0, 0, 8, 16, 16);
 
-    private final int drawerCount;
-    private final boolean halfDepth;
-    private final int storageUnits;
-
-    public final AxisAlignedBB[] slotGeometry;
-    public final AxisAlignedBB[] countGeometry;
-    public final AxisAlignedBB[] labelGeometry;
-    public final AxisAlignedBB[] indGeometry;
-    public final AxisAlignedBB[] indBaseGeometry;
-
-    //@SideOnly(Side.CLIENT)
-    //private StatusModelData[] statusInfo;
-
     private long ignoreEventTime;
 
     private static final ThreadLocal<Boolean> inTileLookup = new ThreadLocal<Boolean>() {
@@ -90,177 +79,89 @@ public abstract class BlockDrawers extends HorizontalBlock implements INetworked
         }
     };
 
-    public BlockDrawers (int drawerCount, boolean halfDepth, int storageUnits, Block.Properties properties) {
-        super(properties);
-        this.registerDefaultState(stateDefinition.any()
-                .setValue(FACING, Direction.NORTH));
-
-        this.drawerCount = drawerCount;
-        this.halfDepth = halfDepth;
-        this.storageUnits = storageUnits;
-
-        slotGeometry = new AxisAlignedBB[drawerCount];
-        countGeometry = new AxisAlignedBB[drawerCount];
-        labelGeometry = new AxisAlignedBB[drawerCount];
-        indGeometry = new AxisAlignedBB[drawerCount];
-        indBaseGeometry = new AxisAlignedBB[drawerCount];
-
-        for (int i = 0; i < drawerCount; i++) {
-            slotGeometry[i] = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
-            countGeometry[i] = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
-            labelGeometry[i] = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
-            indGeometry[i] = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
-            indBaseGeometry[i] = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
-        }
-    }
-
-    @Override
-    protected void createBlockStateDefinition  (StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-    }
-
-    public boolean retrimBlock (World world, BlockPos pos, ItemStack prototype) {
-        return false;
-    }
-
-    public BlockType retrimType () {
-        return BlockType.Drawers;
-    }
-
-    // TODO: ABSTRACT?  Still need BlockState?
-    public int getDrawerCount () {
-        return drawerCount;
-    }
-
-    public boolean isHalfDepth () {
-        return halfDepth;
-    }
-
-    public int getStorageUnits() {
-        return storageUnits;
+    public BlockDrawersExtended(int drawerCount, boolean halfDepth, int storageUnits, Block.Properties properties) {
+        super(drawerCount, halfDepth, storageUnits, properties);
     }
 
     @OnlyIn(Dist.CLIENT)
     public void initDynamic () { }
 
-    /*@OnlyIn(Dist.CLIENT)
-    public StatusModelData getStatusInfo (BlockState state) {
-        return null;
-    }*/
-
-    /*@Override
-    public BlockRenderLayer getRenderLayer () {
-        return BlockRenderLayer.CUTOUT_MIPPED;
-    }*/
-
-    //@Override
-    //public boolean canRenderInLayer (IBlockState state, BlockRenderLayer layer) {
-    //    return layer == BlockRenderLayer.CUTOUT_MIPPED || layer == BlockRenderLayer.TRANSLUCENT;
-    //}
-
-
-    @Override
-    public VoxelShape getShape (BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        Direction direction = state.getValue(FACING);
-        switch (direction) {
-            case EAST:
-                return halfDepth ? AABB_EAST_HALF : AABB_EAST_FULL;
-            case WEST:
-                return halfDepth ? AABB_WEST_HALF : AABB_WEST_FULL;
-            case SOUTH:
-                return halfDepth ? AABB_SOUTH_HALF : AABB_SOUTH_FULL;
-            case NORTH:
-            default:
-                return halfDepth ? AABB_NORTH_HALF : AABB_NORTH_FULL;
-        }
+    public AxisAlignedBB[] getSlotGeometry() {
+        return super.slotGeometry;
     }
 
-    @Override
-    public boolean isPathfindable  (BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-        return false;
+    public AxisAlignedBB getSlotGeometry(int slot) {
+        return super.slotGeometry[slot];
     }
 
-    @Override
-    public BlockState getStateForPlacement (BlockItemUseContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    public void setSlotGeometry(int slot, AxisAlignedBB axis) {
+        super.slotGeometry[slot] = new AxisAlignedBB(axis.minX, axis.minY, axis.minZ, axis.maxX, axis.maxY, axis.maxZ);
     }
 
-    /*@Override
-    public void onBlockAdded (World world, BlockPos pos, IBlockState state) {
-        if (!world.isRemote) {
-            IBlockState blockNorth = world.getBlockState(pos.north());
-            IBlockState blockSouth = world.getBlockState(pos.south());
-            IBlockState blockWest = world.getBlockState(pos.west());
-            IBlockState blockEast = world.getBlockState(pos.east());
-            EnumFacing facing = state.getValue(FACING);
-            if (facing == EnumFacing.NORTH && blockNorth.isFullBlock() && !blockSouth.isFullBlock())
-                facing = EnumFacing.SOUTH;
-            if (facing == EnumFacing.SOUTH && blockSouth.isFullBlock() && !blockNorth.isFullBlock())
-                facing = EnumFacing.NORTH;
-            if (facing == EnumFacing.WEST && blockWest.isFullBlock() && !blockEast.isFullBlock())
-                facing = EnumFacing.EAST;
-            if (facing == EnumFacing.EAST && blockEast.isFullBlock() && !blockWest.isFullBlock())
-                facing = EnumFacing.WEST;
-            TileEntityDrawers tile = getTileEntitySafe(world, pos);
-            tile.setDirection(facing.ordinal());
-            tile.markDirty();
-            world.setBlockState(pos, state.withProperty(FACING, facing));
-        }
-        super.onBlockAdded(world, pos, state);
-    }*/
+    public AxisAlignedBB[] getCountGeometry() {
+        return super.countGeometry;
+    }
+
+    public AxisAlignedBB getCountGeometry(int slot) {
+        return super.countGeometry[slot];
+    }
+
+    public void setCountGeometry(int slot, AxisAlignedBB axis) {
+        super.countGeometry[slot] = new AxisAlignedBB(axis.minX, axis.minY, axis.minZ, axis.maxX, axis.maxY, axis.maxZ);
+    }
+
+    public AxisAlignedBB[] getLabelGeometry() {
+        return super.labelGeometry;
+    }
+
+    public AxisAlignedBB getLabelGeometry(int slot) {
+        return super.labelGeometry[slot];
+    }
+
+    public void setLabelGeometry(int slot, AxisAlignedBB axis) {
+        super.labelGeometry[slot] = new AxisAlignedBB(axis.minX, axis.minY, axis.minZ, axis.maxX, axis.maxY, axis.maxZ);
+    }
+
+    public AxisAlignedBB[] getIndGeometry() {
+        return super.indGeometry;
+    }
+
+    public AxisAlignedBB getIndGeometry(int slot) {
+        return super.indGeometry[slot];
+    }
+
+    public void setIndGeometry(int slot, AxisAlignedBB axis) {
+        super.indGeometry[slot] = new AxisAlignedBB(axis.minX, axis.minY, axis.minZ, axis.maxX, axis.maxY, axis.maxZ);
+    }
+
+    public AxisAlignedBB[] getIndBaseGeometry() {
+        return super.indBaseGeometry;
+    }
+
+    public AxisAlignedBB getIndBaseGeometry(int slot) {
+        return super.indBaseGeometry[slot];
+    }
+
+    public void setIndBaseGeometry(int slot, AxisAlignedBB axis) {
+        super.indBaseGeometry[slot] = new AxisAlignedBB(axis.minX, axis.minY, axis.minZ, axis.maxX, axis.maxY, axis.maxZ);
+    }
 
     @Override
     public void setPlacedBy  (World world, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
-        if (stack.hasTag() && stack.getTag().contains("tile")) {
-            TileEntityDrawers tile = getTileEntity(world, pos);
-            if (tile != null)
-                tile.readPortable(stack.getTag().getCompound("tile"));
-        }
-
-        if (stack.hasCustomHoverName()) {
-            TileEntityDrawers tile = getTileEntity(world, pos);
-            //if (tile != null)
-            //    tile.setCustomName(stack.getDisplayName());
-        }
-
-        if (entity != null && entity.getOffhandItem().getItem() == ModItems.DRAWER_KEY) {
-            TileEntityDrawers tile = getTileEntity(world, pos);
-            if (tile != null) {
-                IDrawerAttributes _attrs = tile.getCapability(CapabilityDrawerAttributes.DRAWER_ATTRIBUTES_CAPABILITY).orElse(new EmptyDrawerAttributes());
-                if (_attrs instanceof IDrawerAttributesModifiable) {
-                    IDrawerAttributesModifiable attrs = (IDrawerAttributesModifiable) _attrs;
-                    attrs.setItemLocked(LockAttribute.LOCK_EMPTY, true);
-                    attrs.setItemLocked(LockAttribute.LOCK_POPULATED, true);
-                }
-            }
-        }
-    }
-
-    @Override
-    public boolean canBeReplaced (BlockState state, BlockItemUseContext useContext) {
-        PlayerEntity player = useContext.getPlayer();
-        if (player == null)
-            return super.canBeReplaced(state, useContext);
-
-        if (useContext.getPlayer().isCreative() && useContext.getHand() == Hand.OFF_HAND) {
-            double blockReachDistance = useContext.getPlayer().getAttribute(net.minecraftforge.common.ForgeMod.REACH_DISTANCE.get()).getValue() + 1;
-            BlockRayTraceResult result = rayTraceEyes(useContext.getLevel(), useContext.getPlayer(), blockReachDistance);
-
-            if (result.getType() == RayTraceResult.Type.MISS || result.getDirection() != state.getValue(FACING))
-                useContext.getLevel().setBlock(useContext.getClickedPos(), Blocks.AIR.defaultBlockState(), useContext.getLevel().isClientSide  ? 11 : 3);
-            else
-                attack(state, useContext.getLevel(), useContext.getClickedPos(), useContext.getPlayer());
-
-            return false;
-        }
-
-        return super.canBeReplaced(state, useContext);
+        MoreStorageDrawers.logInfo("setPlacedBy for "+state.getBlock().getDescriptionId());
+        super.setPlacedBy(world, pos, state, entity, stack);
     }
 
     @Override
     public ActionResultType use (BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
         ItemStack item = player.getItemInHand(hand);
-        MoreStorageDrawers.logInfo("In BlockDrawers.use() for "+ state.getBlock().getDescriptionId()+ ", item: "+((item.isEmpty()) ? "  null item" : "  " + item.toString()));
+        MoreStorageDrawers.logInfo("In BlockDrawers.use() for "+ state.getBlock().getDescriptionId()+ ", item in hand: "+((item.isEmpty()) ? "  null item" : "  " + item.toString()));
+        MoreStorageDrawers.logInfo("Slot "+getDrawerSlot(hit));
+
+        if (!(getTileEntitySafe(world, pos) instanceof TileEntityDrawersMore)) {
+            return super.use(state, world, pos, player, hand, hit);
+        }
+        MoreStorageDrawers.logInfo("Tile is TileEntityDrawersMore");
         if (hand == Hand.OFF_HAND)
             return ActionResultType.PASS;
 
@@ -269,7 +170,7 @@ public abstract class BlockDrawers extends HorizontalBlock implements INetworked
             return ActionResultType.PASS;
         }
 
-        TileEntityDrawers tileDrawers = getTileEntitySafe(world, pos);
+        TileEntityDrawersMore tileDrawers = (TileEntityDrawersMore)getTileEntitySafe(world, pos);
 
         //if (!SecurityManager.hasAccess(player.getGameProfile(), tileDrawers))
         //    return false;
@@ -359,11 +260,11 @@ public abstract class BlockDrawers extends HorizontalBlock implements INetworked
                     @Nullable
                     @Override
                     public Container createMenu (int windowId, PlayerInventory playerInv, PlayerEntity playerEntity) {
-                        if (drawerCount == 1)
+                        if (BlockDrawersExtended.super.getDrawerCount() == 1)
                             return new ContainerDrawers1(windowId, playerInv, tileDrawers);
-                        else if (drawerCount == 2)
+                        else if (BlockDrawersExtended.super.getDrawerCount() == 2)
                             return new ContainerDrawers2(windowId, playerInv, tileDrawers);
-                        else if (drawerCount == 4)
+                        else if (BlockDrawersExtended.super.getDrawerCount() == 4)
                             return new ContainerDrawers4(windowId, playerInv, tileDrawers);
                         return null;
                     }
@@ -390,10 +291,6 @@ public abstract class BlockDrawers extends HorizontalBlock implements INetworked
         return ActionResultType.SUCCESS;
     }
 
-    protected final int getDrawerSlot (BlockRayTraceResult hit) {
-        return getDrawerSlot(hit.getDirection(), normalizeHitVec(hit.getLocation()));
-    }
-
     private Vector3d normalizeHitVec (Vector3d hit) {
         return new Vector3d(
                 ((hit.x < 0) ? hit.x - Math.floor(hit.x) : hit.x) % 1,
@@ -402,39 +299,11 @@ public abstract class BlockDrawers extends HorizontalBlock implements INetworked
         );
     }
 
-    protected int getDrawerSlot (Direction side, Vector3d hit) {
-        return 0;
-    }
-
-    protected boolean hitTop (double hitY) {
-        return hitY > .5;
-    }
-
-    protected boolean hitLeft (Direction side, double hitX, double hitZ) {
-        switch (side) {
-            case NORTH:
-                return hitX > .5;
-            case SOUTH:
-                return hitX < .5;
-            case WEST:
-                return hitZ < .5;
-            case EAST:
-                return hitZ > .5;
-            default:
-                return true;
-        }
-    }
-
-    protected BlockRayTraceResult rayTraceEyes(World world, PlayerEntity player, double length) {
-        Vector3d eyePos = player.getEyePosition(1);
-        Vector3d lookPos = player.getViewVector(1);
-        Vector3d endPos = eyePos.add(lookPos.x * length, lookPos.y * length, lookPos.z * length);
-        RayTraceContext context = new RayTraceContext(eyePos, endPos, RayTraceContext.BlockMode.OUTLINE, RayTraceContext.FluidMode.NONE, player);
-        return world.clip(context);
-    }
-
     @Override
     public void attack(BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn) {
+        if(!(getTileEntitySafe(worldIn, pos) instanceof TileEntityDrawersMore)) {
+            super.attack(state, worldIn, pos, playerIn);
+        }
         if (worldIn.isClientSide)
             return;
 
@@ -447,7 +316,7 @@ public abstract class BlockDrawers extends HorizontalBlock implements INetworked
 
         Direction side = rayResult.getDirection();
 
-        TileEntityDrawers tileDrawers = getTileEntitySafe(worldIn, pos);
+        TileEntityDrawersMore tileDrawers = (TileEntityDrawersMore)getTileEntitySafe(worldIn, pos);
         if (state.getValue(FACING) != rayResult.getDirection())
             return;
 
@@ -492,7 +361,7 @@ public abstract class BlockDrawers extends HorizontalBlock implements INetworked
 
     @Override
     public void onRemove (BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
-        TileEntityDrawers tile = getTileEntity(world, pos);
+        TileEntityDrawersMore tile = (TileEntityDrawersMore)getTileEntity(world, pos);
 
         if (tile != null) {
             /*for (int i = 0; i < tile.upgrades().getSlotCount(); i++) {
@@ -511,46 +380,14 @@ public abstract class BlockDrawers extends HorizontalBlock implements INetworked
         super.onRemove(state, world, pos, newState, isMoving);
     }
 
-
-    @Override
-    public boolean removedByPlayer (BlockState state, World world, BlockPos pos, PlayerEntity player, boolean willHarvest, FluidState fluid) {
-        if (player.isCreative()) {
-            if (creativeCanBreakBlock(state, world, pos, player))
-                world.setBlock(pos, Blocks.AIR.defaultBlockState(), world.isClientSide  ? 11 : 3);
-            else
-                attack(state, world, pos, player);
-
-            return false;
-        }
-
-        return willHarvest || super.removedByPlayer(state, world, pos, player, false, fluid);
-    }
-
-
-    @Override
-    public void playerDestroy (World worldIn, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity te, ItemStack stack) {
-        super.playerDestroy(worldIn, player, pos, state, te, stack);
-        worldIn.removeBlock(pos, false);
-    }
-
-    public boolean creativeCanBreakBlock (BlockState state, World world, BlockPos pos, PlayerEntity player) {
-        double blockReachDistance = player.getAttribute(net.minecraftforge.common.ForgeMod.REACH_DISTANCE.get()).getValue() + 1;
-
-        BlockRayTraceResult rayResult = rayTraceEyes(world, player, blockReachDistance + 1);
-        if (rayResult.getType() == RayTraceResult.Type.MISS || state.getValue(FACING) != rayResult.getDirection())
-            return true;
-        else
-            return false;
-    }
-
     @Override
     public List<ItemStack> getDrops (BlockState state, LootContext.Builder builder) {
         List<ItemStack> items = new ArrayList<>();
-        items.add(getMainDrop(state, (TileEntityDrawers)builder.getOptionalParameter(LootParameters.BLOCK_ENTITY)));
+        items.add(getMainDrop(state, (TileEntityDrawersMore)builder.getOptionalParameter(LootParameters.BLOCK_ENTITY)));
         return items;
     }
 
-    protected ItemStack getMainDrop (BlockState state, TileEntityDrawers tile) {
+    protected ItemStack getMainDrop (BlockState state, TileEntityDrawersMore tile) {
         ItemStack drop = new ItemStack(this);
         if (tile == null)
             return drop;
@@ -585,87 +422,17 @@ public abstract class BlockDrawers extends HorizontalBlock implements INetworked
         return drop;
     }
 
-    /*@Override
-    public float getExplosionResistance (World world, BlockPos pos, Entity exploder, Explosion explosion) {
-        TileEntityDrawers tile = getTileEntity(world, pos);
-        if (tile != null) {
-            for (int slot = 0; slot < 5; slot++) {
-                ItemStack stack = tile.upgrades().getUpgrade(slot);
-                if (stack.isEmpty() || !(stack.getItem() instanceof ItemUpgradeStorage))
-                    continue;
-                if (EnumUpgradeStorage.byMetadata(stack.getMetadata()) != EnumUpgradeStorage.OBSIDIAN)
-                    continue;
-                return 1000;
-            }
-        }
-        return super.getExplosionResistance(world, pos, exploder, explosion);
-    }*/
-
-    @Override
-    public boolean hasTileEntity (BlockState state) {
-        return true;
-    }
-
-    public TileEntityDrawers getTileEntity (IBlockReader blockAccess, BlockPos pos) {
-        if (inTileLookup.get())
-            return null;
-
-        inTileLookup.set(true);
-        TileEntity tile = blockAccess.getBlockEntity(pos);
-        inTileLookup.set(false);
-
-        return (tile instanceof TileEntityDrawers) ? (TileEntityDrawers) tile : null;
-    }
-
-    public TileEntityDrawers getTileEntitySafe (World world, BlockPos pos) {
-        TileEntityDrawers tile = getTileEntity(world, pos);
-        if (tile == null) {
-            tile = (TileEntityDrawers) createTileEntity(world.getBlockState(pos), world);
-            world.setBlockEntity(pos, tile);
-        }
-
-        return tile;
-    }
-
-    /*@Override
-    @SideOnly(Side.CLIENT)
-    public boolean addHitEffects (IBlockState state, World worldObj, RayTraceResult target, ParticleManager manager) {
-        if (getDirection(worldObj, target.getBlockPos()) == target.sideHit)
-            return true;
-        return super.addHitEffects(state, worldObj, target, manager);
-    }
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean addDestroyEffects (World world, BlockPos pos, ParticleManager manager) {
-        //TileEntityDrawers tile = getTileEntity(world, pos);
-        //if (tile != null && !tile.getWillDestroy())
-        //    return true;
-        return super.addDestroyEffects(world, pos, manager);
-    }*/
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public boolean isSignalSource  (BlockState state) {
-        return true;
-    }
-
     @Override
     @SuppressWarnings("deprecation")
     public int getSignal  (BlockState state, IBlockReader blockAccess, BlockPos pos, Direction side) {
         if (!isSignalSource (state))
             return 0;
 
-        TileEntityDrawers tile = getTileEntity(blockAccess, pos);
+        TileEntityDrawersMore tile = (TileEntityDrawersMore)getTileEntity(blockAccess, pos);
         if (tile == null || !tile.isRedstone())
             return 0;
 
         return tile.getRedstoneLevel();
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public int getDirectSignal  (BlockState state, IBlockReader worldIn, BlockPos pos, Direction side) {
-        return (side == Direction.UP) ? getSignal (state, worldIn, pos, side) : 0;
     }
 
 

@@ -3,8 +3,6 @@ package com.rydelfox.morestoragedrawers.block;
 //import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.BlockTrim;
 import com.jaquadro.minecraft.storagedrawers.item.ItemDrawers;
-import com.rydelfox.morestoragedrawers.block.BlockDrawers;
-import com.rydelfox.morestoragedrawers.block.BlockStandardDrawers;
 import com.rydelfox.morestoragedrawers.block.tile.TileEntityDrawersMore;
 import com.rydelfox.morestoragedrawers.MoreCreative;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
@@ -26,7 +24,6 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
@@ -211,7 +208,7 @@ public class ModBlocks {
             alldrawers.addAll(halfTwo.values());
             alldrawers.addAll(halfFour.values());
             for (Block block : alldrawers) {
-                if (block instanceof BlockDrawers) {
+                if (block instanceof BlockDrawersExtended) {
                     RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
                 }
             }
