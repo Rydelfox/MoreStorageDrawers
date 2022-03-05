@@ -137,14 +137,10 @@ public class MoreDrawerModel {
                     continue;
 
                 MoreStorageDrawers.logInfo("MoreStorageDrawers: Populating Geometry Data, drawer "+block.getDescriptionId());
-                MoreStorageDrawers.logInfo("MoreStorageDrawers: Location "+ locationIcon.getNamespace()+":"+locationIcon.getPath());
                 for (int i = 0; i < block.getDrawerCount(); i++) {
                     Vector3f from = slotInfo.getElements().get(i).from;
                     Vector3f to = slotInfo.getElements().get(i).to;
-                    MoreStorageDrawers.logInfo("MoreStorageDrawers: Icon from xyz "+from.x()+","+from.y()+","+from.z()+" to "+to.x()+","+to.y()+","+to.z());
                     block.labelGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
-                    MoreStorageDrawers.logInfo("Recorded min "+block.labelGeometry[i].minX+","+block.labelGeometry[i].minY+","+block.labelGeometry[i].minZ);
-                    MoreStorageDrawers.logInfo("Recorded max "+block.labelGeometry[i].maxX+","+block.labelGeometry[i].maxY+","+block.labelGeometry[i].maxZ);
                 }
                 for (int i = 0; i < block.getDrawerCount(); i++) {
                     Vector3f from = countInfo.getElements().get(i).from;
@@ -210,7 +206,6 @@ public class MoreDrawerModel {
 
             for(EnumVariant variant : EnumVariant.values()) {
                 if (variant.getMod() != null && variant.getMod().isLoaded()) {
-                    MoreStorageDrawers.logInfo("MoreStorageDrawers: Replacing blocks for "+variant.getSerializedName());
                     replaceBlock(event, ModBlocks.fullOne.get(variant));
                     replaceBlock(event, ModBlocks.fullTwo.get(variant));
                     replaceBlock(event, ModBlocks.fullFour.get(variant));
@@ -222,19 +217,15 @@ public class MoreDrawerModel {
         }
 
         public static void replaceBlock(ModelBakeEvent event, BlockDrawersExtended block) {
-            MoreStorageDrawers.logInfo("MoreStorageDrawers: Replacing block for "+block.getDescriptionId());
             for (BlockState state : block.getStateDefinition().getPossibleStates()) {
                 ModelResourceLocation modelResource = BlockModelShapes.stateToModelLocation(state);
                 IBakedModel parentModel = event.getModelManager().getModel(modelResource);
                 if (parentModel == null) {
-                    MoreStorageDrawers.LOGGER.warn("Got back null model from ModelBakeEvent.ModelManager for " + modelResource.toString());
                     continue;
                 } else if (parentModel == event.getModelManager().getMissingModel()) {
-                    MoreStorageDrawers.logInfo("MoreStorageDrawers: Parent missing model");
                     continue;
                 }
 
-                MoreStorageDrawers.logInfo("Registering Model "+ block.getRegistryName().getPath());
                 if (block.isHalfDepth())
                     event.getModelRegistry().put(modelResource, new Model2.HalfModel(parentModel));
                 else
@@ -243,19 +234,15 @@ public class MoreDrawerModel {
         }
 
         public static void replaceBlock(ModelBakeEvent event, BlockMoreDrawers block) {
-            MoreStorageDrawers.logInfo("MoreStorageDrawers: Replacing block for "+block.getDescriptionId());
             for (BlockState state : block.getStateDefinition().getPossibleStates()) {
                 ModelResourceLocation modelResource = BlockModelShapes.stateToModelLocation(state);
                 IBakedModel parentModel = event.getModelManager().getModel(modelResource);
                 if (parentModel == null) {
-                    MoreStorageDrawers.LOGGER.warn("Got back null model from ModelBakeEvent.ModelManager for " + modelResource.toString());
                     continue;
                 } else if (parentModel == event.getModelManager().getMissingModel()) {
-                    MoreStorageDrawers.logInfo("MoreStorageDrawers: Parent missing model");
                     continue;
                 }
 
-                MoreStorageDrawers.logInfo("Registering Model "+ block.getRegistryName().getPath());
                 if (block.isHalfDepth())
                     event.getModelRegistry().put(modelResource, new Model2.HalfModel(parentModel));
                 else

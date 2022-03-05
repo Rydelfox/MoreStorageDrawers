@@ -122,6 +122,10 @@ public class ModBlocks {
                     registerDrawerBlock(event, variant, variant.prefix()+"_half_1", 1, true, properties);
                     registerDrawerBlock(event, variant, variant.prefix()+"_half_2", 2, true, properties);
                     registerDrawerBlock(event, variant, variant.prefix()+"_half_4", 4, true, properties);
+                } else if (variant.getMod() == null) {
+                    MoreStorageDrawers.logInfo("Mod is null");
+                } else {
+                    MoreStorageDrawers.logInfo("Mod not loaded");
                 }
             }
             MoreStorageDrawers.logInfo("MoreStorageDrawers: All Drawer blocks loaded");

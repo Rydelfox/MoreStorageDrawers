@@ -7,7 +7,8 @@ import net.minecraftforge.fml.ModList;
 import javax.annotation.Nonnull;
 
 public enum EnumMod implements IStringSerializable {
-    ARSNOUVEAU("ars_nouveau", EnumVariant.ARSNOUVEAU_ARCHWOOD);
+    ARSNOUVEAU("ars_nouveau", EnumVariant.ARSNOUVEAU_ARCHWOOD),
+    ASTRALSORCERY("astralsorcery", EnumVariant.ASTRALSORCERY_INFUSED);
 
     private String id;
     private EnumVariant defaultMaterial;

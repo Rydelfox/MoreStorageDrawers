@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "///",
+    " x ",
+    "///"
+  ],
+  "key": {
+    "/": { "item": "astralsorcery:infused_wood_planks"},
+    "x": { "tag":  "forge:chests/wooden" }
+  },
+  "result": { "item":  "morestoragedrawers:astralsorcery_infused_full_1", "count":  1 }
+}

@@ -11,7 +11,8 @@ import java.util.Map;
 public enum EnumVariant implements IStringSerializable {
     DEFAULT(null, "default", 0, null, 0),
 
-    ARSNOUVEAU_ARCHWOOD(ID.ARSNOUVEAU, "archwood", 1, "archwood_planks", 0, "archwood_slab", 0);
+    ARSNOUVEAU_ARCHWOOD(ID.ARSNOUVEAU, "archwood", 1, "archwood_planks", 0, "archwood_slab", 0),
+    ASTRALSORCERY_INFUSED(ID.ASTRALSORCERY, "infused", 2, "infused_wood_planks", 0, "infused_wood_slab", 0);
 
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
     private static final Map<Integer, EnumVariant> INDEX_LOOKUP;
@@ -127,6 +128,7 @@ public enum EnumVariant implements IStringSerializable {
 
     private static class ID {
         public static final String ARSNOUVEAU = "ars_nouveau";
+        public static final String ASTRALSORCERY = "astralsorcery";
     }
 
 
