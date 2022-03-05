@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "///",
+    " x ",
+    "///"
+  ],
+  "key": {
+    "/": { "item": "eidolon:polished_planks"},
+    "x": { "tag":  "forge:chests/wooden" }
+  },
+  "result": { "item":  "morestoragedrawers:eidolon_polished_full_1", "count":  1 }
+}

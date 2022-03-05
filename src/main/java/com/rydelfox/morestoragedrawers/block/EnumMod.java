@@ -9,7 +9,8 @@ import javax.annotation.Nonnull;
 public enum EnumMod implements IStringSerializable {
     ARSNOUVEAU("ars_nouveau", EnumVariant.ARSNOUVEAU_ARCHWOOD),
     ASTRALSORCERY("astralsorcery", EnumVariant.ASTRALSORCERY_INFUSED),
-    BOTANIA("botania", EnumVariant.BOTANIA_LIVINGWOOD);
+    BOTANIA("botania", EnumVariant.BOTANIA_LIVINGWOOD),
+    EIDOLON("eidolon", EnumVariant.EIDOLON_POLISHED);
 
     private String id;
     private EnumVariant defaultMaterial;

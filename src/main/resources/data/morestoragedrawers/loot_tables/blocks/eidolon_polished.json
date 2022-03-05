@@ -1,0 +1,19 @@
+{
+  "type": "morestoragedrawers:eidolon_polished_trim",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "morestoragedrawers:eidolon_polished_trim"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}

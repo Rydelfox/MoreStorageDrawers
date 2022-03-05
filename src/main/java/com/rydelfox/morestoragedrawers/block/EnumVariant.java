@@ -17,7 +17,8 @@ public enum EnumVariant implements IStringSerializable {
     BOTANIA_MOSSY_LIVINGWOOD(ID.BOTANIA, "mossy_livingwood", 4, "mossy_livingwood_planks"),
     BOTANIA_DREAMWOOD(ID.BOTANIA, "dreamwood", 5, "dreamwood_planks", "dreamwood_planks_slab"),
     BOTANIA_MOSSY_DREAMWOOD(ID.BOTANIA, "mossy_dreamwood", 6, "mossy_dreamwood_planks"),
-    BOTANIA_SHIMMERWOOD(ID.BOTANIA, "shimmerwood", 7, "shimmerwood_planks", "shimmerwood_planks_slab");
+    BOTANIA_SHIMMERWOOD(ID.BOTANIA, "shimmerwood", 7, "shimmerwood_planks", "shimmerwood_planks_slab"),
+    EIDOLON_POLISHED(ID.EIDOLON, "polished", 8, "polished_planks", "polished_planks_slab", 4, 5, 0);
 
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
     private static final Map<Integer, EnumVariant> INDEX_LOOKUP;
@@ -145,6 +146,7 @@ public enum EnumVariant implements IStringSerializable {
         public static final String ARSNOUVEAU = "ars_nouveau";
         public static final String ASTRALSORCERY = "astralsorcery";
         public static final String BOTANIA = "botania";
+        public static final String EIDOLON = "eidolon";
     }
 
 

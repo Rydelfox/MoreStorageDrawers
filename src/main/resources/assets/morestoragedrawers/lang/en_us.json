@@ -42,6 +42,13 @@
   "block.morestoragedrawers.botania_shimmerwood_half_2": "Shimmerwood Half Drawers 1x2",
   "block.morestoragedrawers.botania_shimmerwood_half_4": "Shimmerwood Half Drawers 2x2",
   "block.morestoragedrawers.botania_shimmerwood_trim": "Shimmerwood Trim",
+  "block.morestoragedrawers.eidolon_polished_full_1": "Polished Drawers 1x1",
+  "block.morestoragedrawers.eidolon_polished_full_2": "Polished Drawers 1x2",
+  "block.morestoragedrawers.eidolon_polished_full_4": "Polished Drawers 2x2",
+  "block.morestoragedrawers.eidolon_polished_half_1": "Polished Half Drawers 1x1",
+  "block.morestoragedrawers.eidolon_polished_half_2": "Polished Half Drawers 1x2",
+  "block.morestoragedrawers.eidolon_polished_half_4": "Polished Half Drawers 2x2",
+  "block.morestoragedrawers.eidolon_polished_trim": "Polished Trim",
 
   "itemGroup.morestoragedrawers": "More Storage Drawers"
 }
