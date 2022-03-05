@@ -12,9 +12,9 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.16.5-1.0.0'
+version = "${mc_part}-${major}.${minor}.${patch}"
 group = 'com.rydelfox.morestoragedrawers' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'morestoragedrawers'
+archivesBaseName = "${mod_id}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
@@ -127,30 +127,9 @@ repositories {
 
 
 dependencies {
-    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
-    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
-    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.20'
+    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
-    // You may put jars on which you depend on in ./libs or you may define them like so..
-    // compile "some.group:artifact:version:classifier"
-    // compile "some.group:artifact:version"
-
-    // Real examples
-    // compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // The 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    // provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // These dependencies get remapped to your current MCP mappings
-    // deobf 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // For more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    // compileOnly "storagedrawers:StorageDrawers:1.16.3:8.5.1"
-    implementation 'curse.maven:StorageDrawers-223852:3611471'
+    implementation fg.deobf("curse.maven:StorageDrawers-223852:${storagedrawers_version}")
 
 }
 
@@ -158,12 +137,11 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "morestoragedrawers",
-            "Specification-Vendor": "rydelfox",
+            "Specification-Title": "${mod_id}",
+            "Specification-Vendor": "RydelFox",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"rydelfox",
+            "Implementation-Version": "${project.version}",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
