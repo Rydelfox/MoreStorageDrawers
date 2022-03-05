@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "ars_nouveau:botania_mossy_dreamwood_trim"
+        "recipe": "morestoragedrawers:botania_mossy_dreamwood_trim"
       }
     }
   },

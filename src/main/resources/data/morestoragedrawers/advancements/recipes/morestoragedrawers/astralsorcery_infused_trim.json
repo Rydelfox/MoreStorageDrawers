@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "ars_nouveau:astralsorcery_infused_trim"
+        "recipe": "morestoragedrawers:astralsorcery_infused_trim"
       }
     }
   },

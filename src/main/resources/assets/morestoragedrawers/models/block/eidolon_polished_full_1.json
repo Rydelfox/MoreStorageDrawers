@@ -1,0 +1,9 @@
+{
+  "parent": "storagedrawers:block/full_drawers_orientable",
+  "textures": {
+    "top": "morestoragedrawers:blocks/eidolon_polished_side",
+    "front": "morestoragedrawers:blocks/eidolon_polished_front_1",
+    "side": "morestoragedrawers:blocks/eidolon_polished_side",
+    "trim": "morestoragedrawers:blocks/eidolon_polished_trim"
+  }
+}

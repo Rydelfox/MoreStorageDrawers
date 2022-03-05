@@ -1,0 +1,10 @@
+{
+  "parent": "storagedrawers:block/half_drawers_orientable",
+  "textures": {
+    "top": "morestoragedrawers:blocks/eidolon_polished_side_h",
+    "front": "morestoragedrawers:blocks/eidolon_polished_front_2",
+    "back": "morestoragedrawers:blocks/eidolon_polished_side",
+    "side": "morestoragedrawers:blocks/eidolon_polished_side_v",
+    "trim": "morestoragedrawers:blocks/eidolon_polished_trim"
+  }
+}
