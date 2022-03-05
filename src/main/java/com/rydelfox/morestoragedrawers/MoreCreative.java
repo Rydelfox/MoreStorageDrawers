@@ -1,6 +1,5 @@
 package com.rydelfox.morestoragedrawers;
 
-import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.rydelfox.morestoragedrawers.block.EnumVariant;
 import com.rydelfox.morestoragedrawers.block.ModBlocks;
 import net.minecraft.block.Blocks;

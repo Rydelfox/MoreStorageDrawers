@@ -1,16 +1,20 @@
 package com.rydelfox.morestoragedrawers.block.tile;
 
+import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.jaquadro.minecraft.storagedrawers.api.event.DrawerPopulatedEvent;
+import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawer;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerAttributes;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerGroup;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawersStandard;
 import com.jaquadro.minecraft.storagedrawers.block.tile.tiledata.StandardDrawerGroup;
+import com.jaquadro.minecraft.storagedrawers.inventory.ItemStackHelper;
+import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.ModBlocks;
-import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -18,17 +22,21 @@ import net.minecraftforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.UUID;
 
-public class TileEntityDrawersMore extends TileEntityDrawersStandard {
+public class TileEntityDrawersMore extends TileEntityDrawers {
 
     @CapabilityInject(IDrawerAttributes.class)
     static Capability<IDrawerAttributes> DRAWER_ATTRIBUTES_CAPABILITY = null;
+
+    private long lastClickTime;
+    private UUID lastClickUUID;
 
     public TileEntityDrawersMore (TileEntityType<?> tileEntityType) {
         super(tileEntityType);
     }
 
-    public static class Slot1 extends  TileEntityDrawersMore {
+    public static class Slot1 extends TileEntityDrawersMore {
         private GroupData groupData = new GroupData(1);
 
         public Slot1 () {
@@ -38,18 +46,18 @@ public class TileEntityDrawersMore extends TileEntityDrawersStandard {
         }
 
         @Override
-        public IDrawerGroup getGroup() {
+        public IDrawerGroup getGroup () {
             return groupData;
         }
 
         @Override
-        protected void onAttributeChanged() {
+        protected void onAttributeChanged () {
             super.onAttributeChanged();
             groupData.syncAttributes();
         }
     }
 
-    public static class Slot2 extends  TileEntityDrawersMore {
+    public static class Slot2 extends TileEntityDrawersMore {
         private GroupData groupData = new GroupData(2);
 
         public Slot2 () {
@@ -59,18 +67,18 @@ public class TileEntityDrawersMore extends TileEntityDrawersStandard {
         }
 
         @Override
-        public IDrawerGroup getGroup() {
+        public IDrawerGroup getGroup () {
             return groupData;
         }
 
         @Override
-        protected void onAttributeChanged() {
+        protected void onAttributeChanged () {
             super.onAttributeChanged();
             groupData.syncAttributes();
         }
     }
 
-    public static class Slot4 extends  TileEntityDrawersMore {
+    public static class Slot4 extends TileEntityDrawersMore {
         private GroupData groupData = new GroupData(4);
 
         public Slot4 () {
@@ -80,12 +88,12 @@ public class TileEntityDrawersMore extends TileEntityDrawersStandard {
         }
 
         @Override
-        public IDrawerGroup getGroup() {
+        public IDrawerGroup getGroup () {
             return groupData;
         }
 
         @Override
-        protected void onAttributeChanged() {
+        protected void onAttributeChanged () {
             super.onAttributeChanged();
             groupData.syncAttributes();
         }
@@ -102,6 +110,11 @@ public class TileEntityDrawersMore extends TileEntityDrawersStandard {
             default:
                 return null;
         }
+    }
+
+    @Override
+    public IDrawerGroup getGroup () {
+        return null;
     }
 
     private class GroupData extends StandardDrawerGroup {
@@ -154,6 +167,24 @@ public class TileEntityDrawersMore extends TileEntityDrawersStandard {
                 syncClientCount(slot, getStoredItemCount());
                 setChanged();
             }
+            // At this point, client claims to contain air
+        }
+
+        @Override
+        protected IDrawer setStoredItem(@Nonnull ItemStack itemPrototype, boolean notify) {
+            MoreStorageDrawers.logInfo("setStoredItem, "+itemPrototype.getItem().getRegistryName().getPath());
+            if(ItemStackHelper.isStackEncoded(itemPrototype)) {
+                itemPrototype = ItemStackHelper.decodeItemStackPrototype(itemPrototype);
+            }
+
+            itemPrototype = ItemStackHelper.getItemPrototype(itemPrototype);
+            if (itemPrototype.isEmpty()) {
+                reset(notify);
+                return this;
+            }
+
+            setStoredItemRaw(itemPrototype);
+            return this;
         }
     }
 
