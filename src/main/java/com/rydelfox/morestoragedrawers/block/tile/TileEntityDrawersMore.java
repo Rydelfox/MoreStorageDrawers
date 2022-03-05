@@ -167,8 +167,6 @@ public class TileEntityDrawersMore extends TileEntityDrawers {
                 syncClientCount(slot, getStoredItemCount());
                 setChanged();
             }
-            MoreStorageDrawers.logInfo("StandardDrawerData.onItemChanged");
-            MoreStorageDrawers.logInfo("Drawer slot 1 contains"+getGroup().getDrawer(1).getStoredItemPrototype().getItem().getRegistryName().getPath());
             // At this point, client claims to contain air
         }
 
@@ -178,10 +176,8 @@ public class TileEntityDrawersMore extends TileEntityDrawers {
             if(ItemStackHelper.isStackEncoded(itemPrototype)) {
                 itemPrototype = ItemStackHelper.decodeItemStackPrototype(itemPrototype);
             }
-            MoreStorageDrawers.logInfo("After decode, "+itemPrototype.getItem().getRegistryName().getPath());
 
             itemPrototype = ItemStackHelper.getItemPrototype(itemPrototype);
-            MoreStorageDrawers.logInfo("After getItemPrototype, "+itemPrototype.getItem().getRegistryName().getPath());
             if (itemPrototype.isEmpty()) {
                 reset(notify);
                 return this;
@@ -190,131 +186,6 @@ public class TileEntityDrawersMore extends TileEntityDrawers {
             setStoredItemRaw(itemPrototype);
             return this;
         }
-    }
-
-    @Override
-    public int putItemsIntoSlot (int slot, @Nonnull ItemStack stack, int count) {
-        MoreStorageDrawers.logInfo("putItemsIntoSlot, item: "+stack.getItem().getRegistryName().getPath());
-        IDrawer drawer = getGroup().getDrawer(slot);
-        if (!drawer.isEnabled()) {
-            MoreStorageDrawers.logInfo("Drawer is disabled");
-            return 0;
-        }
-
-        if (drawer.isEmpty()) {
-            MoreStorageDrawers.logInfo("Storing item");
-            drawer = drawer.setStoredItem(stack);
-        }
-
-        if (!drawer.canItemBeStored(stack)) {
-            MoreStorageDrawers.logInfo("Item can't be stored");
-            return 0;
-        }
-
-        int countAdded = Math.min(count, stack.getCount());
-        if (!super.getDrawerAttributes().isVoid())
-            countAdded = Math.min(countAdded, drawer.getRemainingCapacity());
-
-        int newCount = drawer.getStoredItemCount() + countAdded;
-        drawer.setStoredItemCount(newCount);
-        stack.shrink(countAdded);
-        MoreStorageDrawers.logInfo("Drawer contains "+drawer.getStoredItemCount()+" "+drawer.getStoredItemPrototype().getItem().getRegistryName().getPath());
-
-        setChanged();
-        MoreStorageDrawers.logInfo("SetChanged. Drawer contains "+drawer.getStoredItemCount()+" "+drawer.getStoredItemPrototype().getItem().getRegistryName().getPath());
-
-        // Safety - sometimes drawers were having items not go in properly
-        IDrawer drawer2 = getDrawer(slot);
-        IDrawer drawer3 = super.getDrawer(slot);
-        if (drawer2 != drawer) {
-            MoreStorageDrawers.logInfo("Drawer/Group Drawer Mismatch after insertion");
-        }
-        if (drawer3 != drawer) {
-            MoreStorageDrawers.logInfo("Drawer/Super Drawer Mismatch after insertion");
-        }
-        if(drawer.getStoredItemCount() == 0) {
-            MoreStorageDrawers.logInfo("drawer is empty");
-        }
-        if(drawer2.getStoredItemCount() == 0) {
-            MoreStorageDrawers.logInfo("drawer2 is empty");
-        }
-        if(drawer3.getStoredItemCount() == 0) {
-            MoreStorageDrawers.logInfo("drawer3 is empty");
-        }
-
-
-        return countAdded;
-    }
-
-    @Override
-    public int interactPutCurrentItemIntoSlot (int slot, PlayerEntity player) {
-        MoreStorageDrawers.logInfo("interactPutCurrentItemIntoSlot");
-        IDrawer drawer = getGroup().getDrawer(slot);
-        IDrawer otherDrawer = super.getDrawer(slot);
-        if (otherDrawer != drawer ) {
-            MoreStorageDrawers.logInfo("Super drawer mismatch!");
-        }
-        IDrawer thirdDrawer = getDrawer(slot);
-        if (thirdDrawer != drawer)
-            MoreStorageDrawers.logInfo("Non-Group drawers mismatch");
-        if (!drawer.isEnabled())
-            return 0;
-
-        int count = 0;
-        ItemStack playerStack = player.inventory.getSelected();
-        if (!playerStack.isEmpty())
-            count = putItemsIntoSlot(slot, playerStack, playerStack.getCount());
-        MoreStorageDrawers.logInfo("interactPutCurrentItemIntoSlot - drawer has "+drawer.getStoredItemPrototype().getItem().getRegistryName().getPath());
-
-        return count;
-    }
-
-    @Override
-    public int interactPutCurrentInventoryIntoSlot (int slot, PlayerEntity player) {
-        MoreStorageDrawers.logInfo("interactPutCurrentInventoryIntoSlot");
-        IDrawer drawer = getGroup().getDrawer(slot);
-        if (!drawer.isEnabled())
-            return 0;
-
-        int count = 0;
-        if (!drawer.isEmpty()) {
-            for (int i = 0, n = player.inventory.getContainerSize(); i < n; i++) {
-                ItemStack subStack = player.inventory.getItem(i);
-                if (!subStack.isEmpty()) {
-                    int subCount = putItemsIntoSlot(slot, subStack, subStack.getCount());
-                    if (subCount > 0 && subStack.getCount() == 0)
-                        player.inventory.setItem(i, ItemStack.EMPTY);
-
-                    count += subCount;
-                }
-            }
-        }
-
-        if (count > 0)
-            StorageDrawers.proxy.updatePlayerInventory(player);
-
-        MoreStorageDrawers.logInfo("interactPutCurrentInventoryIntoSlot - drawer has "+drawer.getStoredItemPrototype().getItem().getRegistryName().getPath());
-
-        return count;
-    }
-
-    @Override
-    public int interactPutItemsIntoSlot (int slot, PlayerEntity player) {
-        MoreStorageDrawers.logInfo("interactPutItemsIntoSlot");
-        int count;
-        if (getLevel().getGameTime() - lastClickTime < 10 && player.getUUID().equals(lastClickUUID))
-            count = interactPutCurrentInventoryIntoSlot(slot, player);
-        else
-            count = interactPutCurrentItemIntoSlot(slot, player);
-
-        lastClickTime = getLevel().getGameTime();
-        lastClickUUID = player.getUUID();
-
-        IDrawer drawer = getDrawer(slot);
-        IDrawer groupDrawer = getGroup().getDrawer(slot);
-        MoreStorageDrawers.logInfo("interactPutItemsIntoSlot - drawer has "+drawer.getStoredItemPrototype().getItem().getRegistryName().getPath()+", group drawer has "+groupDrawer.getStoredItemPrototype().getItem().getRegistryName().getPath());
-
-        return count;
     }
 
 }
