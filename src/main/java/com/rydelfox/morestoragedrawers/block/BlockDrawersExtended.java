@@ -283,10 +283,17 @@ public abstract class BlockDrawersExtended extends BlockDrawers
 
         MoreStorageDrawers.logInfo("attempt to put item into slot");
         int slot = getDrawerSlot(hit);
+        IDrawer drawer = tileDrawers.getGroup().getDrawer(slot);
+        MoreStorageDrawers.logInfo("Drawer contains "+drawer.getStoredItemPrototype().getItem().getRegistryName().getPath());
         tileDrawers.interactPutItemsIntoSlot(slot, player);
 
         if (item.isEmpty())
             player.setItemInHand(hand, ItemStack.EMPTY);
+
+
+        MoreStorageDrawers.logInfo("end of BlockDrawersExtended.use - drawer has "+drawer.getStoredItemPrototype().getItem().getRegistryName().getPath());
+        drawer = tileDrawers.getGroup().getDrawer(slot);
+        MoreStorageDrawers.logInfo("re-assigning drawer - drawer has "+drawer.getStoredItemPrototype().getItem().getRegistryName().getPath());
 
         return ActionResultType.SUCCESS;
     }

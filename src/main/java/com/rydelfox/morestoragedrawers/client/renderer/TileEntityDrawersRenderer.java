@@ -12,6 +12,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.rydelfox.morestoragedrawers.block.BlockDrawersExtended;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
+import com.rydelfox.morestoragedrawers.block.tile.TileEntityDrawersMore;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -57,62 +58,125 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
     @Override
     public void render (TileEntityDrawers tile, float partialTickTime, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
         //MoreStorageDrawers.logInfo("Calling TileEntityDrawersRenderer.render(...)");
-        if (tile == null) {
-            //MoreStorageDrawers.logInfo("tile is null");
-            return;
+        if (tile instanceof TileEntityDrawersMore) {
+            //MoreStorageDrawers.logInfo("In TileEntityDrawersMore version");
+            TileEntityDrawersMore tileM = (TileEntityDrawersMore)tile;
+            if (tileM == null) {
+                //MoreStorageDrawers.logInfo("tile is null");
+                return;
+            }
+
+            //MoreStorageDrawers.logInfo("Rendering tile " + tileM.toString());
+            World world = tileM.getLevel();
+            if (world == null) {
+                //MoreStorageDrawers.logInfo("World is null");
+                return;
+            }
+
+            BlockState state = tileM.getBlockState();
+            if (!(state.getBlock() instanceof BlockDrawersExtended)) {
+                //MoreStorageDrawers.logInfo("BlockState not instance of BlockDrawers");
+                return;
+            }
+
+            Direction side = state.getValue(BlockDrawersExtended.FACING);
+            if (playerBehindBlock(tileM.getBlockPos(), side)) {
+                //MoreStorageDrawers.logInfo("Facing issue");
+                return;
+            }
+
+            PlayerEntity player = Minecraft.getInstance().player;
+            BlockPos blockPos = tileM.getBlockPos().offset(.5, .5, .5);
+            float distance = (float) Math.sqrt(blockPos.distSqr(player.position(), true));
+
+            double renderDistance = ClientConfig.RENDER.labelRenderDistance.get();
+            if (renderDistance > 0 && distance > renderDistance) {
+                //MoreStorageDrawers.logInfo("out of render distance");
+                return;
+            }
+
+            renderItem = Minecraft.getInstance().getItemRenderer();
+
+            if (tileM.upgrades().hasIlluminationUpgrade()) {
+                int blockLight = Math.max(combinedLight % 65536, 208);
+                combinedLight = (combinedLight & 0xFFFF0000) | blockLight;
+            }
+
+            Minecraft mc = Minecraft.getInstance();
+            GraphicsFanciness cache = mc.options.graphicsMode;
+            mc.options.graphicsMode = GraphicsFanciness.FANCY;
+
+            if (!tileM.getDrawerAttributes().isConcealed())
+                renderFastItemSet(tileM, state, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime, distance);
+
+            if (tileM.getDrawerAttributes().hasFillLevel())
+                renderIndicator((BlockDrawersExtended) state.getBlock(), tileM, matrix, buffer, state.getValue(BlockDrawersExtended.FACING), combinedLight, combinedOverlay);
+
+            mc.options.graphicsMode = cache;
+
+            matrix.popPose();
+            RenderHelper.setupLevel(matrix.last().pose());
+            matrix.pushPose();
+
+        } else {
+            //MoreStorageDrawers.logInfo("In Non-TileEntityDrawersMore version");
+            if (tile == null) {
+                //MoreStorageDrawers.logInfo("tile is null");
+                return;
+            }
+
+            //MoreStorageDrawers.logInfo("Rendering tile " + tile.toString());
+            World world = tile.getLevel();
+            if (world == null) {
+                //MoreStorageDrawers.logInfo("World is null");
+                return;
+            }
+
+            BlockState state = tile.getBlockState();
+            if (!(state.getBlock() instanceof BlockDrawersExtended)) {
+                //MoreStorageDrawers.logInfo("BlockState not instance of BlockDrawers");
+                return;
+            }
+
+            Direction side = state.getValue(BlockDrawersExtended.FACING);
+            if (playerBehindBlock(tile.getBlockPos(), side)) {
+                //MoreStorageDrawers.logInfo("Facing issue");
+                return;
+            }
+
+            PlayerEntity player = Minecraft.getInstance().player;
+            BlockPos blockPos = tile.getBlockPos().offset(.5, .5, .5);
+            float distance = (float) Math.sqrt(blockPos.distSqr(player.position(), true));
+
+            double renderDistance = ClientConfig.RENDER.labelRenderDistance.get();
+            if (renderDistance > 0 && distance > renderDistance) {
+                //MoreStorageDrawers.logInfo("out of render distance");
+                return;
+            }
+
+            renderItem = Minecraft.getInstance().getItemRenderer();
+
+            if (tile.upgrades().hasIlluminationUpgrade()) {
+                int blockLight = Math.max(combinedLight % 65536, 208);
+                combinedLight = (combinedLight & 0xFFFF0000) | blockLight;
+            }
+
+            Minecraft mc = Minecraft.getInstance();
+            GraphicsFanciness cache = mc.options.graphicsMode;
+            mc.options.graphicsMode = GraphicsFanciness.FANCY;
+
+            if (!tile.getDrawerAttributes().isConcealed())
+                renderFastItemSet(tile, state, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime, distance);
+
+            if (tile.getDrawerAttributes().hasFillLevel())
+                renderIndicator((BlockDrawersExtended) state.getBlock(), tile, matrix, buffer, state.getValue(BlockDrawersExtended.FACING), combinedLight, combinedOverlay);
+
+            mc.options.graphicsMode = cache;
+
+            matrix.popPose();
+            RenderHelper.setupLevel(matrix.last().pose());
+            matrix.pushPose();
         }
-
-        //MoreStorageDrawers.logInfo("Rendering tile "+tile.toString());
-        World world = tile.getLevel();
-        if (world == null) {
-            //MoreStorageDrawers.logInfo("World is null");
-            return;
-        }
-
-        BlockState state = tile.getBlockState();
-        if (!(state.getBlock() instanceof BlockDrawersExtended)) {
-            //MoreStorageDrawers.logInfo("BlockState not instance of BlockDrawers");
-            return;
-        }
-
-        Direction side = state.getValue(BlockDrawersExtended.FACING);
-        if (playerBehindBlock(tile.getBlockPos(), side)) {
-            //MoreStorageDrawers.logInfo("Facing issue");
-            return;
-        }
-
-        PlayerEntity player = Minecraft.getInstance().player;
-        BlockPos blockPos = tile.getBlockPos().offset(.5, .5, .5);
-        float distance = (float)Math.sqrt(blockPos.distSqr(player.position(), true));
-
-        double renderDistance = ClientConfig.RENDER.labelRenderDistance.get();
-        if (renderDistance > 0 && distance > renderDistance) {
-            //MoreStorageDrawers.logInfo("out of render distance");
-            return;
-        }
-
-        renderItem = Minecraft.getInstance().getItemRenderer();
-
-        if (tile.upgrades().hasIlluminationUpgrade()) {
-            int blockLight = Math.max(combinedLight % 65536, 208);
-            combinedLight = (combinedLight & 0xFFFF0000) | blockLight;
-        }
-
-        Minecraft mc = Minecraft.getInstance();
-        GraphicsFanciness cache = mc.options.graphicsMode;
-        mc.options.graphicsMode = GraphicsFanciness.FANCY;
-
-        if (!tile.getDrawerAttributes().isConcealed())
-            renderFastItemSet(tile, state, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime, distance);
-
-        if (tile.getDrawerAttributes().hasFillLevel())
-            renderIndicator((BlockDrawersExtended)state.getBlock(), tile, matrix, buffer, state.getValue(BlockDrawersExtended.FACING), combinedLight, combinedOverlay);
-
-        mc.options.graphicsMode = cache;
-
-        matrix.popPose();
-        RenderHelper.setupLevel(matrix.last().pose());
-        matrix.pushPose();
     }
 
     private boolean playerBehindBlock(BlockPos blockPos, Direction facing) {
@@ -132,6 +196,50 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
                 return playerPos.getX() < blockPos.getX();
             default:
                 return false;
+        }
+    }
+
+    private void renderFastItemSet (TileEntityDrawersMore tile, BlockState state, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime, float distance) {
+        int drawerCount = tile.getGroup().getDrawerCount();
+        //MoreStorageDrawers.logInfo("Rendering item in More version");
+
+        for (int i = 0; i < drawerCount; i++) {
+            renderStacks[i] = ItemStack.EMPTY;
+            IDrawer drawer = tile.getGroup().getDrawer(i);
+            if (!drawer.isEnabled() || drawer.isEmpty())
+                continue;
+
+            ItemStack itemStack = drawer.getStoredItemPrototype();
+            renderStacks[i] = itemStack;
+            renderAsBlock[i] = isItemBlockType(itemStack);
+            //MoreStorageDrawers.logInfo("Found item "+itemStack.getDisplayName());
+        }
+
+        for (int i = 0; i < drawerCount; i++) {
+            if (!renderStacks[i].isEmpty() && !renderAsBlock[i])
+                renderFastItem(renderStacks[i], tile, state, i, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime);
+        }
+
+        for (int i = 0; i < drawerCount; i++) {
+            if (!renderStacks[i].isEmpty() && renderAsBlock[i])
+                renderFastItem(renderStacks[i], tile, state, i, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime);
+        }
+
+        if (tile.getDrawerAttributes().isShowingQuantity()) {
+            float alpha = 1;
+            double fadeDistance = ClientConfig.RENDER.quantityFadeDistance.get();
+            if (fadeDistance == 0 || distance > fadeDistance)
+                alpha = Math.max(1f - ((distance - 4) / 6), 0.05f);
+
+            double renderDistance = ClientConfig.RENDER.quantityRenderDistance.get();
+            if (renderDistance == 0 || distance < renderDistance) {
+                IRenderTypeBuffer.Impl txtBuffer = IRenderTypeBuffer.immediate(Tessellator.getInstance().getBuilder());
+                for (int i = 0; i < drawerCount; i++) {
+                    String format = CountFormatter.format(this.renderer.getFont(), tile.getGroup().getDrawer(i));
+                    renderText(format, state, i, matrix, txtBuffer, combinedLight, side, alpha);
+                }
+                txtBuffer.endBatch();
+            }
         }
     }
 
