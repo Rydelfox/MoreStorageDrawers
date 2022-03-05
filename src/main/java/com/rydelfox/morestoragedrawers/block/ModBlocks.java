@@ -54,12 +54,7 @@ public class ModBlocks {
         @SubscribeEvent
         public static void registerBlocks(RegistryEvent.Register<Block> event) {
             //IForgeRegistry<Block> r = event.getRegistry();
-            AbstractBlock.Properties properties = AbstractBlock.Properties
-                    .of(Material.WOOD)
-                    .harvestTool(ToolType.AXE)
-                    .strength(5f)
-                    .isSuffocating(Registration::predFalse)
-                    .isRedstoneConductor(Registration::predFalse);
+            AbstractBlock.Properties properties;
 
             moreTrims = new HashMap<>();
             fullOne = new HashMap<>();
@@ -78,43 +73,14 @@ public class ModBlocks {
                 // Loop over each drawer variant and create each drawer type
                 if (variant.getMod() != null && variant.getMod().isLoaded()) {
                     MoreStorageDrawers.logInfo("MoreStorageDrawers: "+variant.getNamespace() + " loaded");
-                    /*
-                    blockTrim = new BlockTrim(properties);
-                    newFullOne = new BlockStandardDrawers(1, false, properties);
-                    newFullTwo = new BlockStandardDrawers(2, false, properties);
-                    newFullFour = new BlockStandardDrawers(4, false, properties);
-                    newHalfOne = new BlockStandardDrawers(1, true, properties);
-                    newHalfTwo = new BlockStandardDrawers(2, true, properties);
-                    newHalfFour = new BlockStandardDrawers(4, true, properties);
 
-                    moreTrims.put(variant, blockTrim);
-                    moreTrims.get(variant).setRegistryName(MoreStorageDrawers.MOD_ID, variant.prefix() + "_trim");
-                    r.register(moreTrims.get(variant));
-
-                    fullOne.put(variant, newFullOne);
-                    fullOne.get(variant).setRegistryName(MoreStorageDrawers.MOD_ID, variant.prefix() + "_full_1");
-                    r.register(fullOne.get(variant));
-
-                    fullTwo.put(variant, newFullTwo);
-                    fullTwo.get(variant).setRegistryName(MoreStorageDrawers.MOD_ID, variant.prefix() + "_full_2");
-                    r.register(fullTwo.get(variant));
-
-                    fullFour.put(variant, newFullFour);
-                    fullFour.get(variant).setRegistryName(MoreStorageDrawers.MOD_ID, variant.prefix() + "_full_4");
-                    r.register(fullFour.get(variant));
-
-                    halfOne.put(variant, newHalfOne);
-                    halfOne.get(variant).setRegistryName(MoreStorageDrawers.MOD_ID, variant.prefix() + "_half_1");
-                    r.register(halfOne.get(variant));
-
-                    halfTwo.put(variant, newHalfTwo);
-                    halfTwo.get(variant).setRegistryName(MoreStorageDrawers.MOD_ID, variant.prefix() + "_half_2");
-                    r.register(halfTwo.get(variant));
-
-                    halfFour.put(variant, newHalfFour);
-                    halfFour.get(variant).setRegistryName(MoreStorageDrawers.MOD_ID, variant.prefix() + "_half_4");
-                    r.register(halfFour.get(variant));
-                    */
+                    properties = AbstractBlock.Properties
+                            .of(Material.WOOD)
+                            .harvestTool(ToolType.AXE)
+                            .strength(variant.getHardness(), variant.getBlastResistance())
+                            .lightLevel((p1) -> { return variant.getLight(); })
+                            .isSuffocating(Registration::predFalse)
+                            .isRedstoneConductor(Registration::predFalse);
                     registerTrimBlock(event, variant, variant.prefix() + "_trim", properties);
                     registerDrawerBlock(event, variant, variant.prefix()+"_full_1", 1, false, properties);
                     registerDrawerBlock(event, variant, variant.prefix()+"_full_2", 2, false, properties);
