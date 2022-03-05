@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X/X",
+    "/X/",
+    "X/X"
+  ],
+  "key": {
+    "/": { "tag": "forge:rods/wooden" },
+    "X": { "item": "astralsorcery:infused_wood_planks" }
+  },
+  "result": { "item": "morestoragedrawers:astralsorcery_infused_trim", "count": 4 }
+}

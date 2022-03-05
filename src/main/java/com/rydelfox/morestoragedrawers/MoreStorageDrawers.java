@@ -6,6 +6,7 @@ import com.jaquadro.minecraft.storagedrawers.config.CommonConfig;
 import com.jaquadro.minecraft.storagedrawers.config.CompTierRegistry;
 import com.jaquadro.minecraft.storagedrawers.core.ClientProxy;
 import com.jaquadro.minecraft.storagedrawers.core.CommonProxy;
+import com.rydelfox.morestoragedrawers.block.EnumMod;
 import com.rydelfox.morestoragedrawers.block.ModBlocks;
 import com.rydelfox.morestoragedrawers.client.renderer.TileEntityDrawersRenderer;
 import net.minecraftforge.common.MinecraftForge;
@@ -47,6 +48,8 @@ public class MoreStorageDrawers {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+        logLoadedMods();
     }
 
     private void setup (final FMLCommonSetupEvent event) {
@@ -81,5 +84,13 @@ public class MoreStorageDrawers {
     public static void logInfo(String info) {
         if (DEBUG)
             LOGGER.info(info);
+    }
+
+    public static void logLoadedMods() {
+        for(EnumMod mod : EnumMod.values()) {
+            if (mod.isLoaded()) {
+                logInfo("MoreStorageDrawers: "+mod.getSerializedName() + " mod loaded");
+            }
+        }
     }
 }

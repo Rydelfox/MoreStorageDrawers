@@ -1,0 +1,9 @@
+{
+  "parent": "storagedrawers:block/full_drawers_orientable",
+  "textures": {
+    "top": "morestoragedrawers:blocks/astralsorcery_infused_side",
+    "front": "morestoragedrawers:blocks/astralsorcery_infused_front_1",
+    "side": "morestoragedrawers:blocks/astralsorcery_infused_side",
+    "trim": "morestoragedrawers:blocks/astralsorcery_infused_trim"
+  }
+}

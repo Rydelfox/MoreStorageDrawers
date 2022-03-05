@@ -6,6 +6,13 @@
   "block.morestoragedrawers.ars_nouveau_archwood_half_2": "Archwood Half Drawers 1x2",
   "block.morestoragedrawers.ars_nouveau_archwood_half_4": "Archwood Half Drawers 2x2",
   "block.morestoragedrawers.ars_nouveau_archwood_trim": "Archwood Trim",
+  "block.morestoragedrawers.astralsorcery_infused_full_1": "Infused Wood Drawers 1x1",
+  "block.morestoragedrawers.astralsorcery_infused_full_2": "Infused Wood Drawers 1x2",
+  "block.morestoragedrawers.astralsorcery_infused_full_4": "Infused Wood Drawers 2x2",
+  "block.morestoragedrawers.astralsorcery_infused_half_1": "Infused Wood Half Drawers 1x1",
+  "block.morestoragedrawers.astralsorcery_infused_half_2": "Infused Wood Half Drawers 1x2",
+  "block.morestoragedrawers.astralsorcery_infused_half_4": "Infused Wood Half Drawers 2x2",
+  "block.morestoragedrawers.astralsorcery_infused_trim": "Infused Wood Trim",
 
   "itemGroup.morestoragedrawers": "More Storage Drawers"
 }
