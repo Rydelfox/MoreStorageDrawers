@@ -9,15 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum EnumVariant implements IStringSerializable {
-    DEFAULT(null, "default", 0, null, 0),
+    DEFAULT(null, "default", 0, null),
 
-    ARSNOUVEAU_ARCHWOOD(ID.ARSNOUVEAU, "archwood", 1, "archwood_planks", 0, "archwood_slab", 0),
-    ASTRALSORCERY_INFUSED(ID.ASTRALSORCERY, "infused", 2, "infused_wood_planks", 0, "infused_wood_slab", 0),
-    BOTANIA_LIVINGWOOD(ID.BOTANIA, "livingwood", 2, "livingwood_planks", 0, "livingwood_planks_slab", 0),
-    BOTANIA_MOSSY_LIVINGWOOD(ID.BOTANIA, "mossy_livingwood", 2, "mossy_livingwood_planks", 0),
-    BOTANIA_DREAMWOOD(ID.BOTANIA, "dreamwood", 2, "dreamwood_planks", 0, "dreamwood_planks_slab", 0),
-    BOTANIA_MOSSY_DREAMWOOD(ID.BOTANIA, "mossy_dreamwood", 2, "mossy_dreamwood_planks", 0),
-    BOTANIA_SHIMMERWOOD(ID.BOTANIA, "shimmerwood", 2, "shimmerwood_planks", 0, "shimmerwood_planks_slab", 0);
+    ARSNOUVEAU_ARCHWOOD(ID.ARSNOUVEAU, "archwood", 1, "archwood_planks", "archwood_slab"),
+    ASTRALSORCERY_INFUSED(ID.ASTRALSORCERY, "infused", 2, "infused_wood_planks", "infused_wood_slab", 6, 11, 0),
+    BOTANIA_LIVINGWOOD(ID.BOTANIA, "livingwood", 3, "livingwood_planks", "livingwood_planks_slab"),
+    BOTANIA_MOSSY_LIVINGWOOD(ID.BOTANIA, "mossy_livingwood", 4, "mossy_livingwood_planks"),
+    BOTANIA_DREAMWOOD(ID.BOTANIA, "dreamwood", 5, "dreamwood_planks", "dreamwood_planks_slab"),
+    BOTANIA_MOSSY_DREAMWOOD(ID.BOTANIA, "mossy_dreamwood", 6, "mossy_dreamwood_planks"),
+    BOTANIA_SHIMMERWOOD(ID.BOTANIA, "shimmerwood", 7, "shimmerwood_planks", "shimmerwood_planks_slab");
 
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
     private static final Map<Integer, EnumVariant> INDEX_LOOKUP;
@@ -28,22 +28,28 @@ public enum EnumVariant implements IStringSerializable {
     private final ResourceLocation plankResource;
     private final ResourceLocation slabResource;
     private final int index;
-    private final int plankMeta;
-    private final int slabMeta;
+    private final int hardness;
+    private final int blastResistance;
+    private final int light;
 
-    EnumVariant (String namespace, String name, int index, String blockId, int blockMeta) {
-        this(namespace, name, index, blockId, blockMeta, null, 0);
+    EnumVariant (String namespace, String name, int index, String blockId) {
+        this(namespace, name, index, blockId, null);
     }
 
-    EnumVariant(String namespace, String name, int index, String plankId, int plankMeta, String slabId, int slabMeta) {
+    EnumVariant(String namespace, String name, int index, String plankId, String slabId) {
+        this(namespace, name,index, plankId, slabId, 5, 5, 0);
+    }
+
+    EnumVariant(String namespace, String name, int index, String plankId, String slabId, int hardness, int blastResistance, int light) {
         this.namespace = namespace;
         this.name = name;
         this.plankResource = plankId != null ? new ResourceLocation(namespace, plankId) : null;
         this.slabResource = slabId != null ? new ResourceLocation(namespace, slabId) : null;
-        this.plankMeta = plankMeta;
-        this.slabMeta = slabMeta;
         this.resource = new ResourceLocation(namespace, name);
         this.index = index;
+        this.hardness = hardness;
+        this.blastResistance = blastResistance;
+        this.light = light;
     }
 
     @Nonnull
@@ -85,16 +91,8 @@ public enum EnumVariant implements IStringSerializable {
         return plankResource;
     }
 
-    public int getPlankMeta() {
-        return plankMeta;
-    }
-
     public ResourceLocation getSlabResource() {
         return slabResource;
-    }
-
-    public int getSlabMeta() {
-        return slabMeta;
     }
 
     public int getIndex() {
@@ -107,6 +105,18 @@ public enum EnumVariant implements IStringSerializable {
 
     public int getGroupMeta() {
         return index % 16;
+    }
+
+    public int getHardness() {
+        return hardness;
+    }
+
+    public int getBlastResistance() {
+        return blastResistance;
+    }
+
+    public int getLight() {
+        return light;
     }
 
     @Nonnull
