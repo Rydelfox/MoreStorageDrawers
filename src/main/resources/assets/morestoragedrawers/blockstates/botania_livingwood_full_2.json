@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "morestoragedrawers:block/botania_livingwood_full_2" },
+    "facing=east": { "model": "morestoragedrawers:block/botania_livingwood_full_2", "y": 90 },
+    "facing=south": { "model": "morestoragedrawers:block/botania_livingwood_full_2", "y": 180 },
+    "facing=west": { "model": "morestoragedrawers:block/botania_livingwood_full_2", "y": 270 }
+  }
+}

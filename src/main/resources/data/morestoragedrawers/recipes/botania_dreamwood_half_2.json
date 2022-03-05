@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "/X/",
+    "///",
+    "/X/"
+  ],
+  "key": {
+    "/": { "item": "botania:dreamwood_planks_slab" },
+    "X": { "tag": "forge:chests/wooden" }
+  },
+  "result": { "item": "morestoragedrawers:botania_dreamwood_half_2", "count": 2 }
+}

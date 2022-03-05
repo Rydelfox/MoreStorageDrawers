@@ -12,7 +12,12 @@ public enum EnumVariant implements IStringSerializable {
     DEFAULT(null, "default", 0, null, 0),
 
     ARSNOUVEAU_ARCHWOOD(ID.ARSNOUVEAU, "archwood", 1, "archwood_planks", 0, "archwood_slab", 0),
-    ASTRALSORCERY_INFUSED(ID.ASTRALSORCERY, "infused", 2, "infused_wood_planks", 0, "infused_wood_slab", 0);
+    ASTRALSORCERY_INFUSED(ID.ASTRALSORCERY, "infused", 2, "infused_wood_planks", 0, "infused_wood_slab", 0),
+    BOTANIA_LIVINGWOOD(ID.BOTANIA, "livingwood", 2, "livingwood_planks", 0, "livingwood_planks_slab", 0),
+    BOTANIA_MOSSY_LIVINGWOOD(ID.BOTANIA, "mossy_livingwood", 2, "mossy_livingwood_planks", 0),
+    BOTANIA_DREAMWOOD(ID.BOTANIA, "dreamwood", 2, "dreamwood_planks", 0, "dreamwood_planks_slab", 0),
+    BOTANIA_MOSSY_DREAMWOOD(ID.BOTANIA, "mossy_dreamwood", 2, "mossy_dreamwood_planks", 0),
+    BOTANIA_SHIMMERWOOD(ID.BOTANIA, "shimmerwood", 2, "shimmerwood_planks", 0, "shimmerwood_planks_slab", 0);
 
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
     private static final Map<Integer, EnumVariant> INDEX_LOOKUP;
@@ -129,6 +134,7 @@ public enum EnumVariant implements IStringSerializable {
     private static class ID {
         public static final String ARSNOUVEAU = "ars_nouveau";
         public static final String ASTRALSORCERY = "astralsorcery";
+        public static final String BOTANIA = "botania";
     }
 
 
