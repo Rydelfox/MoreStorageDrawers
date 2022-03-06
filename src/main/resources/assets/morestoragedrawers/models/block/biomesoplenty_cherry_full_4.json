@@ -1,0 +1,9 @@
+{
+  "parent": "storagedrawers:block/full_drawers_orientable",
+  "textures": {
+    "top": "morestoragedrawers:blocks/biomesoplenty_cherry_side",
+    "front": "morestoragedrawers:blocks/biomesoplenty_cherry_front_4",
+    "side": "morestoragedrawers:blocks/biomesoplenty_cherry_side",
+    "trim": "morestoragedrawers:blocks/biomesoplenty_cherry_trim"
+  }
+}

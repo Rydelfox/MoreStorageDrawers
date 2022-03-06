@@ -69,10 +69,8 @@ public class ModBlocks {
             BlockMoreDrawers newFullOne, newFullTwo, newFullFour, newHalfOne, newHalfTwo, newHalfFour;
 
             for (EnumVariant variant : EnumVariant.values()) {
-                MoreStorageDrawers.logInfo("MoreStorageDrawers: Attempting to load " + variant.getNamespace() + " Drawers");
                 // Loop over each drawer variant and create each drawer type
                 if (variant.getMod() != null && variant.getMod().isLoaded()) {
-                    MoreStorageDrawers.logInfo("MoreStorageDrawers: "+variant.getNamespace() + " loaded");
 
                     properties = AbstractBlock.Properties
                             .of(Material.WOOD)
@@ -88,13 +86,8 @@ public class ModBlocks {
                     registerDrawerBlock(event, variant, variant.prefix()+"_half_1", 1, true, properties);
                     registerDrawerBlock(event, variant, variant.prefix()+"_half_2", 2, true, properties);
                     registerDrawerBlock(event, variant, variant.prefix()+"_half_4", 4, true, properties);
-                } else if (variant.getMod() == null) {
-                    MoreStorageDrawers.logInfo("Mod is null");
-                } else {
-                    MoreStorageDrawers.logInfo("Mod not loaded");
                 }
             }
-            MoreStorageDrawers.logInfo("MoreStorageDrawers: All Drawer blocks loaded");
         }
 
         @SubscribeEvent
@@ -103,21 +96,12 @@ public class ModBlocks {
             List<BlockMoreDrawers> addDrawers = new ArrayList<>(fullOne.values());
             addDrawers.addAll(halfOne.values());
             registerTileEntity(event, "standard_drawers_1", TileEntityDrawersMore.Slot1::new, addDrawers.toArray(new Block[0]));
-            for (Block block : addDrawers) {
-                MoreStorageDrawers.logInfo("standard_drawers_1 Added "+block.getDescriptionId());
-            }
             addDrawers = new ArrayList<>(fullTwo.values());
             addDrawers.addAll(halfTwo.values());
             registerTileEntity(event, "standard_drawers_2", TileEntityDrawersMore.Slot2::new, addDrawers.toArray(new Block[0]));
-            for (Block block : addDrawers) {
-                MoreStorageDrawers.logInfo("Added "+block.getDescriptionId());
-            }
             addDrawers = new ArrayList<>(fullFour.values());
             addDrawers.addAll(halfFour.values());
             registerTileEntity(event, "standard_drawers_4", TileEntityDrawersMore.Slot4::new, addDrawers.toArray(new Block[0]));
-            for (Block block : addDrawers) {
-                MoreStorageDrawers.logInfo("Added "+block.getDescriptionId());
-            }
         }
 
         private static <T extends TileEntity> void registerTileEntity(RegistryEvent.Register<TileEntityType<?>> event, String name, Supplier<? extends T> factory, Block... blocks) {
@@ -219,7 +203,6 @@ public class ModBlocks {
         private static Block registerBlock(RegistryEvent.Register<Block> event, String name, Block block) {
             block.setRegistryName(MoreStorageDrawers.MOD_ID, name);
             event.getRegistry().register(block);
-            MoreStorageDrawers.logInfo("MoreStorageDrawers: Registered "+name);
             return block;
         }
 

@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "morestoragedrawers:blocks/biomesoplenty_redwood_side"
+  }
+}

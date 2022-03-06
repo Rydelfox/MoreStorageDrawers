@@ -13,7 +13,8 @@ public enum EnumMod implements IStringSerializable {
     EIDOLON("eidolon", EnumVariant.EIDOLON_POLISHED),
     HEXBLADES("hexblades", EnumVariant.HEXBLADES_DARK_POLISHED),
     NATURESAURA("naturesaura", EnumVariant.NATURESAURA_ANCIENT),
-    TWILIGHTFOREST("twilightforest", EnumVariant.TWILIGHTFOREST_TOWER);
+    TWILIGHTFOREST("twilightforest", EnumVariant.TWILIGHTFOREST_TOWER),
+    BIOMESOPLENTY("biomesoplenty", EnumVariant.BIOMESOPLENTY_FIR);
 
     private String id;
     private EnumVariant defaultMaterial;

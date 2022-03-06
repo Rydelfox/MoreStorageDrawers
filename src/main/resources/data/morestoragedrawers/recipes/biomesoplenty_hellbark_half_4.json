@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X/X",
+    "///",
+    "X/X"
+  ],
+  "key": {
+    "/": { "item": "biomesoplenty:hellbark_slab" },
+    "X": { "tag": "forge:chests/wooden" }
+  },
+  "result": { "item": "morestoragedrawers:biomesoplenty_hellbark_half_4", "count": 4 }
+}

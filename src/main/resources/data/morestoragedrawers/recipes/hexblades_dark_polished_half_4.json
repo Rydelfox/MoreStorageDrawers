@@ -9,5 +9,5 @@
     "/": { "item": "hexblades:dark_polished_planks_slab" },
     "X": { "tag": "forge:chests/wooden" }
   },
-  "result": { "item": "morestoragedrawers:ars_nouveau_archwood_half_4", "count": 4 }
+  "result": { "item": "morestoragedrawers:hexblades_dark_polished_half_4", "count": 4 }
 }

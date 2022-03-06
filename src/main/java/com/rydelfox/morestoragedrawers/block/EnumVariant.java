@@ -29,7 +29,18 @@ public enum EnumVariant implements IStringSerializable {
     TWILIGHTFOREST_TIME(ID.TWILIGHTFOREST, "time", 16, "time_planks", "time_slab"),
     TWILIGHTFOREST_TRANS(ID.TWILIGHTFOREST, "trans", 17, "trans_planks", "trans_slab"),
     TWILIGHTFOREST_MINE(ID.TWILIGHTFOREST, "mine", 18, "mine_planks", "mine_slab"),
-    TWILIGHTFOREST_SORT(ID.TWILIGHTFOREST, "sort", 19, "sort_planks", "sort_slab");
+    TWILIGHTFOREST_SORT(ID.TWILIGHTFOREST, "sort", 19, "sort_planks", "sort_slab"),
+    BIOMESOPLENTY_FIR(ID.BIOMESOPLENTY, "fir", 20, "fir_planks", "fir_slab"),
+    BIOMESOPLENTY_REDWOOD(ID.BIOMESOPLENTY, "redwood", 21, "redwood_planks", "redwood_slab"),
+    BIOMESOPLENTY_CHERRY(ID.BIOMESOPLENTY, "cherry", 22, "cherry_planks", "cherry_slab"),
+    BIOMESOPLENTY_MAHOGANY(ID.BIOMESOPLENTY, "mahogany", 23, "mahogany_planks", "mahogany_slab"),
+    BIOMESOPLENTY_JACARANDA(ID.BIOMESOPLENTY, "jacaranda", 24, "jacaranda_planks", "jacaranda_slab"),
+    BIOMESOPLENTY_PALM(ID.BIOMESOPLENTY, "palm", 25, "palm_planks", "palm_slab"),
+    BIOMESOPLENTY_WILLOW(ID.BIOMESOPLENTY, "willow", 26, "willow_planks", "willow_slab"),
+    BIOMESOPLENTY_DEAD(ID.BIOMESOPLENTY, "dead", 27, "dead_planks", "dead_slab"),
+    BIOMESOPLENTY_MAGIC(ID.BIOMESOPLENTY, "magic", 28, "magic_planks", "magic_slab"),
+    BIOMESOPLENTY_UMBRAN(ID.BIOMESOPLENTY, "umbran", 29, "umbran_planks", "umbran_slab"),
+    BIOMESOPLENTY_HELLBARK(ID.BIOMESOPLENTY, "hellbark", 30, "hellbark_planks", "hellbark_slab");
 
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
     private static final Map<Integer, EnumVariant> INDEX_LOOKUP;
@@ -161,6 +172,7 @@ public enum EnumVariant implements IStringSerializable {
         public static final String HEXBLADES = "hexblades";
         public static final String NATURESAURA = "naturesaura";
         public static final String TWILIGHTFOREST = "twilightforest";
+        public static final String BIOMESOPLENTY = "biomesoplenty";
     }
 
 

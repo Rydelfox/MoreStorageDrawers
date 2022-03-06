@@ -136,7 +136,6 @@ public class MoreDrawerModel {
                 if (block == null)
                     continue;
 
-                MoreStorageDrawers.logInfo("MoreStorageDrawers: Populating Geometry Data, drawer "+block.getDescriptionId());
                 for (int i = 0; i < block.getDrawerCount(); i++) {
                     Vector3f from = slotInfo.getElements().get(i).from;
                     Vector3f to = slotInfo.getElements().get(i).to;
