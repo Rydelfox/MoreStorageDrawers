@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "/X/",
+    "///",
+    "/X/"
+  ],
+  "key": {
+    "/": { "item": "naturesaura:ancient_slab" },
+    "X": { "tag": "forge:chests/wooden" }
+  },
+  "result": { "item": "morestoragedrawers:naturesaura_ancient_half_2", "count": 2 }
+}
