@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X/X",
+    "/X/",
+    "X/X"
+  ],
+  "key": {
+    "/": { "tag": "forge:rods/wooden" },
+    "X": { "item": "hexblades:dark_polished_planks" }
+  },
+  "result": { "item": "morestoragedrawers:hexblades_dark_polished_trim", "count": 4 }
+}

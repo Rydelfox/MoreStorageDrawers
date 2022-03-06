@@ -10,7 +10,8 @@ public enum EnumMod implements IStringSerializable {
     ARSNOUVEAU("ars_nouveau", EnumVariant.ARSNOUVEAU_ARCHWOOD),
     ASTRALSORCERY("astralsorcery", EnumVariant.ASTRALSORCERY_INFUSED),
     BOTANIA("botania", EnumVariant.BOTANIA_LIVINGWOOD),
-    EIDOLON("eidolon", EnumVariant.EIDOLON_POLISHED);
+    EIDOLON("eidolon", EnumVariant.EIDOLON_POLISHED),
+    HEXBLADES("hexblades", EnumVariant.HEXBLADES_DARK_POLISHED);
 
     private String id;
     private EnumVariant defaultMaterial;
