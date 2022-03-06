@@ -19,8 +19,17 @@ public enum EnumVariant implements IStringSerializable {
     BOTANIA_MOSSY_DREAMWOOD(ID.BOTANIA, "mossy_dreamwood", 6, "mossy_dreamwood_planks"),
     BOTANIA_SHIMMERWOOD(ID.BOTANIA, "shimmerwood", 7, "shimmerwood_planks", "shimmerwood_planks_slab"),
     EIDOLON_POLISHED(ID.EIDOLON, "polished", 8, "polished_planks", "polished_planks_slab", 4, 5, 0),
-    HEXBLADES_DARK_POLISHED(ID.HEXBLADES, "dark_polished", 8, "dark_polished_planks", "dark_polished_planks_slab", 4, 5, 0),
-    NATURESAURA_ANCIENT(ID.NATURESAURA, "ancient", 7, "ancient_planks", "ancient_slab");
+    HEXBLADES_DARK_POLISHED(ID.HEXBLADES, "dark_polished", 9, "dark_polished_planks", "dark_polished_planks_slab", 4, 5, 0),
+    NATURESAURA_ANCIENT(ID.NATURESAURA, "ancient", 10, "ancient_planks", "ancient_slab"),
+    TWILIGHTFOREST_TOWER(ID.TWILIGHTFOREST, "tower", 11, "tower_wood", null, 25, 20, 0),
+    TWILIGHTFOREST_TWILIGHT(ID.TWILIGHTFOREST, "twilight", 12, "twilight_oak_planks", "twilight_oak_slab"),
+    TWILIGHTFOREST_CANOPY(ID.TWILIGHTFOREST, "canopy", 13, "canopy_planks", "canopy_slab"),
+    TWILIGHTFOREST_MANGROVE(ID.TWILIGHTFOREST, "mangrove", 14, "mangrove_planks", "mangrove_slab"),
+    TWILIGHTFOREST_DARK(ID.TWILIGHTFOREST, "dark", 15, "dark_planks", "dark_slab"),
+    TWILIGHTFOREST_TIME(ID.TWILIGHTFOREST, "time", 16, "time_planks", "time_slab"),
+    TWILIGHTFOREST_TRANS(ID.TWILIGHTFOREST, "trans", 17, "trans_planks", "trans_slab"),
+    TWILIGHTFOREST_MINE(ID.TWILIGHTFOREST, "mine", 18, "mine_planks", "mine_slab"),
+    TWILIGHTFOREST_SORT(ID.TWILIGHTFOREST, "sort", 19, "sort_planks", "sort_slab");
 
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
     private static final Map<Integer, EnumVariant> INDEX_LOOKUP;
@@ -151,6 +160,7 @@ public enum EnumVariant implements IStringSerializable {
         public static final String EIDOLON = "eidolon";
         public static final String HEXBLADES = "hexblades";
         public static final String NATURESAURA = "naturesaura";
+        public static final String TWILIGHTFOREST = "twilightforest";
     }
 
 
