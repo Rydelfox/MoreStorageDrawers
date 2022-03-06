@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "///",
+    " X ",
+    "///"
+  ],
+  "key": {
+    "/": { "item": "biomesoplenty:jacaranda_slab" },
+    "X": { "tag": "forge:chests/wooden" }
+  },
+  "result": { "item": "morestoragedrawers:biomesoplenty_jacaranda_half_1", "count": 1 }
+}
