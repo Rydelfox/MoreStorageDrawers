@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "///",
+    " x ",
+    "///"
+  ],
+  "key": {
+    "/": { "item": "hexblades:dark_polished_planks"},
+    "x": { "tag":  "forge:chests/wooden" }
+  },
+  "result": { "item":  "morestoragedrawers:hexblades_dark_polished_full_1", "count":  1 }
+}

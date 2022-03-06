@@ -1,0 +1,10 @@
+{
+  "parent": "storagedrawers:block/half_drawers_orientable",
+  "textures": {
+    "top": "morestoragedrawers:blocks/hexblades_dark_polished_side_h",
+    "front": "morestoragedrawers:blocks/hexblades_dark_polished_front_2",
+    "back": "morestoragedrawers:blocks/hexblades_dark_polished_side",
+    "side": "morestoragedrawers:blocks/hexblades_dark_polished_side_v",
+    "trim": "morestoragedrawers:blocks/hexblades_dark_polished_trim"
+  }
+}

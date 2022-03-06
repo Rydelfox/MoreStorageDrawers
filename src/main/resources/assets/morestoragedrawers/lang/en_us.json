@@ -49,6 +49,13 @@
   "block.morestoragedrawers.eidolon_polished_half_2": "Polished Half Drawers 1x2",
   "block.morestoragedrawers.eidolon_polished_half_4": "Polished Half Drawers 2x2",
   "block.morestoragedrawers.eidolon_polished_trim": "Polished Trim",
+  "block.morestoragedrawers.hexblades_dark_polished_full_1": "Dark Polished Drawers 1x1",
+  "block.morestoragedrawers.hexblades_dark_polished_full_2": "Dark Polished Drawers 1x2",
+  "block.morestoragedrawers.hexblades_dark_polished_full_4": "Dark Polished Drawers 2x2",
+  "block.morestoragedrawers.hexblades_dark_polished_half_1": "Dark Polished Half Drawers 1x1",
+  "block.morestoragedrawers.hexblades_dark_polished_half_2": "Dark Polished Half Drawers 1x2",
+  "block.morestoragedrawers.hexblades_dark_polished_half_4": "Dark Polished Half Drawers 2x2",
+  "block.morestoragedrawers.hexblades_dark_polished_trim": "Dark Polished Trim",
 
   "itemGroup.morestoragedrawers": "More Storage Drawers"
 }

@@ -1,0 +1,19 @@
+{
+  "type": "morestoragedrawers:hexblades_dark_polished_trim",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "morestoragedrawers:hexblades_dark_polished_trim"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}
