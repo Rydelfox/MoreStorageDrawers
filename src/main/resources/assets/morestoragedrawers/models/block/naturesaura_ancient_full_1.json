@@ -1,0 +1,9 @@
+{
+  "parent": "storagedrawers:block/full_drawers_orientable",
+  "textures": {
+    "top": "morestoragedrawers:blocks/naturesaura_ancient_side",
+    "front": "morestoragedrawers:blocks/naturesaura_ancient_front_1",
+    "side": "morestoragedrawers:blocks/naturesaura_ancient_side",
+    "trim": "morestoragedrawers:blocks/naturesaura_ancient_trim"
+  }
+}

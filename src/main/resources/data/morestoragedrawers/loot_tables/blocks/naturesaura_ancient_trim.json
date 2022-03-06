@@ -1,0 +1,19 @@
+{
+  "type": "morestoragedrawers:naturesaura_ancient_trim",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "morestoragedrawers:naturesaura_ancient_trim"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}

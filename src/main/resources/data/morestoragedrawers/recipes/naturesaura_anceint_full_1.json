@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "///",
+    " x ",
+    "///"
+  ],
+  "key": {
+    "/": { "item": "naturesaura:ancient_planks"},
+    "x": { "tag":  "forge:chests/wooden" }
+  },
+  "result": { "item":  "morestoragedrawers:naturesaura_ancient_full_1", "count":  1 }
+}
