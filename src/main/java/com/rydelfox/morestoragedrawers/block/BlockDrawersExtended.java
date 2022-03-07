@@ -148,20 +148,16 @@ public abstract class BlockDrawersExtended extends BlockDrawers
 
     @Override
     public void setPlacedBy  (World world, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
-        MoreStorageDrawers.logInfo("setPlacedBy for "+state.getBlock().getDescriptionId());
         super.setPlacedBy(world, pos, state, entity, stack);
     }
 
     @Override
     public ActionResultType use (BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
         ItemStack item = player.getItemInHand(hand);
-        MoreStorageDrawers.logInfo("In BlockDrawers.use() for "+ state.getBlock().getDescriptionId()+ ", item in hand: "+((item.isEmpty()) ? "  null item" : "  " + item.toString()));
-        MoreStorageDrawers.logInfo("Slot "+getDrawerSlot(hit));
 
         if (!(getTileEntitySafe(world, pos) instanceof TileEntityDrawersMore)) {
             return super.use(state, world, pos, player, hand, hit);
         }
-        MoreStorageDrawers.logInfo("Tile is TileEntityDrawersMore");
         if (hand == Hand.OFF_HAND)
             return ActionResultType.PASS;
 
@@ -182,7 +178,6 @@ public abstract class BlockDrawersExtended extends BlockDrawers
 
 
         if (!item.isEmpty()) {
-            MoreStorageDrawers.logInfo("Item not empty");
             if (item.getItem() instanceof ItemKey)
                 return ActionResultType.PASS;
 
@@ -197,7 +192,6 @@ public abstract class BlockDrawersExtended extends BlockDrawers
                 return true;
             }*/
             if (item.getItem() instanceof ItemUpgrade) {
-                MoreStorageDrawers.logInfo("Item is an upgrade");
                 if (!tileDrawers.upgrades().canAddUpgrade(item)) {
                     if (!world.isClientSide)
                         player.displayClientMessage(new TranslationTextComponent("message.storagedrawers.cannot_add_upgrade"), true);
@@ -281,19 +275,15 @@ public abstract class BlockDrawersExtended extends BlockDrawers
         //if (tileDrawers.isSealed())
         //    return false;
 
-        MoreStorageDrawers.logInfo("attempt to put item into slot");
         int slot = getDrawerSlot(hit);
         IDrawer drawer = tileDrawers.getGroup().getDrawer(slot);
-        MoreStorageDrawers.logInfo("Drawer contains "+drawer.getStoredItemPrototype().getItem().getRegistryName().getPath());
         tileDrawers.interactPutItemsIntoSlot(slot, player);
 
         if (item.isEmpty())
             player.setItemInHand(hand, ItemStack.EMPTY);
 
 
-        MoreStorageDrawers.logInfo("end of BlockDrawersExtended.use - drawer has "+drawer.getStoredItemPrototype().getItem().getRegistryName().getPath());
         drawer = tileDrawers.getGroup().getDrawer(slot);
-        MoreStorageDrawers.logInfo("re-assigning drawer - drawer has "+drawer.getStoredItemPrototype().getItem().getRegistryName().getPath());
 
         return ActionResultType.SUCCESS;
     }
