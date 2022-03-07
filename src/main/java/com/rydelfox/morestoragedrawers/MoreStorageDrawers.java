@@ -9,6 +9,7 @@ import com.jaquadro.minecraft.storagedrawers.core.CommonProxy;
 import com.rydelfox.morestoragedrawers.block.EnumMod;
 import com.rydelfox.morestoragedrawers.block.ModBlocks;
 import com.rydelfox.morestoragedrawers.client.renderer.TileEntityDrawersRenderer;
+import com.rydelfox.morestoragedrawers.network.MoreStorageDrawersPacketHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -53,7 +54,7 @@ public class MoreStorageDrawers {
     }
 
     private void setup (final FMLCommonSetupEvent event) {
-        //MessageHandler.init()
+        MoreStorageDrawersPacketHandler.init();
         compRegistry = new CompTierRegistry();
         compRegistry.initialize();
     }

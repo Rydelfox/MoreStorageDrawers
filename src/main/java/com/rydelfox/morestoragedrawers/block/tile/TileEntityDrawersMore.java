@@ -11,14 +11,19 @@ import com.jaquadro.minecraft.storagedrawers.block.tile.tiledata.StandardDrawerG
 import com.jaquadro.minecraft.storagedrawers.inventory.ItemStackHelper;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.ModBlocks;
-import net.minecraft.entity.player.PlayerEntity;
+import com.rydelfox.morestoragedrawers.network.ItemUpdateMessage;
+import com.rydelfox.morestoragedrawers.network.MoreStorageDrawersPacketHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fml.network.PacketDistributor;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -112,6 +117,31 @@ public class TileEntityDrawersMore extends TileEntityDrawers {
         }
     }
 
+    protected void syncClientItem(int slot, ItemStack item) {
+        if (getLevel() != null && getLevel().isClientSide)
+            return;
+
+        PacketDistributor.TargetPoint point = new PacketDistributor.TargetPoint(
+                getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), 500, getLevel().dimension());
+        MoreStorageDrawersPacketHandler.INSTANCE.send(PacketDistributor.NEAR.with(() -> point), new ItemUpdateMessage(getBlockPos(), slot, item));
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void clientUpdateItem (final int slot, final ItemStack item) {
+        if(!getLevel().isClientSide)
+            return;
+
+        Minecraft.getInstance().tell(() -> TileEntityDrawersMore.this.clientUpdateItemAsync(slot, item));
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private void clientUpdateItemAsync (int slot, ItemStack item) {
+        IDrawer drawer = getGroup().getDrawer(slot);
+        if (drawer.isEnabled() && drawer.getStoredItemPrototype() != item) {
+            drawer.setStoredItem(item);
+        }
+    }
+
     @Override
     public IDrawerGroup getGroup () {
         return null;
@@ -163,7 +193,8 @@ public class TileEntityDrawersMore extends TileEntityDrawers {
             DrawerPopulatedEvent event = new DrawerPopulatedEvent(this);
             MinecraftForge.EVENT_BUS.post(event);
 
-            if (getLevel() != null && !getLevel().isClientSide) {
+            if (getLevel() != null && !getLevel().isClientSide && !getStoredItemPrototype().isEmpty()) {
+                syncClientItem(slot, getStoredItemPrototype());
                 syncClientCount(slot, getStoredItemCount());
                 setChanged();
             }
@@ -171,8 +202,15 @@ public class TileEntityDrawersMore extends TileEntityDrawers {
         }
 
         @Override
+        protected void onAmountChanged () {
+            if (getLevel() != null && !getLevel().isClientSide) {
+                syncClientCount(slot, getStoredItemCount());
+                setChanged();
+            }
+        }
+
+        @Override
         protected IDrawer setStoredItem(@Nonnull ItemStack itemPrototype, boolean notify) {
-            MoreStorageDrawers.logInfo("setStoredItem, "+itemPrototype.getItem().getRegistryName().getPath());
             if(ItemStackHelper.isStackEncoded(itemPrototype)) {
                 itemPrototype = ItemStackHelper.decodeItemStackPrototype(itemPrototype);
             }
@@ -184,7 +222,33 @@ public class TileEntityDrawersMore extends TileEntityDrawers {
             }
 
             setStoredItemRaw(itemPrototype);
+            forceUpdate();
             return this;
+        }
+
+        @Override
+        public void setStoredItemCount (int amount) {
+            setStoredItemCount(amount, true);
+        }
+
+        @Override
+        protected void setStoredItemCount (int amount, boolean notify) {
+            if (getStoredItemPrototype().isEmpty() || getStoredItemCount() == amount)
+                return;
+
+            if (getRemainingCapacity() == Integer.MAX_VALUE)
+                return;
+
+            super.setStoredItemCount(amount, notify);
+            forceUpdate();
+        }
+
+        protected void forceUpdate() {
+            putItemsIntoSlot(slot, ItemStack.EMPTY, 0);
+            if(!getLevel().isClientSide) {
+                syncClientItem(slot, getStoredItemPrototype());
+                syncClientCount(slot, getStoredItemCount());
+            }
         }
     }
 
