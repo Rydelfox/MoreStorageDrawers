@@ -16,6 +16,7 @@ license="MIT"
     #displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
     logoFile="morestoragedrawers.png" #optional
     authors="Rydelfox"
+    issueTrackerURL="https://github.com/Rydelfox/MoreStorageDrawers/issues"
     description='''
     Adds new storage drawers for additional wood types
     '''
