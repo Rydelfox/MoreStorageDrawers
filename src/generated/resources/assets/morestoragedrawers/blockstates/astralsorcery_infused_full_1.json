@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "morestoragedrawers:block/astralsorcery_infused_full_1"
+    },
+    "facing=south": {
+      "model": "morestoragedrawers:block/astralsorcery_infused_full_1",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "morestoragedrawers:block/astralsorcery_infused_full_1",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "morestoragedrawers:block/astralsorcery_infused_full_1",
+      "y": 90
+    }
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "parent": "storagedrawers:block/full_drawers_orientable",
-  "textures": {
-    "top": "morestoragedrawers:blocks/twilightforest_dark_side",
-    "front": "morestoragedrawers:blocks/twilightforest_dark_front_4",
-    "side": "morestoragedrawers:blocks/twilightforest_dark_side",
-    "trim": "morestoragedrawers:blocks/twilightforest_dark_trim"
-  }
-}

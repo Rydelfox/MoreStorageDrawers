@@ -1,0 +1,10 @@
+{
+  "parent": "storagedrawers:block/full_drawers_orientable",
+  "textures": {
+    "top": "#top",
+    "front": "#front",
+    "back": "#back",
+    "side": "#side",
+    "trim": "#trim"
+  }
+}

@@ -14,3 +14,11 @@ Adding new mods:
 	Add recipes to resources/data/morestoragedrawers/recipes
 	Add to tags in resources/data/morestoragedrawers/tags/blocks
 	Add to tags in resources/data/morestoragedrawers/tags/items
+	=====================
+	Add mod to mods.toml
+	Add mod ID to EnumVariant.ID
+	Add woods to EnumVariant
+	Add mod to Enum Mod
+	Add Textures to resources/assets/morestoragedrawers/textures/blocks
+	Add Translation to resources/assets/morestoragedrawers/lang
+	Add Advancements to resources/data/morestoragedrawers/advancements/recipes/morestoragedrawers

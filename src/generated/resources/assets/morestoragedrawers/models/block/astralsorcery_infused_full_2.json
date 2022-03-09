@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/full_drawers",
+  "textures": {
+    "particle": "morestoragedrawers:blocks/astralsorcery_infused_front_2",
+    "east": "morestoragedrawers:blocks/astralsorcery_infused_side",
+    "west": "morestoragedrawers:blocks/astralsorcery_infused_side",
+    "north": "morestoragedrawers:blocks/astralsorcery_infused_front_2",
+    "up": "morestoragedrawers:blocks/astralsorcery_infused_side",
+    "down": "morestoragedrawers:blocks/astralsorcery_infused_side",
+    "south": "morestoragedrawers:blocks/astralsorcery_infused_side",
+    "trim": "morestoragedrawers:blocks/astralsorcery_infused_trim"
+  }
+}

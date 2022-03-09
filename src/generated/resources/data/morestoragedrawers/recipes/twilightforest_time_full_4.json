@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "morestoragedrawers",
+  "pattern": [
+    "x/x",
+    "///",
+    "x/x"
+  ],
+  "key": {
+    "/": {
+      "item": "twilightforest:time_planks"
+    },
+    "x": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "morestoragedrawers:twilightforest_time_full_4"
+  }
+}

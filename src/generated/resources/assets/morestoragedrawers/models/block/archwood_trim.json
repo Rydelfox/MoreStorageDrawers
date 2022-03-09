@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "morestoragedrawers:blocks/ars_nouveau_archwood_side"
+  }
+}

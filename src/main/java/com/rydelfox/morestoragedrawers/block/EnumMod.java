@@ -7,19 +7,20 @@ import net.minecraftforge.fml.ModList;
 import javax.annotation.Nonnull;
 
 public enum EnumMod implements IStringSerializable {
-    ARSNOUVEAU("ars_nouveau", EnumVariant.ARSNOUVEAU_ARCHWOOD),
-    ASTRALSORCERY("astralsorcery", EnumVariant.ASTRALSORCERY_INFUSED),
-    BOTANIA("botania", EnumVariant.BOTANIA_LIVINGWOOD),
-    EIDOLON("eidolon", EnumVariant.EIDOLON_POLISHED),
-    HEXBLADES("hexblades", EnumVariant.HEXBLADES_DARK_POLISHED),
-    NATURESAURA("naturesaura", EnumVariant.NATURESAURA_ANCIENT),
-    TWILIGHTFOREST("twilightforest", EnumVariant.TWILIGHTFOREST_TOWER),
-    BIOMESOPLENTY("biomesoplenty", EnumVariant.BIOMESOPLENTY_FIR);
+    DEFAULT("none", DrawerMaterial.DEFAULT),
+    ARSNOUVEAU("ars_nouveau", DrawerMaterial.ARSNOUVEAU_ARCHWOOD),
+    ASTRALSORCERY("astralsorcery", DrawerMaterial.ASTRALSORCERY_INFUSED),
+    BOTANIA("botania", DrawerMaterial.BOTANIA_LIVINGWOOD),
+    EIDOLON("eidolon", DrawerMaterial.EIDOLON_POLISHED),
+    HEXBLADES("hexblades", DrawerMaterial.HEXBLADES_DARK_POLISHED),
+    NATURESAURA("naturesaura", DrawerMaterial.NATURESAURA_ANCIENT),
+    TWILIGHTFOREST("twilightforest", DrawerMaterial.TWILIGHTFOREST_TOWER),
+    BIOMESOPLENTY("biomesoplenty", DrawerMaterial.BIOMESOPLENTY_FIR);
 
     private String id;
-    private EnumVariant defaultMaterial;
+    private DrawerMaterial defaultMaterial;
 
-    EnumMod (String modId, EnumVariant defaultMaterial) {
+    EnumMod (String modId, DrawerMaterial defaultMaterial) {
         this.id = modId;
         this.defaultMaterial = defaultMaterial;
     }
@@ -30,11 +31,13 @@ public enum EnumMod implements IStringSerializable {
         return id;
     }
 
-    public EnumVariant getDefaultMaterial() {
+    public DrawerMaterial getDefaultMaterial() {
         return defaultMaterial;
     }
 
     public boolean isLoaded() {
+        if (this == DEFAULT)
+            return false;
         return ModList.get().isLoaded(id);
     }
 

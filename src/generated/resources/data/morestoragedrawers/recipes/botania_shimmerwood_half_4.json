@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "morestoragedrawers",
+  "pattern": [
+    "x/x",
+    "///",
+    "x/x"
+  ],
+  "key": {
+    "/": {
+      "item": "botania:shimmerwood_planks_slab"
+    },
+    "x": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "morestoragedrawers:botania_shimmerwood_half_4"
+  }
+}

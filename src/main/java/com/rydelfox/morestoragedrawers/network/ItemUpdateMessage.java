@@ -44,7 +44,7 @@ public class ItemUpdateMessage {
     }
 
     public static void handle(ItemUpdateMessage msg, Supplier<NetworkEvent.Context> ctx) {
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> () -> handleClient(msg, ctx.get()));
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> handleClient(msg, ctx.get()));
     }
 
     @OnlyIn(Dist.CLIENT)
