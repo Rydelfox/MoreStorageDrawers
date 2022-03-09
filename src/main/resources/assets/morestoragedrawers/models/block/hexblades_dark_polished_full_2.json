@@ -1,9 +1,0 @@
-{
-  "parent": "storagedrawers:block/full_drawers_orientable",
-  "textures": {
-    "top": "morestoragedrawers:blocks/hexblades_dark_polished_side",
-    "front": "morestoragedrawers:blocks/hexblades_dark_polished_front_2",
-    "side": "morestoragedrawers:blocks/hexblades_dark_polished_side",
-    "trim": "morestoragedrawers:blocks/hexblades_dark_polished_trim"
-  }
-}

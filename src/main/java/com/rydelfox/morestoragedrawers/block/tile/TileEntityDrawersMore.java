@@ -1,16 +1,12 @@
 package com.rydelfox.morestoragedrawers.block.tile;
 
-import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.jaquadro.minecraft.storagedrawers.api.event.DrawerPopulatedEvent;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawer;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerAttributes;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerGroup;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawers;
-import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawersStandard;
 import com.jaquadro.minecraft.storagedrawers.block.tile.tiledata.StandardDrawerGroup;
 import com.jaquadro.minecraft.storagedrawers.inventory.ItemStackHelper;
-import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
-import com.rydelfox.morestoragedrawers.block.ModBlocks;
 import com.rydelfox.morestoragedrawers.network.ItemUpdateMessage;
 import com.rydelfox.morestoragedrawers.network.MoreStorageDrawersPacketHandler;
 import net.minecraft.client.Minecraft;
@@ -45,7 +41,7 @@ public class TileEntityDrawersMore extends TileEntityDrawers {
         private GroupData groupData = new GroupData(1);
 
         public Slot1 () {
-            super(ModBlocks.Tile.STANDARD_DRAWERS_1);
+            super(Tiles.Tile.MORE_DRAWERS_1);
             groupData.setCapabilityProvider(this);
             injectPortableData(groupData);
         }
@@ -66,7 +62,7 @@ public class TileEntityDrawersMore extends TileEntityDrawers {
         private GroupData groupData = new GroupData(2);
 
         public Slot2 () {
-            super(ModBlocks.Tile.STANDARD_DRAWERS_2);
+            super(Tiles.Tile.MORE_DRAWERS_2);
             groupData.setCapabilityProvider(this);
             injectPortableData(groupData);
         }
@@ -87,7 +83,7 @@ public class TileEntityDrawersMore extends TileEntityDrawers {
         private GroupData groupData = new GroupData(4);
 
         public Slot4 () {
-            super(ModBlocks.Tile.STANDARD_DRAWERS_4);
+            super(Tiles.Tile.MORE_DRAWERS_4);
             groupData.setCapabilityProvider(this);
             injectPortableData(groupData);
         }

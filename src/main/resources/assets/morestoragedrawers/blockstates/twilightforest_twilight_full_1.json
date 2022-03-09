@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "morestoragedrawers:block/twilightforest_twilight_full_1" },
-    "facing=east": { "model": "morestoragedrawers:block/twilightforest_twilight_full_1", "y": 90 },
-    "facing=south": { "model": "morestoragedrawers:block/twilightforest_twilight_full_1", "y": 180 },
-    "facing=west": { "model": "morestoragedrawers:block/twilightforest_twilight_full_1", "y": 270 }
-  }
-}

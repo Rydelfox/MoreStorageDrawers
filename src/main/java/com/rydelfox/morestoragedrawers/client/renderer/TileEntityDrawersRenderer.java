@@ -295,11 +295,12 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
 
         BlockDrawersExtended block = (BlockDrawersExtended)state.getBlock();
         AxisAlignedBB labelGeometry = block.countGeometry[slot];
+        boolean halfDepth = block.isHalfDepth();
         int textWidth = fontRenderer.width(text);
 
         float x = (float)(labelGeometry.minX + labelGeometry.getXsize() / 2);
         float y = 16f - (float)labelGeometry.minY - (float)labelGeometry.getYsize();
-        float z = (float)labelGeometry.minZ * .0625f - .01f;
+        float z = ((float)labelGeometry.minZ + (halfDepth ? 8 : 0)) * .0625f - .01f;
 
         matrix.pushPose();
 
@@ -316,11 +317,13 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
         BlockDrawersExtended block = (BlockDrawersExtended)state.getBlock();
         AxisAlignedBB labelGeometry = block.labelGeometry[slot];
 
+        boolean halfDepth = block.isHalfDepth();
+
         float scaleX = (float)labelGeometry.getXsize() / 16;
         float scaleY = (float)labelGeometry.getYsize() / 16;
         float moveX = (float)labelGeometry.minX + (8 * scaleX);
         float moveY = 16f - (float)labelGeometry.maxY + (8 * scaleY);
-        float moveZ = (float)labelGeometry.minZ * .0625f;
+        float moveZ = ((float)labelGeometry.minZ + (halfDepth ? 8 : 0)) * .0625f;
 
         matrix.pushPose();
 

@@ -1,14 +1,14 @@
 package com.rydelfox.morestoragedrawers;
 
-//import com.jaquadro.minecraft.storagedrawers.client.renderer.TileEntityDrawersRenderer;
 import com.jaquadro.minecraft.storagedrawers.config.ClientConfig;
 import com.jaquadro.minecraft.storagedrawers.config.CommonConfig;
 import com.jaquadro.minecraft.storagedrawers.config.CompTierRegistry;
 import com.jaquadro.minecraft.storagedrawers.core.ClientProxy;
 import com.jaquadro.minecraft.storagedrawers.core.CommonProxy;
 import com.rydelfox.morestoragedrawers.block.EnumMod;
-import com.rydelfox.morestoragedrawers.block.ModBlocks;
+import com.rydelfox.morestoragedrawers.block.tile.Tiles;
 import com.rydelfox.morestoragedrawers.client.renderer.TileEntityDrawersRenderer;
+import com.rydelfox.morestoragedrawers.core.Registration;
 import com.rydelfox.morestoragedrawers.network.MoreStorageDrawersPacketHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -39,8 +39,7 @@ public class MoreStorageDrawers {
         //IEventBus eb = FMLJavaModLoadingContext.get().getModEventBus();
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.spec);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.spec);
-        //eb.addGenericListener(Block.class, ModBlocks::registerBlocks);
-        //eb.addGenericListener(Item.class, ModBlocks::registerItems);
+        logLoadedMods();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onModQueueEvent);
@@ -49,8 +48,6 @@ public class MoreStorageDrawers {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
-        logLoadedMods();
     }
 
     private void setup (final FMLCommonSetupEvent event) {
@@ -60,12 +57,11 @@ public class MoreStorageDrawers {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        ModBlocks.Registration.bindRenderTypes();
-        logInfo("Register renderers in clientSetup");
-        MoreStorageDrawers.logInfo("STANDARD_DRAWERS_1 is "+ ModBlocks.Tile.STANDARD_DRAWERS_1.getRegistryName().getNamespace()+":"+ ModBlocks.Tile.STANDARD_DRAWERS_1.getRegistryName().getPath());
-        ClientRegistry.bindTileEntityRenderer(ModBlocks.Tile.STANDARD_DRAWERS_1, TileEntityDrawersRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(ModBlocks.Tile.STANDARD_DRAWERS_2, TileEntityDrawersRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(ModBlocks.Tile.STANDARD_DRAWERS_4, TileEntityDrawersRenderer::new);
+        Registration.bindRenderTypes();
+        logInfo("MoreStorageDrawers: Register renderers in clientSetup");
+        ClientRegistry.bindTileEntityRenderer(Tiles.Tile.MORE_DRAWERS_1, TileEntityDrawersRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(Tiles.Tile.MORE_DRAWERS_2, TileEntityDrawersRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(Tiles.Tile.MORE_DRAWERS_4, TileEntityDrawersRenderer::new);
     }
 
     @SuppressWarnings("Convert2MethodRef")

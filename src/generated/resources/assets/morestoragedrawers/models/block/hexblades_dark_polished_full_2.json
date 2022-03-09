@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/full_drawers",
+  "textures": {
+    "particle": "morestoragedrawers:blocks/hexblades_dark_polished_front_2",
+    "east": "morestoragedrawers:blocks/hexblades_dark_polished_side",
+    "west": "morestoragedrawers:blocks/hexblades_dark_polished_side",
+    "north": "morestoragedrawers:blocks/hexblades_dark_polished_front_2",
+    "up": "morestoragedrawers:blocks/hexblades_dark_polished_side",
+    "down": "morestoragedrawers:blocks/hexblades_dark_polished_side",
+    "south": "morestoragedrawers:blocks/hexblades_dark_polished_side",
+    "trim": "morestoragedrawers:blocks/hexblades_dark_polished_trim"
+  }
+}

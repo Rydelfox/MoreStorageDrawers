@@ -1,9 +1,0 @@
-{
-  "parent": "storagedrawers:block/full_drawers_orientable",
-  "textures": {
-    "top": "morestoragedrawers:blocks/biomesoplenty_redwood_side",
-    "front": "morestoragedrawers:blocks/biomesoplenty_redwood_front_1",
-    "side": "morestoragedrawers:blocks/biomesoplenty_redwood_side",
-    "trim": "morestoragedrawers:blocks/biomesoplenty_redwood_trim"
-  }
-}

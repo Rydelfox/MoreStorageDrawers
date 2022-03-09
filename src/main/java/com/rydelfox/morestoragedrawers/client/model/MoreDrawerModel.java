@@ -11,8 +11,7 @@ import com.mojang.datafixers.util.Either;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.BlockDrawersExtended;
 import com.rydelfox.morestoragedrawers.block.BlockMoreDrawers;
-import com.rydelfox.morestoragedrawers.block.EnumVariant;
-import com.rydelfox.morestoragedrawers.block.ModBlocks;
+import com.rydelfox.morestoragedrawers.block.DrawerMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -83,12 +82,20 @@ public class MoreDrawerModel {
                 return;
             geometryDataLoaded = true;
 
-            List<BlockMoreDrawers> fullDrawers1 = new ArrayList<>(ModBlocks.fullOne.values());
-            List<BlockMoreDrawers> fullDrawers2 = new ArrayList<>(ModBlocks.fullTwo.values());
-            List<BlockMoreDrawers> fullDrawers4 = new ArrayList<>(ModBlocks.fullFour.values());
-            List<BlockMoreDrawers> halfDrawers1 = new ArrayList<>(ModBlocks.halfOne.values());
-            List<BlockMoreDrawers> halfDrawers2 = new ArrayList<>(ModBlocks.halfTwo.values());
-            List<BlockMoreDrawers> halfDrawers4 = new ArrayList<>(ModBlocks.halfFour.values());
+            List<BlockMoreDrawers> fullDrawers1 = new ArrayList<>();
+            List<BlockMoreDrawers> fullDrawers2 = new ArrayList<>();
+            List<BlockMoreDrawers> fullDrawers4 = new ArrayList<>();
+            List<BlockMoreDrawers> halfDrawers1 = new ArrayList<>();
+            List<BlockMoreDrawers> halfDrawers2 = new ArrayList<>();
+            List<BlockMoreDrawers> halfDrawers4 = new ArrayList<>();
+            for(DrawerMaterial material : DrawerMaterial.values()) {
+                fullDrawers1.add(material.getDrawer(1, false));
+                fullDrawers1.add(material.getDrawer(1, true));
+                fullDrawers2.add(material.getDrawer(2, false));
+                fullDrawers2.add(material.getDrawer(2, true));
+                fullDrawers4.add(material.getDrawer(4, false));
+                fullDrawers4.add(material.getDrawer(4, true));
+            }
 
             MoreStorageDrawers.logInfo("MoreStorageDrawers: Populating Geometry");
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_icon_area_1.json"),
@@ -203,14 +210,14 @@ public class MoreDrawerModel {
                 indicatorComp.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/compdrawers_indicator"), rot, texGet));
             }
 
-            for(EnumVariant variant : EnumVariant.values()) {
-                if (variant.getMod() != null && variant.getMod().isLoaded()) {
-                    replaceBlock(event, ModBlocks.fullOne.get(variant));
-                    replaceBlock(event, ModBlocks.fullTwo.get(variant));
-                    replaceBlock(event, ModBlocks.fullFour.get(variant));
-                    replaceBlock(event, ModBlocks.halfOne.get(variant));
-                    replaceBlock(event, ModBlocks.halfTwo.get(variant));
-                    replaceBlock(event, ModBlocks.halfFour.get(variant));
+            for(DrawerMaterial material : DrawerMaterial.values()) {
+                if (material.getMod() != null && material.getMod().isLoaded()) {
+                    replaceBlock(event, material.getDrawer(1, false));
+                    replaceBlock(event, material.getDrawer(2, false));
+                    replaceBlock(event, material.getDrawer(3, false));
+                    replaceBlock(event, material.getDrawer(1, true));
+                    replaceBlock(event, material.getDrawer(2, true));
+                    replaceBlock(event, material.getDrawer(3, true));
                 }
             }
         }
