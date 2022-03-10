@@ -2,23 +2,11 @@ These instructions are mostly for internal use, so I don't forget the steps need
 
 Adding new mods:
 	Add mod to mods.toml
-	Add mod id to EnumVariant.ID
-	Add woods to EnumVariant
-	Add mod to EnumMod
-	Add Textures to resources/assets/morestoragedrawers/textures/blocks
-	Add models to resources/assets/morestoragedrawers/models
-	Add translation to resources/assets/morestoragedrawers/lang
-	Add block states to resources/assets/morestoragedrawers/blockstates
-	Add Advancements to resources/data/morestoragedrawers/advancements/recipes/morestoragedrawers
-	Add loot tables to resources/data/morestoragedrawers/loot_tables/blocks
-	Add recipes to resources/data/morestoragedrawers/recipes
-	Add to tags in resources/data/morestoragedrawers/tags/blocks
-	Add to tags in resources/data/morestoragedrawers/tags/items
-	=====================
-	Add mod to mods.toml
-	Add mod ID to EnumVariant.ID
-	Add woods to EnumVariant
+	Add mod ID to DrawerMaterials.ID
+	Add woods to DrawerMaterials
 	Add mod to Enum Mod
 	Add Textures to resources/assets/morestoragedrawers/textures/blocks
 	Add Translation to resources/assets/morestoragedrawers/lang
-	Add Advancements to resources/data/morestoragedrawers/advancements/recipes/morestoragedrawers
+	Add tags to resources/data/morestoragedrawers/tags
+	Run runData
+	Add mod as an optional dependency in upload
