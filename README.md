@@ -6,6 +6,7 @@ More Storage Drawers is a compatibility mod for Texelsaur's Storage Drawers, all
 Downloads available at https://www.curseforge.com/minecraft/mc-mods/more-storage-drawers
 
 What mods and woods are supported?
+----------------------------------
 
 Ars Nouveau - Archwood
 Astral Sorcery - Infused Wood
