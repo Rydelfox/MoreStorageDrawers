@@ -9,5 +9,6 @@ Adding new mods:
 	Add Translation to resources/assets/morestoragedrawers/lang
 	Add tags to resources/data/morestoragedrawers/tags
 	Add mods as runtime dependency in build.gradle
+	Update version number in gradle.properties
 	Run runData
 	Add mod as an optional dependency in upload
