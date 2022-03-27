@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "twilightforest:canopy_planks"
+            "items": [
+              "twilightforest:canopy_planks"
+            ]
           }
         ]
       }

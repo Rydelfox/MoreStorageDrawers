@@ -8,55 +8,61 @@ import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawersComp;
 import com.jaquadro.minecraft.storagedrawers.config.ClientConfig;
 import com.jaquadro.minecraft.storagedrawers.util.CountFormatter;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.rydelfox.morestoragedrawers.block.BlockDrawersExtended;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.tile.TileEntityDrawersMore;
-import net.minecraft.block.BlockState;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.AtlasTexture;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.client.settings.GraphicsFanciness;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Matrix3f;
-import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Quaternion;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.world.World;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
+import net.minecraft.client.GraphicsStatus;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import com.mojang.math.Matrix3f;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Quaternion;
+import com.mojang.math.Vector3f;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import java.util.function.Consumer;
 
+import com.mojang.blaze3d.platform.Lighting;
+import com.mojang.blaze3d.vertex.Tesselator;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+
 @OnlyIn(Dist.CLIENT)
-public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDrawers>
+public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntityDrawers>
 {
     private boolean[] renderAsBlock = new boolean[4];
     private ItemStack[] renderStacks = new ItemStack[4];
 
     private ItemRenderer renderItem;
 
-    public TileEntityDrawersRenderer (TileEntityRendererDispatcher dispatcher) {
-        super(dispatcher);
-        MoreStorageDrawers.logInfo("TileEntityDrawersRenderer constructor");
+    private BlockEntityRendererProvider.Context context;
+
+    public TileEntityDrawersRenderer (BlockEntityRendererProvider.Context context) {
+        this.context = context;
     }
 
     @Override
-    public void render (TileEntityDrawers tile, float partialTickTime, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
+    public void render (TileEntityDrawers tile, float partialTickTime, PoseStack matrix, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
         //MoreStorageDrawers.logInfo("Calling TileEntityDrawersRenderer.render(...)");
         if (tile instanceof TileEntityDrawersMore) {
             //MoreStorageDrawers.logInfo("In TileEntityDrawersMore version");
@@ -67,7 +73,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
             }
 
             //MoreStorageDrawers.logInfo("Rendering tile " + tileM.toString());
-            World world = tileM.getLevel();
+            Level world = tileM.getLevel();
             if (world == null) {
                 //MoreStorageDrawers.logInfo("World is null");
                 return;
@@ -85,7 +91,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
                 return;
             }
 
-            PlayerEntity player = Minecraft.getInstance().player;
+            Player player = Minecraft.getInstance().player;
             BlockPos blockPos = tileM.getBlockPos().offset(.5, .5, .5);
             float distance = (float) Math.sqrt(blockPos.distSqr(player.position(), true));
 
@@ -103,8 +109,8 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
             }
 
             Minecraft mc = Minecraft.getInstance();
-            GraphicsFanciness cache = mc.options.graphicsMode;
-            mc.options.graphicsMode = GraphicsFanciness.FANCY;
+            GraphicsStatus cache = mc.options.graphicsMode;
+            mc.options.graphicsMode = GraphicsStatus.FANCY;
 
             if (!tileM.getDrawerAttributes().isConcealed())
                 renderFastItemSet(tileM, state, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime, distance);
@@ -115,7 +121,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
             mc.options.graphicsMode = cache;
 
             matrix.popPose();
-            RenderHelper.setupLevel(matrix.last().pose());
+            Lighting.setupLevel(matrix.last().pose());
             matrix.pushPose();
 
         } else {
@@ -126,7 +132,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
             }
 
             //MoreStorageDrawers.logInfo("Rendering tile " + tile.toString());
-            World world = tile.getLevel();
+            Level world = tile.getLevel();
             if (world == null) {
                 //MoreStorageDrawers.logInfo("World is null");
                 return;
@@ -144,7 +150,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
                 return;
             }
 
-            PlayerEntity player = Minecraft.getInstance().player;
+            Player player = Minecraft.getInstance().player;
             BlockPos blockPos = tile.getBlockPos().offset(.5, .5, .5);
             float distance = (float) Math.sqrt(blockPos.distSqr(player.position(), true));
 
@@ -162,8 +168,8 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
             }
 
             Minecraft mc = Minecraft.getInstance();
-            GraphicsFanciness cache = mc.options.graphicsMode;
-            mc.options.graphicsMode = GraphicsFanciness.FANCY;
+            GraphicsStatus cache = mc.options.graphicsMode;
+            mc.options.graphicsMode = GraphicsStatus.FANCY;
 
             if (!tile.getDrawerAttributes().isConcealed())
                 renderFastItemSet(tile, state, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime, distance);
@@ -174,13 +180,13 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
             mc.options.graphicsMode = cache;
 
             matrix.popPose();
-            RenderHelper.setupLevel(matrix.last().pose());
+            Lighting.setupLevel(matrix.last().pose());
             matrix.pushPose();
         }
     }
 
     private boolean playerBehindBlock(BlockPos blockPos, Direction facing) {
-        PlayerEntity player = Minecraft.getInstance().player;
+        Player player = Minecraft.getInstance().player;
         if (player == null)
             return false;
 
@@ -199,7 +205,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
         }
     }
 
-    private void renderFastItemSet (TileEntityDrawersMore tile, BlockState state, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime, float distance) {
+    private void renderFastItemSet (TileEntityDrawersMore tile, BlockState state, PoseStack matrix, MultiBufferSource buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime, float distance) {
         int drawerCount = tile.getGroup().getDrawerCount();
         //MoreStorageDrawers.logInfo("Rendering item in More version");
 
@@ -233,9 +239,9 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
 
             double renderDistance = ClientConfig.RENDER.quantityRenderDistance.get();
             if (renderDistance == 0 || distance < renderDistance) {
-                IRenderTypeBuffer.Impl txtBuffer = IRenderTypeBuffer.immediate(Tessellator.getInstance().getBuilder());
+                MultiBufferSource.BufferSource txtBuffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
                 for (int i = 0; i < drawerCount; i++) {
-                    String format = CountFormatter.format(this.renderer.getFont(), tile.getGroup().getDrawer(i));
+                    String format = CountFormatter.format(this.context.getFont(), tile.getGroup().getDrawer(i));
                     renderText(format, state, i, matrix, txtBuffer, combinedLight, side, alpha);
                 }
                 txtBuffer.endBatch();
@@ -243,7 +249,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
         }
     }
 
-    private void renderFastItemSet (TileEntityDrawers tile, BlockState state, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime, float distance) {
+    private void renderFastItemSet (TileEntityDrawers tile, BlockState state, PoseStack matrix, MultiBufferSource buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime, float distance) {
         int drawerCount = tile.getGroup().getDrawerCount();
         //MoreStorageDrawers.logInfo("Rendering item");
 
@@ -277,9 +283,9 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
 
             double renderDistance = ClientConfig.RENDER.quantityRenderDistance.get();
             if (renderDistance == 0 || distance < renderDistance) {
-                IRenderTypeBuffer.Impl txtBuffer = IRenderTypeBuffer.immediate(Tessellator.getInstance().getBuilder());
+                MultiBufferSource.BufferSource txtBuffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
                 for (int i = 0; i < drawerCount; i++) {
-                    String format = CountFormatter.format(this.renderer.getFont(), tile.getGroup().getDrawer(i));
+                    String format = CountFormatter.format(this.context.getFont(), tile.getGroup().getDrawer(i));
                     renderText(format, state, i, matrix, txtBuffer, combinedLight, side, alpha);
                 }
                 txtBuffer.endBatch();
@@ -287,14 +293,14 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
         }
     }
 
-    private void renderText (String text, BlockState state, int slot, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, Direction side, float alpha) {
+    private void renderText (String text, BlockState state, int slot, PoseStack matrix, MultiBufferSource buffer, int combinedLight, Direction side, float alpha) {
         if (text == null || text.isEmpty())
             return;
 
-        FontRenderer fontRenderer = this.renderer.getFont();
+        Font fontRenderer = this.context.getFont();
 
         BlockDrawersExtended block = (BlockDrawersExtended)state.getBlock();
-        AxisAlignedBB labelGeometry = block.countGeometry[slot];
+        AABB labelGeometry = block.countGeometry[slot];
         boolean halfDepth = block.isHalfDepth();
         int textWidth = fontRenderer.width(text);
 
@@ -313,9 +319,9 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
         matrix.popPose();
     }
 
-    private void renderFastItem (@Nonnull ItemStack itemStack, TileEntityDrawers tile, BlockState state, int slot, MatrixStack matrix, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime) {
+    private void renderFastItem (@Nonnull ItemStack itemStack, TileEntityDrawers tile, BlockState state, int slot, PoseStack matrix, MultiBufferSource buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime) {
         BlockDrawersExtended block = (BlockDrawersExtended)state.getBlock();
-        AxisAlignedBB labelGeometry = block.labelGeometry[slot];
+        AABB labelGeometry = block.labelGeometry[slot];
 
         boolean halfDepth = block.isHalfDepth();
 
@@ -335,9 +341,9 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
         //    renderHandler.render(tile, tile.getGroup(), slot, 0, partialTickTime);
         //}
 
-        Consumer<IRenderTypeBuffer> finish = (IRenderTypeBuffer buf) -> {
-            if (buf instanceof IRenderTypeBuffer.Impl)
-                ((IRenderTypeBuffer.Impl) buf).endBatch();
+        Consumer<MultiBufferSource> finish = (MultiBufferSource buf) -> {
+            if (buf instanceof MultiBufferSource.BufferSource)
+                ((MultiBufferSource.BufferSource) buf).endBatch();
         };
 
         try {
@@ -345,17 +351,17 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
             matrix.scale(1, -1, 1);
             matrix.scale(16, 16, 16);
 
-            IBakedModel itemModel = renderItem.getModel(itemStack, null, null);
+            BakedModel itemModel = renderItem.getModel(itemStack, null, null, 0);
             boolean render3D = itemModel.isGui3d();
             finish.accept(buffer);
 
             if (render3D)
-                RenderHelper.setupFor3DItems();
+                Lighting.setupFor3DItems();
             else
-                RenderHelper.setupForFlatItems();
+                Lighting.setupForFlatItems();
 
             matrix.last().normal().load(Matrix3f.createScaleMatrix(1, -1, 1));
-            renderItem.render(itemStack, ItemCameraTransforms.TransformType.GUI, false, matrix, buffer, combinedLight, combinedOverlay, itemModel);
+            renderItem.render(itemStack, ItemTransforms.TransformType.GUI, false, matrix, buffer, combinedLight, combinedOverlay, itemModel);
             finish.accept(buffer);
         }
         catch (Exception e) {
@@ -369,7 +375,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
         return itemStack.getItem() instanceof BlockItem; // && renderItem.shouldRenderItemIn3D(itemStack);
     }
 
-    private void alignRendering (MatrixStack matrix, Direction side) {
+    private void alignRendering (PoseStack matrix, Direction side) {
         // Rotate to face the correct direction for the drawer's orientation.
 
         matrix.translate(.5f, .5f, .5f);
@@ -377,7 +383,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
         matrix.translate(-.5f, -.5f, -.5f);
     }
 
-    private void moveRendering (MatrixStack matrix, float scaleX, float scaleY, float offsetX, float offsetY, float offsetZ) {
+    private void moveRendering (PoseStack matrix, float scaleX, float scaleY, float offsetX, float offsetY, float offsetZ) {
         // NOTE: RenderItem expects to be called in a context where Y increases toward the bottom of the screen
         // However, for in-world rendering the opposite is true. So we translate up by 1 along Y, and then flip
         // along Y. Since the item is drawn at the back of the drawer, we also translate by `1-offsetZ` to move
@@ -403,7 +409,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
     public static final ResourceLocation TEXTURE_IND_4 = new ResourceLocation(StorageDrawers.MOD_ID, "blocks/indicator/indicator_4_on");
     public static final ResourceLocation TEXTURE_IND_COMP = new ResourceLocation(StorageDrawers.MOD_ID, "blocks/indicator/indicator_comp_on");
 
-    private void renderIndicator (BlockDrawersExtended block, TileEntityDrawers tile, MatrixStack matrixStack, IRenderTypeBuffer buffer, Direction side, int combinedLight, int combinedOverlay) {
+    private void renderIndicator (BlockDrawersExtended block, TileEntityDrawers tile, PoseStack matrixStack, MultiBufferSource buffer, Direction side, int combinedLight, int combinedOverlay) {
         int count = (tile instanceof TileEntityDrawersComp) ? 1 : block.getDrawerCount();
 
         ResourceLocation resource = TEXTURE_IND_1;
@@ -414,7 +420,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
         else if (count == 4)
             resource = TEXTURE_IND_4;
 
-        TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(AtlasTexture.LOCATION_BLOCKS).apply(resource);
+        TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(resource);
         float u1 = sprite.getU0();
         float u2 = sprite.getU1();
         float v1 = sprite.getV0();
@@ -435,8 +441,8 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
             if (drawer == Drawers.DISABLED || tile.getDrawerAttributes().isConcealed())
                 continue;
 
-            AxisAlignedBB bb = block.indGeometry[i];
-            AxisAlignedBB bbbase = block.indBaseGeometry[i];
+            AABB bb = block.indGeometry[i];
+            AABB bbbase = block.indBaseGeometry[i];
             float x1 = unit * (float)bb.minX;
             float x2 = unit * (float)bb.maxX;
             float xb2 = unit * (float)bbbase.maxX;
@@ -464,7 +470,7 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
             if (xCur > x1 && yCur > y1) {
                 Matrix4f matrix = matrixStack.last().pose();
                 Matrix3f normal = matrixStack.last().normal();
-                IVertexBuilder builder = buffer.getBuffer(RenderType.solid());
+                VertexConsumer builder = buffer.getBuffer(RenderType.solid());
                 addQuad(matrix, normal, builder, combinedLight, combinedOverlay, x1, xCur, y1, yCur, z, uCur, su1, sv1, vCur);
             }
         }
@@ -472,14 +478,14 @@ public class TileEntityDrawersRenderer extends TileEntityRenderer<TileEntityDraw
         matrixStack.popPose();
     }
 
-    public static void addQuad(Matrix4f matrix, Matrix3f normal, IVertexBuilder buffer, int combinedLight, int combinedOverlay, float x1, float x2, float y1, float y2, float z, float u1, float u2, float v1, float v2) {
+    public static void addQuad(Matrix4f matrix, Matrix3f normal, VertexConsumer buffer, int combinedLight, int combinedOverlay, float x1, float x2, float y1, float y2, float z, float u1, float u2, float v1, float v2) {
         addVertex(matrix, normal, buffer, combinedLight, combinedOverlay, x2, y1, z, u1, v1);
         addVertex(matrix, normal, buffer, combinedLight, combinedOverlay, x2, y2, z, u1, v2);
         addVertex(matrix, normal, buffer, combinedLight, combinedOverlay, x1, y2, z, u2, v2);
         addVertex(matrix, normal, buffer, combinedLight, combinedOverlay, x1, y1, z, u2, v1);
     }
 
-    private static void addVertex(Matrix4f matrix, Matrix3f normal, IVertexBuilder buffer, int combinedLight, int combinedOverlay, float x, float y, float z, float u, float v) {
+    private static void addVertex(Matrix4f matrix, Matrix3f normal, VertexConsumer buffer, int combinedLight, int combinedOverlay, float x, float y, float z, float u, float v) {
         buffer.vertex(matrix, x, y, z).color(1f, 1f, 1f, 1f).uv(u, v).overlayCoords(combinedOverlay).uv2(combinedLight).normal(normal, 0, 1, 0).endVertex();
     }
 

@@ -10,16 +10,19 @@ import com.rydelfox.morestoragedrawers.block.tile.Tiles;
 import com.rydelfox.morestoragedrawers.client.renderer.TileEntityDrawersRenderer;
 import com.rydelfox.morestoragedrawers.core.Registration;
 import com.rydelfox.morestoragedrawers.network.MoreStorageDrawersPacketHandler;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fmlclient.registry.ClientRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -58,10 +61,13 @@ public class MoreStorageDrawers {
 
     private void clientSetup(final FMLClientSetupEvent event) {
         Registration.bindRenderTypes();
-        logInfo("MoreStorageDrawers: Register renderers in clientSetup");
-        ClientRegistry.bindTileEntityRenderer(Tiles.Tile.MORE_DRAWERS_1, TileEntityDrawersRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(Tiles.Tile.MORE_DRAWERS_2, TileEntityDrawersRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(Tiles.Tile.MORE_DRAWERS_4, TileEntityDrawersRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerEntityRenderers(final EntityRenderersEvent.RegisterRenderers evt) {
+        evt.registerBlockEntityRenderer(Tiles.Tile.MORE_DRAWERS_1, TileEntityDrawersRenderer::new);
+        evt.registerBlockEntityRenderer(Tiles.Tile.MORE_DRAWERS_2, TileEntityDrawersRenderer::new);
+        evt.registerBlockEntityRenderer(Tiles.Tile.MORE_DRAWERS_4, TileEntityDrawersRenderer::new);
     }
 
     @SuppressWarnings("Convert2MethodRef")
@@ -69,7 +75,7 @@ public class MoreStorageDrawers {
         // Nothing for now
     }
 
-    private void onModConfigEvent(final ModConfig.ModConfigEvent event) {
+    private void onModConfigEvent(final ModConfigEvent event) {
         if (event.getConfig().getType() == ModConfig.Type.COMMON) {
             // NYI: CommonConfig.setLoaded();
         }

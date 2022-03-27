@@ -1,25 +1,23 @@
 package com.rydelfox.morestoragedrawers.client.renderer;
 
 import com.jaquadro.minecraft.storagedrawers.inventory.ItemStackHelper;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.*;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.client.renderer.model.BakedQuad;
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.model.ModelManager;
+import net.minecraft.client.color.item.ItemColors;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.resources.IResourceManager;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
@@ -27,6 +25,8 @@ import org.lwjgl.opengl.GL11;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+
+import net.minecraft.client.renderer.entity.ItemRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public class StorageRenderItem extends ItemRenderer {
@@ -36,32 +36,36 @@ public class StorageRenderItem extends ItemRenderer {
     public ItemStack overrideStack;
 
     public StorageRenderItem(TextureManager texManager, ModelManager modelManager, ItemColors colors) {
-        super(texManager, modelManager, colors);
+        super(texManager, modelManager, colors, null);
         parent = Minecraft.getInstance().getItemRenderer();
         overrideStack = ItemStack.EMPTY;
     }
 
     @Override
-    public ItemModelMesher getItemModelShaper() {
+    public ItemModelShaper getItemModelShaper() {
         return parent.getItemModelShaper();
     }
 
     @Override
-    public void render(ItemStack itemStackIn, ItemCameraTransforms.TransformType transformTypeIn, boolean leftHand, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn, IBakedModel modelIn) {
+    public void render(ItemStack itemStackIn, ItemTransforms.TransformType transformTypeIn, boolean leftHand, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn, BakedModel modelIn) {
         parent.render(itemStackIn, transformTypeIn, leftHand, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn, modelIn);
     }
 
-    public void renderStatic(ItemStack itemStackIn, ItemCameraTransforms.TransformType transformTypeIn, int combinedLightIn, int combinedOverlayIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn) {
-        parent.renderStatic(itemStackIn, transformTypeIn, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
+    public void renderStatic(LivingEntity livingEntityIn, ItemStack itemStackIn, ItemTransforms.TransformType transformTypeIn, boolean leftHand, PoseStack matrixStackIn, MultiBufferSource bufferIn, @Nullable Level worldIn, int combinedLightIn, int combinedOverlayIn, int p_174252_) {
+        parent.renderStatic(livingEntityIn, itemStackIn, transformTypeIn, leftHand, matrixStackIn, bufferIn, worldIn, combinedLightIn, combinedOverlayIn, p_174252_);
     }
 
-    public void renderQuadList(MatrixStack matrixStackIn, IVertexBuilder bufferIn, List<BakedQuad> quadsIn, ItemStack itemStackIn, int combinedLightIn, int combinedOverlayIn) {
+    public void renderStatic(ItemStack itemStackIn, ItemTransforms.TransformType transformTypeIn, int combinedLightIn, int combinedOverlayIn, PoseStack matrixStackIn, MultiBufferSource bufferIn, int p_174276_) {
+        parent.renderStatic(itemStackIn, transformTypeIn, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn, p_174276_);
+    }
+
+    public void renderQuadList(PoseStack matrixStackIn, VertexConsumer bufferIn, List<BakedQuad> quadsIn, ItemStack itemStackIn, int combinedLightIn, int combinedOverlayIn) {
         parent.renderQuadList(matrixStackIn, bufferIn, quadsIn, itemStackIn, combinedLightIn, combinedOverlayIn);
     }
 
     @Override
-    public IBakedModel getModel (@Nonnull ItemStack stack, World world, LivingEntity entity) {
-        return parent.getModel(stack, world, entity);
+    public BakedModel getModel (@Nonnull ItemStack stack, Level world, LivingEntity entity, int p_174268) {
+        return parent.getModel(stack, world, entity, p_174268);
     }
 
     @Override
@@ -75,17 +79,17 @@ public class StorageRenderItem extends ItemRenderer {
     }
 
     @Override
-    public void renderAndDecorateItem(@Nullable LivingEntity entityIn, ItemStack itemIn, int x, int y) {
-        parent.renderAndDecorateItem(entityIn, itemIn, x, y);
+    public void renderAndDecorateItem(@Nullable LivingEntity entityIn, ItemStack itemIn, int x, int y, int p_174234) {
+        parent.renderAndDecorateItem(entityIn, itemIn, x, y, p_174234);
     }
 
     @Override
-    public void renderGuiItemDecorations (FontRenderer fr, @Nonnull ItemStack stack, int xPosition, int yPosition) {
+    public void renderGuiItemDecorations (Font fr, @Nonnull ItemStack stack, int xPosition, int yPosition) {
         parent.renderGuiItemDecorations(fr, stack, xPosition, yPosition);
     }
 
     @Override
-    public void renderGuiItemDecorations (FontRenderer font, @Nonnull ItemStack item, int x, int y, String text)
+    public void renderGuiItemDecorations (Font font, @Nonnull ItemStack item, int x, int y, String text)
     {
         if (item != overrideStack) {
             super.renderGuiItemDecorations(font, item, x, y, text);
@@ -107,7 +111,7 @@ public class StorageRenderItem extends ItemRenderer {
             if (ItemStackHelper.isStackEncoded(item))
                 stackSize = 0;
 
-            MatrixStack matrixstack = new MatrixStack();
+            PoseStack matrixstack = new PoseStack();
             if (stackSize >= 0 || text != null) {
                 if (stackSize >= 100000000)
                     text = (text == null) ? String.format("%.0fM", stackSize / 1000000f) : text;
@@ -129,21 +133,19 @@ public class StorageRenderItem extends ItemRenderer {
 
                 matrixstack.scale(scale, scale, 1);
                 matrixstack.translate(0.0D, 0.0D, (double) (this.blitOffset + 200.0F));
-                IRenderTypeBuffer.Impl buffer = IRenderTypeBuffer.immediate(Tessellator.getInstance().getBuilder());
+                MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
                 font.drawInBatch(text, textX, textY, color, true, matrixstack.last().pose(), buffer, false, 0, 15728880);
                 buffer.endBatch();
             }
 
-            if (item.getItem().showDurabilityBar(item)) {
+            if (item.getItem().isBarVisible(item)) {
                 RenderSystem.disableDepthTest();
                 RenderSystem.disableTexture();
                 RenderSystem.disableBlend();
-                Tessellator tessellator = Tessellator.getInstance();
+                Tesselator tessellator = Tesselator.getInstance();
                 BufferBuilder bufferbuilder = tessellator.getBuilder();
-                int barWidth = (int)(item.getItem().getDurabilityForDisplay(item));
-                double health = item.getItem().getDurabilityForDisplay(item);
-                int i = Math.round(13.0F - (float)health * 13.0F);
-                int j = item.getItem().getRGBDurabilityForDisplay(item);
+                int barWidth = (int)(item.getItem().getBarWidth(item));
+                int j = item.getItem().getBarColor(item);
                 this.draw(bufferbuilder, x + 2, y + 13, 13, 2, 0, 0, 0, 255);
                 this.draw(bufferbuilder, x + 2, y + 13, barWidth, 1, j >> 16 & 255, j >> 8 & 255, j & 255, 255);
                 RenderSystem.enableBlend();
@@ -151,16 +153,16 @@ public class StorageRenderItem extends ItemRenderer {
                 RenderSystem.enableDepthTest();
             }
 
-            ClientPlayerEntity clientplayerentity = Minecraft.getInstance().player;
+            LocalPlayer clientplayerentity = Minecraft.getInstance().player;
             float f3 = clientplayerentity == null ? 0.0F : clientplayerentity.getCooldowns().getCooldownPercent(item.getItem(), Minecraft.getInstance().getFrameTime());
             if (f3 > 0.0F) {
                 RenderSystem.disableDepthTest();
                 RenderSystem.disableTexture();
                 RenderSystem.enableBlend();
                 RenderSystem.defaultBlendFunc();
-                Tessellator tessellator1 = Tessellator.getInstance();
+                Tesselator tessellator1 = Tesselator.getInstance();
                 BufferBuilder bufferbuilder1 = tessellator1.getBuilder();
-                this.draw(bufferbuilder1, x, y + MathHelper.floor(16.0F * (1.0F - f3)), 16, MathHelper.ceil(16.0F * f3), 255, 255, 255, 127);
+                this.draw(bufferbuilder1, x, y + Mth.floor(16.0F * (1.0F - f3)), 16, Mth.ceil(16.0F * f3), 255, 255, 255, 127);
                 RenderSystem.enableTexture();
                 RenderSystem.enableDepthTest();
             }
@@ -168,17 +170,17 @@ public class StorageRenderItem extends ItemRenderer {
     }
 
     @Override
-    public void onResourceManagerReload (IResourceManager rManager) {
+    public void onResourceManagerReload (ResourceManager rManager) {
         parent.onResourceManagerReload(rManager);
     }
 
     public void draw (BufferBuilder tessellator, int x, int y, int w, int h, int r, int g, int b, int a) {
-        tessellator.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
+        tessellator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         tessellator.vertex((float)(x + 0),(float)(y + 0), 0).color(r, g, b, a).endVertex();
         tessellator.vertex((float)(x + 0),(float)(y + h), 0).color(r, g, b, a).endVertex();
         tessellator.vertex((float)(x + w),(float)(y + h), 0).color(r, g, b, a).endVertex();
         tessellator.vertex((float)(x + w),(float)(y + 0), 0).color(r, g, b, a).endVertex();
-        Tessellator.getInstance().end();
+        Tesselator.getInstance().end();
     }
 
 }

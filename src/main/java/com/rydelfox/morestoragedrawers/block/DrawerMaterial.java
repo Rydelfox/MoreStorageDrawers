@@ -4,16 +4,14 @@ import com.jaquadro.minecraft.storagedrawers.block.BlockTrim;
 import com.rydelfox.morestoragedrawers.MoreCreative;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.tile.TileEntityDrawersMore;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ToolType;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nonnull;
@@ -22,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public enum DrawerMaterial implements IStringSerializable {
+public enum DrawerMaterial implements StringRepresentable {
     DEFAULT(ID.DEFAULT, "default", "NO MATERIAL", 0, null),
 
     ARSNOUVEAU_ARCHWOOD(ID.ARSNOUVEAU, "archwood", "Archwood", 1, "archwood_planks", "archwood_slab"),
@@ -300,9 +298,8 @@ public enum DrawerMaterial implements IStringSerializable {
             return;
         if (this.blockTrim != null)
             throw new IllegalStateException(this.getEnglishName()+" blocks have already been registered!");
-        AbstractBlock.Properties properties = AbstractBlock.Properties
+        BlockBehaviour.Properties properties = BlockBehaviour.Properties
                 .of(Material.WOOD)
-                .harvestTool(ToolType.AXE)
                 .strength(hardness, blastResistance)
                 .lightLevel((p1) -> light)
                 .isSuffocating((p1, p2, p3) -> false)

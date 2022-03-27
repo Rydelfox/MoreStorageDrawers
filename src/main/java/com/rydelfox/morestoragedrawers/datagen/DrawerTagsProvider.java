@@ -2,11 +2,11 @@ package com.rydelfox.morestoragedrawers.datagen;
 
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.DrawerMaterial;
-import net.minecraft.data.BlockTagsProvider;
+import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.ItemTagsProvider;
-import net.minecraft.data.TagsProvider;
-import net.minecraft.item.Item;
+import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.world.item.Item;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -25,7 +25,7 @@ public class DrawerTagsProvider extends ItemTagsProvider {
         for (DrawerMaterial material : DrawerMaterial.values()) {
             drawersItems.addAll(material.getItems());
         }
-        TagsProvider.Builder<Item> itemBuilder = this.tag(ItemTags.bind("storagedrawers:drawers"));
+        TagsProvider.TagAppender<Item> itemBuilder = this.tag(ItemTags.bind("storagedrawers:drawers"));
         drawersItems.forEach(itemBuilder::add);
     }
 }

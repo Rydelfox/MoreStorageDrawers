@@ -1,12 +1,12 @@
 package com.rydelfox.morestoragedrawers.block;
 
 import com.rydelfox.morestoragedrawers.config.EnumToggle;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 import net.minecraftforge.fml.ModList;
 
 import javax.annotation.Nonnull;
 
-public enum EnumMod implements IStringSerializable {
+public enum EnumMod implements StringRepresentable {
     DEFAULT("none", DrawerMaterial.DEFAULT),
     ARSNOUVEAU("ars_nouveau", DrawerMaterial.ARSNOUVEAU_ARCHWOOD),
     ASTRALSORCERY("astralsorcery", DrawerMaterial.ASTRALSORCERY_INFUSED),

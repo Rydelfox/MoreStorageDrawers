@@ -7,9 +7,7 @@
     "///"
   ],
   "key": {
-    "/": {
-      "item": "twilightforest:trans_slab"
-    },
+    "/": [],
     "x": {
       "tag": "forge:chests/wooden"
     }
