@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "morestoragedrawers",
+  "pattern": [
+    "/x/",
+    "///",
+    "/x/"
+  ],
+  "key": {
+    "/": {
+      "item": "byg:cypress_planks"
+    },
+    "x": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "morestoragedrawers:byg_cypress_full_2"
+  }
+}

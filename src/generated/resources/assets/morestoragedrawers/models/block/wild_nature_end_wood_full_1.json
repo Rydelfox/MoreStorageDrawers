@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/full_drawers",
+  "textures": {
+    "particle": "morestoragedrawers:blocks/wild_nature_end_wood_front_1",
+    "east": "morestoragedrawers:blocks/wild_nature_end_wood_side",
+    "west": "morestoragedrawers:blocks/wild_nature_end_wood_side",
+    "north": "morestoragedrawers:blocks/wild_nature_end_wood_front_1",
+    "up": "morestoragedrawers:blocks/wild_nature_end_wood_side",
+    "down": "morestoragedrawers:blocks/wild_nature_end_wood_side",
+    "south": "morestoragedrawers:blocks/wild_nature_end_wood_side",
+    "trim": "morestoragedrawers:blocks/wild_nature_end_wood_trim"
+  }
+}

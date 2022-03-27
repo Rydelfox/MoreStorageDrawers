@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "morestoragedrawers",
+  "pattern": [
+    "///",
+    " x ",
+    "///"
+  ],
+  "key": {
+    "/": {
+      "item": "betterendforge:helix_tree_slab"
+    },
+    "x": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "morestoragedrawers:betterendforge_helix_tree_half_1"
+  }
+}

@@ -54,7 +54,54 @@ public enum DrawerMaterial implements IStringSerializable {
     BIOMESOPLENTY_DEAD(ID.BIOMESOPLENTY, "dead", "Deadwood", 27, "dead_planks", "dead_slab"),
     BIOMESOPLENTY_MAGIC(ID.BIOMESOPLENTY, "magic", "Magic Wood", 28, "magic_planks", "magic_slab"),
     BIOMESOPLENTY_UMBRAN(ID.BIOMESOPLENTY, "umbran", "Umbran", 29, "umbran_planks", "umbran_slab"),
-    BIOMESOPLENTY_HELLBARK(ID.BIOMESOPLENTY, "hellbark", "Hellbark", 30, "hellbark_planks", "hellbark_slab");
+    BIOMESOPLENTY_HELLBARK(ID.BIOMESOPLENTY, "hellbark", "Hellbark", 30, "hellbark_planks", "hellbark_slab"),
+    BETTERENDFORGE_MOSSY_GLOWSHRROM(ID.BETTERENDFORGE, "mossy_glowshroom", "Mossy Glowshroom", 31, "mossy_glowshroom_planks", "mossy_glowshroom_slab"),
+    BETTERENDFORGE_LACUGROVE(ID.BETTERENDFORGE, "lacugrove", "Lacugrove", 32, "lacugrove_planks", "lacugrove_slab"),
+    BETTERENDFORGE_END_LOTUS(ID.BETTERENDFORGE, "end_lotus", "End Lotus", 33, "end_lotus_planks", "end_lotus_slab"),
+    BETTERENDFORGE_PYTHADENDRON(ID.BETTERENDFORGE, "pythadendron", "Pythadendron", 34, "pythadendron_planks", "pythadendron_slab"),
+    BETTERENDFORGE_DRAGON_TREE(ID.BETTERENDFORGE, "dragon_tree", "Dragon Tree", 35, "dragon_tree_planks", "dragon_tree_slab"),
+    BETTERENDFORGE_TENANEA(ID.BETTERENDFORGE, "tenanea", "Tenanea", 36, "tenanea_planks", "tenanea_slab"),
+    BETTERENDFORGE_HELIX_TREE(ID.BETTERENDFORGE, "helix_tree", "Helix Tree", 37, "helix_tree_planks", "helix_tree_slab"),
+    BETTERENDFORGE_UMBRELLA_TREE(ID.BETTERENDFORGE, "umbrella_tree", "Umbrella Tree", 38, "umbrella_tree_planks", "umbrella_tree_slab"),
+    BETTERENDFORGE_JELLYSHROOM(ID.BETTERENDFORGE, "jellyshroom", "Jellyshroom", 39, "jellyshroom_planks", "jellyshroom_slab"),
+    BETTERENDFORGE_LUCERNIA(ID.BETTERENDFORGE, "lucernia", "Lucernia", 40, "lucernia_planks", "lucernia_slab"),
+    DESOLATION_CHARRED(ID.DESOLATION, "charred", "Charred", 41, "charred_planks", "charred_slab", 1, 10, 0),
+    BIOMESYOULLGO_ASPEN(ID.BIOMESYOULLGO, "aspen", "Aspen", 42, "aspen_planks", "aspen_slab"),
+    BIOMESYOULLGO_BAOBAB(ID.BIOMESYOULLGO, "baobab", "Baobab", 43, "baobab_planks", "baobab_slab"),
+    BIOMESYOULLGO_BLUE_ENCHANTED(ID.BIOMESYOULLGO, "blue_enchanted", "Blue Enchanted", 44, "blue_enchanted_planks", "blue_enchanted_slab"),
+    BIOMESYOULLGO_BULBIS(ID.BIOMESYOULLGO, "bulbis", "Bulbis", 45, "bulbis_planks", "bulbis_slab"),
+    BIOMESYOULLGO_CHERRY(ID.BIOMESYOULLGO, "cherry", "Cherry", 46, "cherry_planks", "cherry_slab"),
+    BIOMESYOULLGO_CIKA(ID.BIOMESYOULLGO, "cika", "Cika", 47, "cika_planks", "cika_slab"),
+    BIOMESYOULLGO_CYPRESS(ID.BIOMESYOULLGO, "cypress", "Cypress", 48, "cypress_planks", "cypress_slab"),
+    BIOMESYOULLGO_EBONY(ID.BIOMESYOULLGO, "ebony", "Ebony", 49, "ebony_planks", "ebony_slab"),
+    BIOMESYOULLGO_ETHER(ID.BIOMESYOULLGO, "ether", "Ether", 50, "ether_planks", "ether_slab"),
+    BIOMESYOULLGO_FIR(ID.BIOMESYOULLGO, "fir", "Fir", 51, "fir_planks", "fir_slab"),
+    BIOMESYOULLGO_GREEN_ENCHANTED(ID.BIOMESYOULLGO, "green_enchanted", "Green Enchanted", 52, "green_enchanted_planks", "green_enchanted_slab"),
+    BIOMESYOULLGO_HOLLY(ID.BIOMESYOULLGO, "holly", "Holly", 53, "holly_planks", "holly_slab"),
+    BIOMESYOULLGO_IMPARIUS(ID.BIOMESYOULLGO, "imparius", "Imparius", 54, "imparius_planks", "imparius_slab"),
+    BIOMESYOULLGO_JACARANDA(ID.BIOMESYOULLGO, "jacaranda", "Jacaranda", 53, "jacaranda_planks", "jacaranda_slab"),
+    BIOMESYOULLGO_LAMENT(ID.BIOMESYOULLGO, "lament", "Lament", 54, "lament_planks", "lament_slab"),
+    BIOMESYOULLGO_MAHOGANY(ID.BIOMESYOULLGO, "mahogany", "Mahogany", 55, "mahogany_planks", "mahogany_slabs"),
+    BIOMESYOULLGO_MANGROVE(ID.BIOMESYOULLGO, "mangrove", "Mangrove", 56, "mangrove_planks", "mangrove_slab"),
+    BIOMESYOULLGO_MAPLE(ID.BIOMESYOULLGO, "maple", "Maple", 57, "maple_planks", "maple_slab"),
+    BIOMESYOULLGO_NIGHTSHADE(ID.BIOMESYOULLGO, "nightshade", "Nightshade", 58, "nightshade_planks", "nightshade_slab"),
+    BIOMESYOULLGO_PALM(ID.BIOMESYOULLGO, "palm", "Palm", 59, "palm_planks", "palm_slab"),
+    BIOMESYOULLGO_PINE(ID.BIOMESYOULLGO, "pine", "Pine", 60, "pine_planks", "pine_slab"),
+    BIOMESYOULLGO_RAINBOW_EUCALYPTUS(ID.BIOMESYOULLGO, "rainbow_eucalyptus", "Rainbow Eucalyptus", 61, "rainbow_eucalyptus_planks", "rainbow_eucalyptus_slab"),
+    BIOMESYOULLGO_REDWOOD(ID.BIOMESYOULLGO, "redwood", "Redwood", 62, "redwood_planks", "redwood_slab"),
+    BIOMESYOULLGO_SKYRIS(ID.BIOMESYOULLGO, "skyris", "Skyris", 63, "skyris_planks", "skyris_slab"),
+    BIOMESYOULLGO_WILLOW(ID.BIOMESYOULLGO, "willow", "Willow", 64, "willow_planks", "willow_slab"),
+    BIOMESYOULLGO_WITCH_HAZEL(ID.BIOMESYOULLGO, "witch_hazel", "Witch Hazel", 65, "witch_hazel_planks", "witch_hazel_slab"),
+    BIOMESYOULLGO_ZELKOVA(ID.BIOMESYOULLGO, "zelkova", "Zelkova", 66, "zelkova_planks", "zelkova_slab"),
+    BIOMESYOULLGO_SYTHIAN(ID.BIOMESYOULLGO, "sythian", "Sythian", 67, "sythian_planks", "sythian_slab"),
+    BIOMESYOULLGO_EMBUR(ID.BIOMESYOULLGO, "embur", "Embur", 68, "embur_planks", "embur_slab"),
+    OUTEREND_AZURE(ID.OUTEREND, "azure", "Azure", 69, "azure_planks", "azure_slab"),
+    WILDNATURE_ORANGE_BIND(ID.WILDNATURE, "orange_bind", "Orange Bind", 70, "orange_bind_wood_planks", "orange_bind_wood_slab"),
+    WILDNATURE_END_WOOD(ID.WILDNATURE, "end_wood", "End Wood", 71, "end_wood_planks", "end_wood_slab"),
+    WILDNATURE_DEATH_WOOD(ID.WILDNATURE, "death_wood", "Death Wood", 72, "death_wood_planks", "death_wood_slab"),
+    WILDNATURE_SAKURA(ID.WILDNATURE, "sakura", "Sakura", 73, "sakura_planks", "sakura_slab"),
+    WILDNATURE_LAVENDER(ID.WILDNATURE, "lavender", "Lavender", 74, "sakura_slab", "lavender_slab"),
+    WILDNATURE_REDWOOD(ID.WILDNATURE, "redwood", "Redwood", 75, "redwood_planks", "redwood_slab");
 
     private static final Map<ResourceLocation, DrawerMaterial> RESOURCE_LOOKUP;
     private static final Map<Integer, DrawerMaterial> INDEX_LOOKUP;
@@ -335,6 +382,12 @@ public enum DrawerMaterial implements IStringSerializable {
         public static final String NATURESAURA = "naturesaura";
         public static final String TWILIGHTFOREST = "twilightforest";
         public static final String BIOMESOPLENTY = "biomesoplenty";
+        public static final String BETTERENDFORGE = "betterendforge";
+        public static final String DESOLATION = "desolation";
+        public static final String BIOMESYOULLGO = "byg";
+        public static final String OUTEREND = "outer_end";
+        public static final String TRAVERSE = "traverse";
+        public static final String WILDNATURE = "wild_nature";
     }
 
 

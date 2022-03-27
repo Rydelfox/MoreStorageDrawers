@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/full_drawers",
+  "textures": {
+    "particle": "morestoragedrawers:blocks/desolation_charred_front_1",
+    "east": "morestoragedrawers:blocks/desolation_charred_side",
+    "west": "morestoragedrawers:blocks/desolation_charred_side",
+    "north": "morestoragedrawers:blocks/desolation_charred_front_1",
+    "up": "morestoragedrawers:blocks/desolation_charred_side",
+    "down": "morestoragedrawers:blocks/desolation_charred_side",
+    "south": "morestoragedrawers:blocks/desolation_charred_side",
+    "trim": "morestoragedrawers:blocks/desolation_charred_trim"
+  }
+}

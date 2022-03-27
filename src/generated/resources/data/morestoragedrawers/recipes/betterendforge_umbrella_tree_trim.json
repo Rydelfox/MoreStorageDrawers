@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "morestoragedrawers",
+  "pattern": [
+    "X/X",
+    "/X/",
+    "X/X"
+  ],
+  "key": {
+    "X": {
+      "item": "betterendforge:umbrella_tree_planks"
+    },
+    "/": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "morestoragedrawers:betterendforge_umbrella_tree_trim"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/half_drawers",
+  "textures": {
+    "particle": "morestoragedrawers:blocks/wild_nature_death_wood_front_4",
+    "east": "morestoragedrawers:blocks/wild_nature_death_wood_side_v",
+    "west": "morestoragedrawers:blocks/wild_nature_death_wood_side_v",
+    "north": "morestoragedrawers:blocks/wild_nature_death_wood_front_4",
+    "up": "morestoragedrawers:blocks/wild_nature_death_wood_side_h",
+    "down": "morestoragedrawers:blocks/wild_nature_death_wood_side_h",
+    "south": "morestoragedrawers:blocks/wild_nature_death_wood_side",
+    "trim": "morestoragedrawers:blocks/wild_nature_death_wood_trim"
+  }
+}

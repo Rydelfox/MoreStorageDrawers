@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/full_drawers",
+  "textures": {
+    "particle": "morestoragedrawers:blocks/outer_end_azure_front_2",
+    "east": "morestoragedrawers:blocks/outer_end_azure_side",
+    "west": "morestoragedrawers:blocks/outer_end_azure_side",
+    "north": "morestoragedrawers:blocks/outer_end_azure_front_2",
+    "up": "morestoragedrawers:blocks/outer_end_azure_side",
+    "down": "morestoragedrawers:blocks/outer_end_azure_side",
+    "south": "morestoragedrawers:blocks/outer_end_azure_side",
+    "trim": "morestoragedrawers:blocks/outer_end_azure_trim"
+  }
+}

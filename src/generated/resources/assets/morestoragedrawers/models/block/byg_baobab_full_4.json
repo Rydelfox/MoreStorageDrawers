@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/full_drawers",
+  "textures": {
+    "particle": "morestoragedrawers:blocks/byg_baobab_front_4",
+    "east": "morestoragedrawers:blocks/byg_baobab_side",
+    "west": "morestoragedrawers:blocks/byg_baobab_side",
+    "north": "morestoragedrawers:blocks/byg_baobab_front_4",
+    "up": "morestoragedrawers:blocks/byg_baobab_side",
+    "down": "morestoragedrawers:blocks/byg_baobab_side",
+    "south": "morestoragedrawers:blocks/byg_baobab_side",
+    "trim": "morestoragedrawers:blocks/byg_baobab_trim"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "morestoragedrawers",
+  "pattern": [
+    "///",
+    " x ",
+    "///"
+  ],
+  "key": {
+    "/": {
+      "item": "wild_nature:orange_bind_wood_slab"
+    },
+    "x": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "morestoragedrawers:wild_nature_orange_bind_half_1"
+  }
+}

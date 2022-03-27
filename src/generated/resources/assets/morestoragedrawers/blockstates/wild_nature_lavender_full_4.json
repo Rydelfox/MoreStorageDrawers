@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "morestoragedrawers:block/wild_nature_lavender_full_4"
+    },
+    "facing=south": {
+      "model": "morestoragedrawers:block/wild_nature_lavender_full_4",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "morestoragedrawers:block/wild_nature_lavender_full_4",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "morestoragedrawers:block/wild_nature_lavender_full_4",
+      "y": 90
+    }
+  }
+}

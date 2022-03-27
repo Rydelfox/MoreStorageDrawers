@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/full_drawers",
+  "textures": {
+    "particle": "morestoragedrawers:blocks/wild_nature_redwood_front_1",
+    "east": "morestoragedrawers:blocks/wild_nature_redwood_side",
+    "west": "morestoragedrawers:blocks/wild_nature_redwood_side",
+    "north": "morestoragedrawers:blocks/wild_nature_redwood_front_1",
+    "up": "morestoragedrawers:blocks/wild_nature_redwood_side",
+    "down": "morestoragedrawers:blocks/wild_nature_redwood_side",
+    "south": "morestoragedrawers:blocks/wild_nature_redwood_side",
+    "trim": "morestoragedrawers:blocks/wild_nature_redwood_trim"
+  }
+}

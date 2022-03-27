@@ -151,6 +151,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:curios-309927:3456953")
     runtimeOnly fg.deobf("curse.maven:observerlib-316833:3333962")
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:3459118")
+    runtimeOnly fg.deobf("curse.maven:blueprint-382216:3607198")
     runtimeOnly fg.deobf("curse.maven:astralsorcery-241721:3333980")
     runtimeOnly fg.deobf("curse.maven:biomesoplenty-220318:3360574")
     runtimeOnly fg.deobf("curse.maven:ars-nouveau-401955:3648653")
@@ -159,6 +160,11 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:hexblades-528079:3646326")
     runtimeOnly fg.deobf("curse.maven:naturesaura-306626:3472977")
     runtimeOnly fg.deobf("curse.maven:twilightforest-227639:3575220")
+    runtimeOnly fg.deobf("curse.maven:betterendforge-428877:3467948")
+    runtimeOnly fg.deobf("curse.maven:desolation-445926:3599412")
+    runtimeOnly fg.deobf("curse.maven:byg-247560:3485079")
+    runtimeOnly fg.deobf("curse.maven:outerend-430404:3404058")
+    runtimeOnly fg.deobf("curse.maven:wildnaturebiomes-539889:3503810")
     //runtimeOnly fg.deobf("curse.maven:JEI-238222:3681089") // Only for testing
     //runtimeOnly fg.deobf("curse.maven:Jade-324717:3597364") // Only for testing
 

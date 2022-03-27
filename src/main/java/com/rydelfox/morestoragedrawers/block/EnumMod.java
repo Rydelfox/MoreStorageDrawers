@@ -15,7 +15,12 @@ public enum EnumMod implements IStringSerializable {
     HEXBLADES("hexblades", DrawerMaterial.HEXBLADES_DARK_POLISHED),
     NATURESAURA("naturesaura", DrawerMaterial.NATURESAURA_ANCIENT),
     TWILIGHTFOREST("twilightforest", DrawerMaterial.TWILIGHTFOREST_TOWER),
-    BIOMESOPLENTY("biomesoplenty", DrawerMaterial.BIOMESOPLENTY_FIR);
+    BIOMESOPLENTY("biomesoplenty", DrawerMaterial.BIOMESOPLENTY_FIR),
+    BETTERENDFORGE("betterendforge", DrawerMaterial.BETTERENDFORGE_MOSSY_GLOWSHRROM),
+    DESOLATION("desolation", DrawerMaterial.DESOLATION_CHARRED),
+    BIOMESYOULLGO("byg", DrawerMaterial.BIOMESYOULLGO_ASPEN),
+    OUTEREND("outer_end", DrawerMaterial.OUTEREND_AZURE),
+    WILDNATURE("wild_nature", DrawerMaterial.WILDNATURE_ORANGE_BIND);
 
     private String id;
     private DrawerMaterial defaultMaterial;

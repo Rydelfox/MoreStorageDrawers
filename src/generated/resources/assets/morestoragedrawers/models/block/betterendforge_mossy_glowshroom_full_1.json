@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/full_drawers",
+  "textures": {
+    "particle": "morestoragedrawers:blocks/betterendforge_mossy_glowshroom_front_1",
+    "east": "morestoragedrawers:blocks/betterendforge_mossy_glowshroom_side",
+    "west": "morestoragedrawers:blocks/betterendforge_mossy_glowshroom_side",
+    "north": "morestoragedrawers:blocks/betterendforge_mossy_glowshroom_front_1",
+    "up": "morestoragedrawers:blocks/betterendforge_mossy_glowshroom_side",
+    "down": "morestoragedrawers:blocks/betterendforge_mossy_glowshroom_side",
+    "south": "morestoragedrawers:blocks/betterendforge_mossy_glowshroom_side",
+    "trim": "morestoragedrawers:blocks/betterendforge_mossy_glowshroom_trim"
+  }
+}

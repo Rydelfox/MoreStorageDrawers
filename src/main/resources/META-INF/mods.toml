@@ -101,3 +101,38 @@ license="MIT"
     versionRange="1.16.5-0.0.1,)"
     ordering="BEFORE"
     side="BOTH"
+
+[[dependencies.morestoragedrawers]]
+    modId="betterendforge"
+    mandatory=false
+    versionRange="1.16.5-0.0.1,)"
+    ordering="BEFORE"
+    side="BOTH"
+
+[[dependencies.morestoragedrawers]]
+    modId="desolation"
+    mandatory=false
+    versionRange="1.16.5-0.0.1,)"
+    ordering="BEFORE"
+    side="BOTH"
+
+[[dependencies.morestoragedrawers]]
+    modId="byg"
+    mandatory=false
+    versionRange="1.16.5-0.0.1,)"
+    ordering="BEFORE"
+    side="BOTH"
+
+[[dependencies.morestoragedrawers]]
+    modId="outer_end"
+    mandatory=false
+    versionRange="1.16.5-0.0.1,)"
+    ordering="BEFORE"
+    side="BOTH"
+
+[[dependencies.morestoragedrawers]]
+    modId="wild_nature"
+    mandatory=false
+    versionRange="1.16.5-0.0.1,)"
+    ordering="BEFORE"
+    side="BOTH"
