@@ -8,5 +8,6 @@ Adding new mods:
 	Add Textures to resources/assets/morestoragedrawers/textures/blocks
 	Add Translation to resources/assets/morestoragedrawers/lang
 	Add tags to resources/data/morestoragedrawers/tags
+	Add mods as runtime dependency in build.gradle
 	Run runData
 	Add mod as an optional dependency in upload
