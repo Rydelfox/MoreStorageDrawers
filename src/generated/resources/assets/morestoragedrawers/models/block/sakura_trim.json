@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "morestoragedrawers:blocks/wild_nature_sakura_side"
-  }
-}

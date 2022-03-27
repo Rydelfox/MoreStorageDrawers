@@ -3,13 +3,11 @@ package com.rydelfox.morestoragedrawers.datagen;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.DrawerMaterial;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.RecipeProvider;
-import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
@@ -21,7 +19,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         MoreStorageDrawers.logInfo("Generating Recipes");
         for(DrawerMaterial material : DrawerMaterial.values()) {
             if (material.getMod() != null && material.getMod().isLoaded()) {
@@ -36,7 +34,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
     }
 
-    private void build_full_1(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
+    private void build_full_1(DrawerMaterial material, Consumer<FinishedRecipe> consumer) {
         //MoreStorageDrawers.logInfo("Generating Recipe for "+material.getName()+"_full_1");
         if (material.getPlankResource() == null) {
             MoreStorageDrawers.logInfo("Could not generate recipe for "+material.getEnglishName()+"! Could not load plank!");
@@ -55,7 +53,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
                 .save(consumer);
     }
 
-    private void build_full_2(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
+    private void build_full_2(DrawerMaterial material, Consumer<FinishedRecipe> consumer) {
         //MoreStorageDrawers.logInfo("Generating Recipe for "+material.getName()+"_full_2");
         if (material.getPlankResource() == null) {
             MoreStorageDrawers.logInfo("Could not generate recipe for "+material.getEnglishName()+"! Could not load plank!");
@@ -74,7 +72,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
                 .save(consumer);
     }
 
-    private void build_full_4(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
+    private void build_full_4(DrawerMaterial material, Consumer<FinishedRecipe> consumer) {
         //MoreStorageDrawers.logInfo("Generating Recipe for "+material.getName()+"_full_4");
         if (material.getPlankResource() == null) {
             MoreStorageDrawers.logInfo("Could not generate recipe for "+material.getEnglishName()+"! Could not load plank!");
@@ -93,7 +91,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
                 .save(consumer);
     }
 
-    private void build_half_1(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
+    private void build_half_1(DrawerMaterial material, Consumer<FinishedRecipe> consumer) {
         if (material.getSlabResource() == null) {
             return;
         }
@@ -110,7 +108,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
                 .save(consumer);
     }
 
-    private void build_half_2(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
+    private void build_half_2(DrawerMaterial material, Consumer<FinishedRecipe> consumer) {
         if (material.getSlabResource() == null) {
             return;
         }
@@ -127,7 +125,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
                 .save(consumer);
     }
 
-    private void build_half_4(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
+    private void build_half_4(DrawerMaterial material, Consumer<FinishedRecipe> consumer) {
         if (material.getSlabResource() == null) {
             return;
         }
@@ -144,7 +142,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
                 .save(consumer);
     }
 
-    private void build_trim(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
+    private void build_trim(DrawerMaterial material, Consumer<FinishedRecipe> consumer) {
         if (material.getPlankResource() == null) {
             MoreStorageDrawers.logInfo("Could not generate recipe for "+material.getEnglishName()+"! Could not load plank!");
             return;

@@ -7,9 +7,7 @@
     "/x/"
   ],
   "key": {
-    "/": {
-      "item": "twilightforest:sort_planks"
-    },
+    "/": [],
     "x": {
       "tag": "forge:chests/wooden"
     }

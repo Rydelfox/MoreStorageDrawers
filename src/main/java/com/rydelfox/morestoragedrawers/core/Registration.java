@@ -5,21 +5,21 @@ import com.rydelfox.morestoragedrawers.block.BlockDrawersExtended;
 import com.rydelfox.morestoragedrawers.block.DrawerMaterial;
 import com.rydelfox.morestoragedrawers.block.tile.Tiles;
 import com.rydelfox.morestoragedrawers.datagen.*;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.io.IOException;
@@ -73,10 +73,10 @@ public class Registration {
     }
 
     @SubscribeEvent
-    public static void registerTileEntities(RegistryEvent.Register<TileEntityType<?>> event)
+    public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event)
     {
         MoreStorageDrawers.logInfo("MoreStorageDrawers: Registering Tile Entities");
-        IForgeRegistry<TileEntityType<?>> r = event.getRegistry();
+        IForgeRegistry<BlockEntityType<?>> r = event.getRegistry();
         /*
         List<BlockMoreDrawers> oneDrawers = new ArrayList<>();
         List<BlockMoreDrawers> twoDrawers = new ArrayList<>();
@@ -113,13 +113,13 @@ public class Registration {
         }
         for (Block block : alldrawers) {
             if (block instanceof BlockDrawersExtended) {
-                RenderTypeLookup.setRenderLayer(block, RenderType.cutoutMipped());
+                ItemBlockRenderTypes.setRenderLayer(block, RenderType.cutoutMipped());
             }
         }
     }
 
-    private static <T extends TileEntity> void registerTileEntity(RegistryEvent.Register<TileEntityType<?>> event, String name, Supplier<? extends T> factory, Block... blocks) {
-        event.getRegistry().register(TileEntityType.Builder.of(factory, blocks)
+    private static <T extends BlockEntity> void registerTileEntity(RegistryEvent.Register<BlockEntityType<?>> event, String name, BlockEntityType.BlockEntitySupplier<? extends T> factory, Block... blocks) {
+        event.getRegistry().register(BlockEntityType.Builder.of(factory, blocks)
                 .build(null).setRegistryName(new ResourceLocation(MoreStorageDrawers.MOD_ID, name)));
     }
 }

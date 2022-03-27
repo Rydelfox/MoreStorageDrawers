@@ -7,9 +7,7 @@
     "X/X"
   ],
   "key": {
-    "X": {
-      "item": "twilightforest:mine_planks"
-    },
+    "X": [],
     "/": {
       "tag": "forge:rods/wooden"
     }

@@ -2,11 +2,12 @@ package com.rydelfox.morestoragedrawers.block;
 
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawersStandard;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.Direction;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.BlockGetter;
 
 public class BlockStandardDrawers extends BlockDrawersExtended
 {
@@ -49,7 +50,7 @@ public class BlockStandardDrawers extends BlockDrawersExtended
     }*/
 
     @Override
-    protected int getDrawerSlot (Direction side, Vector3d hit) {
+    protected int getDrawerSlot (Direction side, Vec3 hit) {
         if (getDrawerCount() == 1)
             return 0;
         if (getDrawerCount() == 2)
@@ -61,8 +62,7 @@ public class BlockStandardDrawers extends BlockDrawersExtended
             return hitTop(hit.y) ? 1 : 3;
     }
 
-    @Override
-    public TileEntityDrawers createTileEntity (BlockState state, IBlockReader world) {
-        return TileEntityDrawersStandard.createEntity(getDrawerCount());
+    public TileEntityDrawers newBlockEntity(BlockPos pos, BlockState state) {
+        return TileEntityDrawersStandard.createEntity(getDrawerCount(), pos, state);
     }
 }

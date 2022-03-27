@@ -4,9 +4,8 @@ import com.google.common.collect.ImmutableSet;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.BlockMoreDrawers;
 import com.rydelfox.morestoragedrawers.block.DrawerMaterial;
-import net.minecraft.block.Block;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -17,14 +16,14 @@ import java.util.List;
 public class Tiles {
     @ObjectHolder(MoreStorageDrawers.MOD_ID)
     public static final class Tile {
-        public static final TileEntityType<TileEntityDrawersMore> MORE_DRAWERS_1 = null;
-        public static final TileEntityType<TileEntityDrawersMore> MORE_DRAWERS_2 = null;
-        public static final TileEntityType<TileEntityDrawersMore> MORE_DRAWERS_4 = null;
+        public static final BlockEntityType<TileEntityDrawersMore> MORE_DRAWERS_1 = null;
+        public static final BlockEntityType<TileEntityDrawersMore> MORE_DRAWERS_2 = null;
+        public static final BlockEntityType<TileEntityDrawersMore> MORE_DRAWERS_4 = null;
     }
 
-    public static TileEntityType<TileEntityDrawersMore.Slot1> TILE_DRAWERS_1 = null;
-    public static TileEntityType<TileEntityDrawersMore.Slot2> TILE_DRAWERS_2 = null;
-    public static TileEntityType<TileEntityDrawersMore.Slot4> TILE_DRAWERS_4 = null;
+    public static BlockEntityType<TileEntityDrawersMore.Slot1> TILE_DRAWERS_1 = null;
+    public static BlockEntityType<TileEntityDrawersMore.Slot2> TILE_DRAWERS_2 = null;
+    public static BlockEntityType<TileEntityDrawersMore.Slot4> TILE_DRAWERS_4 = null;
 
     public static void buildDrawers() {
         MoreStorageDrawers.logInfo("In buildDrawers");
@@ -45,15 +44,15 @@ public class Tiles {
             if (material.getDrawer(4, true) != null)
                 fourDrawers.add(material.getDrawer(4, true));
         }
-        TILE_DRAWERS_1 = (TileEntityType.Builder.of((TileEntityDrawersMore.Slot1::new), oneDrawers.stream().toArray(BlockMoreDrawers[]::new)).build(null));
-        TILE_DRAWERS_2 = (TileEntityType.Builder.of((TileEntityDrawersMore.Slot2::new), twoDrawers.stream().toArray(BlockMoreDrawers[]::new)).build(null));
-        TILE_DRAWERS_4 = (TileEntityType.Builder.of((TileEntityDrawersMore.Slot4::new), fourDrawers.stream().toArray(BlockMoreDrawers[]::new)).build(null));
+        TILE_DRAWERS_1 = (BlockEntityType.Builder.of((TileEntityDrawersMore.Slot1::new), oneDrawers.stream().toArray(BlockMoreDrawers[]::new)).build(null));
+        TILE_DRAWERS_2 = (BlockEntityType.Builder.of((TileEntityDrawersMore.Slot2::new), twoDrawers.stream().toArray(BlockMoreDrawers[]::new)).build(null));
+        TILE_DRAWERS_4 = (BlockEntityType.Builder.of((TileEntityDrawersMore.Slot4::new), fourDrawers.stream().toArray(BlockMoreDrawers[]::new)).build(null));
         TILE_DRAWERS_1.setRegistryName(new ResourceLocation(MoreStorageDrawers.MOD_ID, "more_drawers_1"));
         TILE_DRAWERS_2.setRegistryName(new ResourceLocation(MoreStorageDrawers.MOD_ID, "more_drawers_2"));
         TILE_DRAWERS_4.setRegistryName(new ResourceLocation(MoreStorageDrawers.MOD_ID, "more_drawers_4"));
     }
 
-    public static void registerTiles(IForgeRegistry<TileEntityType<?>> registry) {
+    public static void registerTiles(IForgeRegistry<BlockEntityType<?>> registry) {
         buildDrawers();
         if (TILE_DRAWERS_1 == null)
             MoreStorageDrawers.logInfo("Failed to build 1 slot tiles!");

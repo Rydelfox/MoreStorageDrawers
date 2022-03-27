@@ -1,13 +1,13 @@
 package com.rydelfox.morestoragedrawers;
 
 import com.rydelfox.morestoragedrawers.block.DrawerMaterial;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 public class MoreCreative {
 
-    public static final ItemGroup TAB = new ItemGroup(MoreStorageDrawers.MOD_ID) {
+    public static final CreativeModeTab TAB = new CreativeModeTab(MoreStorageDrawers.MOD_ID) {
         @Override
         public ItemStack makeIcon() {
             for (DrawerMaterial material : DrawerMaterial.values()) {

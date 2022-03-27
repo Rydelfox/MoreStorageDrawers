@@ -2,15 +2,15 @@ package com.rydelfox.morestoragedrawers.network;
 
 import com.rydelfox.morestoragedrawers.block.tile.TileEntityDrawersMore;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -33,11 +33,11 @@ public class ItemUpdateMessage {
         this.failed = failed;
     }
 
-    public static ItemUpdateMessage decode (PacketBuffer buf) {
+    public static ItemUpdateMessage decode (FriendlyByteBuf buf) {
         return new ItemUpdateMessage(buf.readBlockPos(), buf.readByte(), buf.readItem());
     }
 
-    public static void encode (ItemUpdateMessage object, PacketBuffer buf) {
+    public static void encode (ItemUpdateMessage object, FriendlyByteBuf buf) {
         buf.writeBlockPos(object.pos);
         buf.writeByte(object.slot);
         buf.writeItemStack(object.item, false);
@@ -50,10 +50,10 @@ public class ItemUpdateMessage {
     @OnlyIn(Dist.CLIENT)
     private static void handleClient(ItemUpdateMessage msg, NetworkEvent.Context ctx) {
         if (!msg.failed) {
-            World world = Minecraft.getInstance().level;
+            Level world = Minecraft.getInstance().level;
             if (world != null) {
                 BlockPos pos = msg.pos;
-                TileEntity tileEntity = world.getBlockEntity(pos);
+                BlockEntity tileEntity = world.getBlockEntity(pos);
                 if (tileEntity instanceof TileEntityDrawersMore) {
                     ((TileEntityDrawersMore) tileEntity).clientUpdateItem(msg.slot, msg.item);
                 }

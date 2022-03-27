@@ -12,17 +12,16 @@ import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.BlockDrawersExtended;
 import com.rydelfox.morestoragedrawers.block.BlockMoreDrawers;
 import com.rydelfox.morestoragedrawers.block.DrawerMaterial;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockModelShapes;
-import net.minecraft.client.renderer.model.*;
+import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.resources.IResource;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.AABB;
+import com.mojang.math.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -42,21 +41,29 @@ import java.util.*;
 import java.util.function.Function;
 
 
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.BlockModel;
+import net.minecraft.client.renderer.block.model.ItemOverrides;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.BlockModelRotation;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+
 public class MoreDrawerModel {
 
-    private static final Map<Direction, IBakedModel> lockOverlaysFull = new HashMap<>();
-    private static final Map<Direction, IBakedModel> lockOverlaysHalf = new HashMap<>();
-    private static final Map<Direction, IBakedModel> voidOverlaysFull = new HashMap<>();
-    private static final Map<Direction, IBakedModel> voidOverlaysHalf = new HashMap<>();
-    private static final Map<Direction, IBakedModel> shroudOverlaysFull = new HashMap<>();
-    private static final Map<Direction, IBakedModel> shroudOverlaysHalf = new HashMap<>();
-    private static final Map<Direction, IBakedModel> indicator1Full = new HashMap<>();
-    private static final Map<Direction, IBakedModel> indicator1Half = new HashMap<>();
-    private static final Map<Direction, IBakedModel> indicator2Full = new HashMap<>();
-    private static final Map<Direction, IBakedModel> indicator2Half = new HashMap<>();
-    private static final Map<Direction, IBakedModel> indicator4Full = new HashMap<>();
-    private static final Map<Direction, IBakedModel> indicator4Half = new HashMap<>();
-    private static final Map<Direction, IBakedModel> indicatorComp = new HashMap<>();
+    private static final Map<Direction, BakedModel> lockOverlaysFull = new HashMap<>();
+    private static final Map<Direction, BakedModel> lockOverlaysHalf = new HashMap<>();
+    private static final Map<Direction, BakedModel> voidOverlaysFull = new HashMap<>();
+    private static final Map<Direction, BakedModel> voidOverlaysHalf = new HashMap<>();
+    private static final Map<Direction, BakedModel> shroudOverlaysFull = new HashMap<>();
+    private static final Map<Direction, BakedModel> shroudOverlaysHalf = new HashMap<>();
+    private static final Map<Direction, BakedModel> indicator1Full = new HashMap<>();
+    private static final Map<Direction, BakedModel> indicator1Half = new HashMap<>();
+    private static final Map<Direction, BakedModel> indicator2Full = new HashMap<>();
+    private static final Map<Direction, BakedModel> indicator2Half = new HashMap<>();
+    private static final Map<Direction, BakedModel> indicator4Full = new HashMap<>();
+    private static final Map<Direction, BakedModel> indicator4Half = new HashMap<>();
+    private static final Map<Direction, BakedModel> indicatorComp = new HashMap<>();
 
     private static boolean geometryDataLoaded = false;
 
@@ -146,22 +153,22 @@ public class MoreDrawerModel {
                 for (int i = 0; i < block.getDrawerCount(); i++) {
                     Vector3f from = slotInfo.getElements().get(i).from;
                     Vector3f to = slotInfo.getElements().get(i).to;
-                    block.labelGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
+                    block.labelGeometry[i] = new AABB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
                 }
                 for (int i = 0; i < block.getDrawerCount(); i++) {
                     Vector3f from = countInfo.getElements().get(i).from;
                     Vector3f to = countInfo.getElements().get(i).to;
-                    block.countGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
+                    block.countGeometry[i] = new AABB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
                 }
                 for (int i = 0; i < block.getDrawerCount(); i++) {
                     Vector3f from = indInfo.getElements().get(i).from;
                     Vector3f to = indInfo.getElements().get(i).to;
-                    block.indGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
+                    block.indGeometry[i] = new AABB(from.x(), from.y(), from.z(), to.x(), to.y(), to.z());
                 }
                 for (int i = 0; i < block.getDrawerCount(); i++) {
                     Vector3f from = indBaseInfo.getElements().get(i).from;
                     Vector3f to = indBaseInfo.getElements().get(i).to;
-                    block.indBaseGeometry[i] = new AxisAlignedBB(from.x(), from.y(), from.x(), to.z(), to.y(), to.z());
+                    block.indBaseGeometry[i] = new AABB(from.x(), from.y(), from.x(), to.z(), to.y(), to.z());
                 }
             }
         }
@@ -169,7 +176,7 @@ public class MoreDrawerModel {
         private static void loadUnbakedModel(TextureStitchEvent.Pre event, ResourceLocation resource) {
             BlockModel unbakedModel = getBlockModel(resource);
 
-            for (Either<RenderMaterial, String> x : unbakedModel.textureMap.values()) {
+            for (Either<Material, String> x : unbakedModel.textureMap.values()) {
                 x.ifLeft((value) -> {
                     if (value.atlasLocation().equals(event.getMap().location()))
                         event.addSprite(value.texture());
@@ -178,7 +185,7 @@ public class MoreDrawerModel {
         }
 
         private static BlockModel getBlockModel (ResourceLocation location) {
-            try (IResource iresource = Minecraft.getInstance().getResourceManager().getResource(location)){
+            try (Resource iresource = Minecraft.getInstance().getResourceManager().getResource(location)){
                 try (Reader reader = new InputStreamReader(iresource.getInputStream(), StandardCharsets.UTF_8)){
                     return BlockModel.fromStream(reader);
                 }
@@ -192,22 +199,22 @@ public class MoreDrawerModel {
             MoreStorageDrawers.logInfo("MoreStorageDrawers: Registering Models");
             for (int i = 0; i < 4; i++) {
                 Direction dir = Direction.from2DDataValue(i);
-                ModelRotation rot = ModelRotation.by(0, (int)dir.toYRot() + 180);
-                Function<RenderMaterial, TextureAtlasSprite> texGet = ModelLoader.defaultTextureGetter();
+                BlockModelRotation rot = BlockModelRotation.by(0, (int)dir.toYRot() + 180);
+                Function<Material, TextureAtlasSprite> texGet = ModelLoader.defaultTextureGetter();
 
-                lockOverlaysFull.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_lock"), rot, texGet));
-                lockOverlaysHalf.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_lock"), rot, texGet));
-                voidOverlaysFull.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_void"), rot, texGet));
-                voidOverlaysHalf.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_void"), rot, texGet));
-                shroudOverlaysFull.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_shroud"), rot, texGet));
-                shroudOverlaysHalf.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_shroud"), rot, texGet));
-                indicator1Full.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_1"), rot, texGet));
-                indicator1Half.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_1"), rot, texGet));
-                indicator2Full.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_2"), rot, texGet));
-                indicator2Half.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_2"), rot, texGet));
-                indicator4Full.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_4"), rot, texGet));
-                indicator4Half.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_4"), rot, texGet));
-                indicatorComp.put(dir, event.getModelLoader().getBakedModel(new ResourceLocation(StorageDrawers.MOD_ID, "block/compdrawers_indicator"), rot, texGet));
+                lockOverlaysFull.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_lock"), rot, texGet));
+                lockOverlaysHalf.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_lock"), rot, texGet));
+                voidOverlaysFull.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_void"), rot, texGet));
+                voidOverlaysHalf.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_void"), rot, texGet));
+                shroudOverlaysFull.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_shroud"), rot, texGet));
+                shroudOverlaysHalf.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_shroud"), rot, texGet));
+                indicator1Full.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_1"), rot, texGet));
+                indicator1Half.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_1"), rot, texGet));
+                indicator2Full.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_2"), rot, texGet));
+                indicator2Half.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_2"), rot, texGet));
+                indicator4Full.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_4"), rot, texGet));
+                indicator4Half.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_4"), rot, texGet));
+                indicatorComp.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/compdrawers_indicator"), rot, texGet));
             }
 
             for(DrawerMaterial material : DrawerMaterial.values()) {
@@ -224,8 +231,8 @@ public class MoreDrawerModel {
 
         public static void replaceBlock(ModelBakeEvent event, BlockDrawersExtended block) {
             for (BlockState state : block.getStateDefinition().getPossibleStates()) {
-                ModelResourceLocation modelResource = BlockModelShapes.stateToModelLocation(state);
-                IBakedModel parentModel = event.getModelManager().getModel(modelResource);
+                ModelResourceLocation modelResource = BlockModelShaper.stateToModelLocation(state);
+                BakedModel parentModel = event.getModelManager().getModel(modelResource);
                 if (parentModel == null) {
                     continue;
                 } else if (parentModel == event.getModelManager().getMissingModel()) {
@@ -241,8 +248,8 @@ public class MoreDrawerModel {
 
         public static void replaceBlock(ModelBakeEvent event, BlockMoreDrawers block) {
             for (BlockState state : block.getStateDefinition().getPossibleStates()) {
-                ModelResourceLocation modelResource = BlockModelShapes.stateToModelLocation(state);
-                IBakedModel parentModel = event.getModelManager().getModel(modelResource);
+                ModelResourceLocation modelResource = BlockModelShaper.stateToModelLocation(state);
+                BakedModel parentModel = event.getModelManager().getModel(modelResource);
                 if (parentModel == null) {
                     continue;
                 } else if (parentModel == event.getModelManager().getMissingModel()) {
@@ -257,35 +264,35 @@ public class MoreDrawerModel {
         }
 
         public static abstract class Model2 implements IDynamicBakedModel {
-            protected final IBakedModel mainModel;
-            protected final Map<Direction, IBakedModel> lockOverlay;
-            protected final Map<Direction, IBakedModel> voidOverlay;
-            protected final Map<Direction, IBakedModel> shroudOverlay;
-            protected final Map<Direction, IBakedModel> indicator1Overlay;
-            protected final Map<Direction, IBakedModel> indicator2Overlay;
-            protected final Map<Direction, IBakedModel> indicator4Overlay;
-            protected final Map<Direction, IBakedModel> indicatorCompOverlay;
+            protected final BakedModel mainModel;
+            protected final Map<Direction, BakedModel> lockOverlay;
+            protected final Map<Direction, BakedModel> voidOverlay;
+            protected final Map<Direction, BakedModel> shroudOverlay;
+            protected final Map<Direction, BakedModel> indicator1Overlay;
+            protected final Map<Direction, BakedModel> indicator2Overlay;
+            protected final Map<Direction, BakedModel> indicator4Overlay;
+            protected final Map<Direction, BakedModel> indicatorCompOverlay;
 
             public static class FullModel extends Model2 {
-                FullModel(IBakedModel mainModel) {
+                FullModel(BakedModel mainModel) {
                     super(mainModel, lockOverlaysFull, voidOverlaysFull, shroudOverlaysFull, indicator1Full, indicator2Full, indicator4Full, indicatorComp);
                 }
             }
 
             public static class HalfModel extends Model2 {
-                HalfModel(IBakedModel mainModel) {
+                HalfModel(BakedModel mainModel) {
                     super(mainModel, lockOverlaysHalf, voidOverlaysHalf, shroudOverlaysHalf, indicator1Half, indicator2Half, indicator4Half, indicatorComp);
                 }
             }
 
-            private Model2(IBakedModel mainModel,
-                           Map<Direction, IBakedModel> lockOverlay,
-                           Map<Direction, IBakedModel> voidOverlay,
-                           Map<Direction, IBakedModel> shroudOverlay,
-                           Map<Direction, IBakedModel> indicator1Overlay,
-                           Map<Direction, IBakedModel> indicator2Overlay,
-                           Map<Direction, IBakedModel> indicator4Overlay,
-                           Map<Direction, IBakedModel> indicatorComp) {
+            private Model2(BakedModel mainModel,
+                           Map<Direction, BakedModel> lockOverlay,
+                           Map<Direction, BakedModel> voidOverlay,
+                           Map<Direction, BakedModel> shroudOverlay,
+                           Map<Direction, BakedModel> indicator1Overlay,
+                           Map<Direction, BakedModel> indicator2Overlay,
+                           Map<Direction, BakedModel> indicator4Overlay,
+                           Map<Direction, BakedModel> indicatorComp) {
                 this.mainModel = mainModel;
                 this.lockOverlay = lockOverlay;
                 this.voidOverlay = voidOverlay;
@@ -357,7 +364,7 @@ public class MoreDrawerModel {
             }
 
             @Override
-            public ItemOverrideList getOverrides () {
+            public ItemOverrides getOverrides () {
                 return mainModel.getOverrides();
             }
         }
