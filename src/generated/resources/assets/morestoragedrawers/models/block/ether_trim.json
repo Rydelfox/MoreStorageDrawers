@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "morestoragedrawers:blocks/byg_ether_side"
+  }
+}

@@ -25,7 +25,7 @@ import com.mojang.math.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ForgeModelBakery;
 import net.minecraftforge.client.model.data.IDynamicBakedModel;
 import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -178,7 +178,7 @@ public class MoreDrawerModel {
 
             for (Either<Material, String> x : unbakedModel.textureMap.values()) {
                 x.ifLeft((value) -> {
-                    if (value.atlasLocation().equals(event.getMap().location()))
+                    if (value.atlasLocation().equals(event.getAtlas().location()))
                         event.addSprite(value.texture());
                 });
             }
@@ -200,7 +200,7 @@ public class MoreDrawerModel {
             for (int i = 0; i < 4; i++) {
                 Direction dir = Direction.from2DDataValue(i);
                 BlockModelRotation rot = BlockModelRotation.by(0, (int)dir.toYRot() + 180);
-                Function<Material, TextureAtlasSprite> texGet = ModelLoader.defaultTextureGetter();
+                Function<Material, TextureAtlasSprite> texGet = ForgeModelBakery.defaultTextureGetter();
 
                 lockOverlaysFull.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_lock"), rot, texGet));
                 lockOverlaysHalf.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_lock"), rot, texGet));

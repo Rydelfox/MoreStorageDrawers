@@ -8,6 +8,7 @@ import net.minecraft.data.HashCache;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.storage.loot.functions.CopyNameFunction;
 import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
 import net.minecraft.world.level.storage.loot.functions.SetContainerContents;
@@ -49,10 +50,7 @@ public abstract class BaseLootTables extends LootTableProvider {
                 .setRolls(ConstantValue.exactly(1))
                 .add(LootItem.lootTableItem(Item.BY_BLOCK.get(block))
                     .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
-                    .apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY))
-                    .apply(SetContainerContents.setContents()
-                        .withEntry(DynamicLoot.dynamicEntry(new ResourceLocation("minecraft", "contents"))))
-                );
+                    .apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)));
         return LootTable.lootTable().withPool(builder);
     }
 

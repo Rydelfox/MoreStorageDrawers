@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/half_drawers",
+  "textures": {
+    "particle": "morestoragedrawers:blocks/byg_embur_front_2",
+    "east": "morestoragedrawers:blocks/byg_embur_side_v",
+    "west": "morestoragedrawers:blocks/byg_embur_side_v",
+    "north": "morestoragedrawers:blocks/byg_embur_front_2",
+    "up": "morestoragedrawers:blocks/byg_embur_side_h",
+    "down": "morestoragedrawers:blocks/byg_embur_side_h",
+    "south": "morestoragedrawers:blocks/byg_embur_side",
+    "trim": "morestoragedrawers:blocks/byg_embur_trim"
+  }
+}

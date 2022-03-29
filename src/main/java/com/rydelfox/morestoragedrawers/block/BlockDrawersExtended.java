@@ -33,7 +33,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -383,6 +383,7 @@ public abstract class BlockDrawersExtended extends BlockDrawers
         return items;
     }
 
+    /*
     protected ItemStack getMainDrop (BlockState state, TileEntityDrawersMore tile) {
         ItemStack drop = new ItemStack(this);
         if (tile == null)
@@ -417,6 +418,7 @@ public abstract class BlockDrawersExtended extends BlockDrawers
 
         return drop;
     }
+    */
 
     @Override
     @SuppressWarnings("deprecation")

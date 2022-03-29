@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "morestoragedrawers",
+  "pattern": [
+    "/x/",
+    "///",
+    "/x/"
+  ],
+  "key": {
+    "/": {
+      "item": "byg:witch_hazel_planks"
+    },
+    "x": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "morestoragedrawers:byg_witch_hazel_full_2"
+  }
+}
