@@ -11,9 +11,9 @@ import com.jaquadro.minecraft.storagedrawers.util.CountFormatter;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.rydelfox.morestoragedrawers.block.BlockDrawersExtended;
-import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.tile.TileEntityDrawersMore;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -23,7 +23,6 @@ import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.GraphicsStatus;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -93,7 +92,7 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
 
             Player player = Minecraft.getInstance().player;
             BlockPos blockPos = tileM.getBlockPos().offset(.5, .5, .5);
-            float distance = (float) Math.sqrt(blockPos.distSqr(player.position(), true));
+            float distance = (float) Math.sqrt(blockPos.distSqr(new Vec3i(player.position().x, player.position().y, player.position().z)));
 
             double renderDistance = ClientConfig.RENDER.labelRenderDistance.get();
             if (renderDistance > 0 && distance > renderDistance) {
@@ -152,7 +151,7 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
 
             Player player = Minecraft.getInstance().player;
             BlockPos blockPos = tile.getBlockPos().offset(.5, .5, .5);
-            float distance = (float) Math.sqrt(blockPos.distSqr(player.position(), true));
+            float distance = (float) Math.sqrt(blockPos.distSqr(new Vec3i(player.position().x, player.position().y, player.position().z)));
 
             double renderDistance = ClientConfig.RENDER.labelRenderDistance.get();
             if (renderDistance > 0 && distance > renderDistance) {

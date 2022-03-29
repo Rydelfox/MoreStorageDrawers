@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "blue_enchanted_trim",
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": []
+            }
+          ],
+          "name": "morestoragedrawers:byg_blue_enchanted_trim"
+        }
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nonnull;
@@ -345,6 +345,10 @@ public enum DrawerMaterial implements StringRepresentable {
         registry.register(itemHalfOne);
         registry.register(itemHalfTwo);
         registry.register(itemHalfFour);
+    }
+
+    public RegistryObject<Block> getRegisteredTrim() {
+        return regBlockTrim;
     }
 
     @Nonnull
