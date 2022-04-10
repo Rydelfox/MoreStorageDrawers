@@ -9,18 +9,19 @@ import javax.annotation.Nonnull;
 public enum EnumMod implements StringRepresentable {
     DEFAULT("none", DrawerMaterial.DEFAULT),
     ARSNOUVEAU("ars_nouveau", DrawerMaterial.ARSNOUVEAU_ARCHWOOD),
-    ASTRALSORCERY("astralsorcery", DrawerMaterial.ASTRALSORCERY_INFUSED),
+    //ASTRALSORCERY("astralsorcery", DrawerMaterial.ASTRALSORCERY_INFUSED),
     BOTANIA("botania", DrawerMaterial.BOTANIA_LIVINGWOOD),
-    EIDOLON("eidolon", DrawerMaterial.EIDOLON_POLISHED),
-    HEXBLADES("hexblades", DrawerMaterial.HEXBLADES_DARK_POLISHED),
+    //EIDOLON("eidolon", DrawerMaterial.EIDOLON_POLISHED),
+    //HEXBLADES("hexblades", DrawerMaterial.HEXBLADES_DARK_POLISHED),
     NATURESAURA("naturesaura", DrawerMaterial.NATURESAURA_ANCIENT),
-    TWILIGHTFOREST("twilightforest", DrawerMaterial.TWILIGHTFOREST_TOWER),
+    //TWILIGHTFOREST("twilightforest", DrawerMaterial.TWILIGHTFOREST_TOWER),
     BIOMESOPLENTY("biomesoplenty", DrawerMaterial.BIOMESOPLENTY_FIR),
-    BETTERENDFORGE("betterendforge", DrawerMaterial.BETTERENDFORGE_MOSSY_GLOWSHRROM),
-    DESOLATION("desolation", DrawerMaterial.DESOLATION_CHARRED),
+    //BETTERENDFORGE("betterendforge", DrawerMaterial.BETTERENDFORGE_MOSSY_GLOWSHRROM),
+    //DESOLATION("desolation", DrawerMaterial.DESOLATION_CHARRED),
     BIOMESYOULLGO("byg", DrawerMaterial.BIOMESYOULLGO_ASPEN),
-    OUTEREND("outer_end", DrawerMaterial.OUTEREND_AZURE),
-    WILDNATURE("wild_nature", DrawerMaterial.WILDNATURE_ORANGE_BIND);
+    //OUTEREND("outer_end", DrawerMaterial.OUTEREND_AZURE),
+    //WILDNATURE("wild_nature", DrawerMaterial.WILDNATURE_ORANGE_BIND);
+    ;
 
     private String id;
     private DrawerMaterial defaultMaterial;
