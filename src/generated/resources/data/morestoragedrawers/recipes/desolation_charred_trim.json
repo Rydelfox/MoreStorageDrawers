@@ -15,6 +15,7 @@
     }
   },
   "result": {
-    "item": "morestoragedrawers:desolation_charred_trim"
+    	"item": "morestoragedrawers:desolation_charred_trim",
+"count": 4
   }
 }
