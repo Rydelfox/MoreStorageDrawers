@@ -1,9 +1,13 @@
 {
-  "parent": "storagedrawers:block/full_drawers_orientable",
+  "parent": "morestoragedrawers:block/full_drawers",
   "textures": {
-    "top": "morestoragedrawers:blocks/ars_nouveau_archwood_side",
-    "front": "morestoragedrawers:blocks/ars_nouveau_archwood_front_1",
-    "side": "morestoragedrawers:blocks/ars_nouveau_archwood_side",
+    "particle": "morestoragedrawers:blocks/ars_nouveau_archwood_front_1",
+    "east": "morestoragedrawers:blocks/ars_nouveau_archwood_side",
+    "west": "morestoragedrawers:blocks/ars_nouveau_archwood_side",
+    "north": "morestoragedrawers:blocks/ars_nouveau_archwood_front_1",
+    "up": "morestoragedrawers:blocks/ars_nouveau_archwood_side",
+    "down": "morestoragedrawers:blocks/ars_nouveau_archwood_side",
+    "south": "morestoragedrawers:blocks/ars_nouveau_archwood_side",
     "trim": "morestoragedrawers:blocks/ars_nouveau_archwood_trim"
   }
 }
