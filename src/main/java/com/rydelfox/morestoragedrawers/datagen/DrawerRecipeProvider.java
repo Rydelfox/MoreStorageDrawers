@@ -61,7 +61,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
         //RegistryObject<Item> plank = RegistryObject.of(material.getPlankResource(), ForgeRegistries.ITEMS);
         Item plank = ForgeRegistries.ITEMS.getValue(material.getPlankResource());
-        ShapedRecipeBuilder.shaped(material.getDrawer(2, false))
+        ShapedRecipeBuilder.shaped(material.getDrawer(2, false),2)
                 .pattern("/x/")
                 .pattern("///")
                 .pattern("/x/")
@@ -80,7 +80,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
         //RegistryObject<Item> plank = RegistryObject.of(material.getPlankResource(), ForgeRegistries.ITEMS);
         Item plank = ForgeRegistries.ITEMS.getValue(material.getPlankResource());
-        ShapedRecipeBuilder.shaped(material.getDrawer(4, false))
+        ShapedRecipeBuilder.shaped(material.getDrawer(4, false),4)
                 .pattern("x/x")
                 .pattern("///")
                 .pattern("x/x")
@@ -114,7 +114,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
         //RegistryObject<Item> slab = RegistryObject.of(material.getSlabResource(), ForgeRegistries.ITEMS);
         Item slab = ForgeRegistries.ITEMS.getValue(material.getSlabResource());
-        ShapedRecipeBuilder.shaped(material.getDrawer(2, true))
+        ShapedRecipeBuilder.shaped(material.getDrawer(2, true),2)
                 .pattern("/x/")
                 .pattern("///")
                 .pattern("/x/")
@@ -131,7 +131,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
         //RegistryObject<Item> slab = RegistryObject.of(material.getSlabResource(), ForgeRegistries.ITEMS);
         Item slab = ForgeRegistries.ITEMS.getValue(material.getSlabResource());
-        ShapedRecipeBuilder.shaped(material.getDrawer(4, true))
+        ShapedRecipeBuilder.shaped(material.getDrawer(4, true),4)
                 .pattern("x/x")
                 .pattern("///")
                 .pattern("x/x")
@@ -149,7 +149,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
         //RegistryObject<Item> plank = RegistryObject.of(material.getPlankResource(), ForgeRegistries.ITEMS);
         Item plank = ForgeRegistries.ITEMS.getValue(material.getPlankResource());
-        ShapedRecipeBuilder.shaped(material.getTrim())
+        ShapedRecipeBuilder.shaped(material.getTrim(),4)
                 .pattern("X/X")
                 .pattern("/X/")
                 .pattern("X/X")
