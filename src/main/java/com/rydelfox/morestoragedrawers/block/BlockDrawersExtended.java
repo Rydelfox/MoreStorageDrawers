@@ -59,11 +59,11 @@ public abstract class BlockDrawersExtended extends BlockDrawers
     // TODO: TE.getModelData()
     //public static final IUnlistedProperty<DrawerStateModelData> STATE_MODEL = UnlistedModelData.create(DrawerStateModelData.class);
 
-    private static final VoxelShape AABB_FULL = Block.box(0, 0, 0, 16, 16, 16);
-    private static final VoxelShape AABB_NORTH_FULL = Shapes.join(AABB_FULL, Block.box(1, 1, 0, 15, 15, 1), BooleanOp.ONLY_FIRST);
-    private static final VoxelShape AABB_SOUTH_FULL = Shapes.join(AABB_FULL, Block.box(1, 1, 15, 15, 15, 16), BooleanOp.ONLY_FIRST);
-    private static final VoxelShape AABB_WEST_FULL = Shapes.join(AABB_FULL, Block.box(0, 1, 1, 1, 15, 15), BooleanOp.ONLY_FIRST);
-    private static final VoxelShape AABB_EAST_FULL = Shapes.join(AABB_FULL, Block.box(15, 1, 1, 16, 15, 15), BooleanOp.ONLY_FIRST);
+    //private static final VoxelShape AABB_FULL = Block.box(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape AABB_NORTH_FULL = Shapes.join(Shapes.block(), Block.box(1, 1, 0, 15, 15, 1), BooleanOp.ONLY_FIRST);
+    private static final VoxelShape AABB_SOUTH_FULL = Shapes.join(Shapes.block(), Block.box(1, 1, 15, 15, 15, 16), BooleanOp.ONLY_FIRST);
+    private static final VoxelShape AABB_WEST_FULL = Shapes.join(Shapes.block(), Block.box(0, 1, 1, 1, 15, 15), BooleanOp.ONLY_FIRST);
+    private static final VoxelShape AABB_EAST_FULL = Shapes.join(Shapes.block(), Block.box(15, 1, 1, 16, 15, 15), BooleanOp.ONLY_FIRST);
     private static final VoxelShape AABB_NORTH_HALF = Block.box(0, 0, 8, 16, 16, 16);
     private static final VoxelShape AABB_SOUTH_HALF = Block.box(0, 0, 0, 16, 16, 8);
     private static final VoxelShape AABB_WEST_HALF = Block.box(8, 0, 0, 16, 16, 16);
@@ -71,12 +71,7 @@ public abstract class BlockDrawersExtended extends BlockDrawers
 
     private long ignoreEventTime;
 
-    private static final ThreadLocal<Boolean> inTileLookup = new ThreadLocal<Boolean>() {
-        @Override
-        protected Boolean initialValue () {
-            return false;
-        }
-    };
+    private static final ThreadLocal<Boolean> inTileLookup = ThreadLocal.withInitial(() -> false);
 
     public BlockDrawersExtended(int drawerCount, boolean halfDepth, int storageUnits, Block.Properties properties) {
         super(drawerCount, halfDepth, storageUnits, properties);
@@ -154,9 +149,11 @@ public abstract class BlockDrawersExtended extends BlockDrawers
     public InteractionResult use (BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack item = player.getItemInHand(hand);
 
+        /*
         if (!(getTileEntitySafe(world, pos) instanceof TileEntityDrawersMore)) {
             return super.use(state, world, pos, player, hand, hit);
         }
+        */
         if (hand == InteractionHand.OFF_HAND)
             return InteractionResult.PASS;
 
@@ -275,14 +272,10 @@ public abstract class BlockDrawersExtended extends BlockDrawers
         //    return false;
 
         int slot = getDrawerSlot(hit);
-        IDrawer drawer = tileDrawers.getGroup().getDrawer(slot);
         tileDrawers.interactPutItemsIntoSlot(slot, player);
 
         if (item.isEmpty())
             player.setItemInHand(hand, ItemStack.EMPTY);
-
-
-        drawer = tileDrawers.getGroup().getDrawer(slot);
 
         return InteractionResult.SUCCESS;
     }
@@ -351,29 +344,6 @@ public abstract class BlockDrawersExtended extends BlockDrawers
         Vec3 motion = entity.getDeltaMovement();
         entity.push(-motion.x, -motion.y, -motion.z);
         world.addFreshEntity(entity);
-    }
-
-
-
-    @Override
-    public void onRemove (BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
-        TileEntityDrawersMore tile = (TileEntityDrawersMore)getTileEntity(world, pos);
-
-        if (tile != null) {
-            /*for (int i = 0; i < tile.upgrades().getSlotCount(); i++) {
-                ItemStack stack = tile.upgrades().getUpgrade(i);
-                if (!stack.isEmpty()) {
-                    if (stack.getItem() instanceof ItemUpgradeCreative)
-                        continue;
-                    spawnAsEntity(world, pos, stack);
-                }
-            }*/
-
-            //if (!tile.getDrawerAttributes().isUnlimitedVending())
-            //    DrawerInventoryHelper.dropInventoryItems(world, pos, tile.getGroup());
-        }
-
-        super.onRemove(state, world, pos, newState, isMoving);
     }
 
     @Override

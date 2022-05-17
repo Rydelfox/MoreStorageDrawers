@@ -5,9 +5,10 @@ import com.jaquadro.minecraft.storagedrawers.config.CommonConfig;
 import com.jaquadro.minecraft.storagedrawers.config.CompTierRegistry;
 import com.jaquadro.minecraft.storagedrawers.core.ClientProxy;
 import com.jaquadro.minecraft.storagedrawers.core.CommonProxy;
+import com.jaquadro.minecraft.storagedrawers.client.renderer.TileEntityDrawersRenderer;
 import com.rydelfox.morestoragedrawers.block.EnumMod;
 import com.rydelfox.morestoragedrawers.block.tile.Tiles;
-import com.rydelfox.morestoragedrawers.client.renderer.TileEntityDrawersRenderer;
+//import com.rydelfox.morestoragedrawers.client.renderer.TileEntityDrawersRenderer;
 import com.rydelfox.morestoragedrawers.core.Registration;
 import com.rydelfox.morestoragedrawers.network.MoreStorageDrawersPacketHandler;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -46,7 +47,6 @@ public class MoreStorageDrawers {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onModQueueEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onModConfigEvent);
-        // todo: automatic Recipes
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

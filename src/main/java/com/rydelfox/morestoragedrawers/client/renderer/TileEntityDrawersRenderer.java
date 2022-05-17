@@ -1,9 +1,11 @@
+/**
 package com.rydelfox.morestoragedrawers.client.renderer;
 
 import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.jaquadro.minecraft.storagedrawers.api.storage.Drawers;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawer;
 //import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
+import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawersComp;
 import com.jaquadro.minecraft.storagedrawers.config.ClientConfig;
@@ -13,7 +15,6 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.rydelfox.morestoragedrawers.block.BlockDrawersExtended;
 import com.rydelfox.morestoragedrawers.block.tile.TileEntityDrawersMore;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -45,6 +46,9 @@ import java.util.function.Consumer;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.vertex.Tesselator;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import org.jetbrains.annotations.NotNull;
+
+import static com.rydelfox.morestoragedrawers.MoreStorageDrawers.logInfo;
 
 @OnlyIn(Dist.CLIENT)
 public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntityDrawers>
@@ -52,7 +56,7 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
     private boolean[] renderAsBlock = new boolean[4];
     private ItemStack[] renderStacks = new ItemStack[4];
 
-    private ItemRenderer renderItem;
+    private ItemRenderer itemRenderer;
 
     private BlockEntityRendererProvider.Context context;
 
@@ -61,55 +65,40 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
     }
 
     @Override
-    public void render (TileEntityDrawers tile, float partialTickTime, PoseStack matrix, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
-        //MoreStorageDrawers.logInfo("Calling TileEntityDrawersRenderer.render(...)");
+    public void render (@NotNull TileEntityDrawers tile, float partialTickTime, @NotNull PoseStack matrix, @NotNull MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+        logInfo("In TileEntityDrawersRenderer.render(...)");
+        Player player = Minecraft.getInstance().player;
+        if (player == null)
+            return;
+
+        Level world = tile.getLevel();
+        if (world == null)
+            return;
+
+        BlockState state = tile.getBlockState();
+        if (!(state.getBlock() instanceof BlockDrawers))
+            return;
+
+        Direction side = state.getValue(BlockDrawersExtended.FACING);
+        if (playerBehindBlock(tile.getBlockPos(), side))
+            return;
+
+        float distance = (float)Math.sqrt(tile.getBlockPos().distToCenterSqr(player.position()));
+
+        double renderDistance = ClientConfig.RENDER.labelRenderDistance.get();
+        if (renderDistance > 0 && distance > renderDistance)
+            return;
+
+        itemRenderer = Minecraft.getInstance().getItemRenderer();
+
         if (tile instanceof TileEntityDrawersMore) {
-            //MoreStorageDrawers.logInfo("In TileEntityDrawersMore version");
+            logInfo("In TileEntityDrawersMore version");
             TileEntityDrawersMore tileM = (TileEntityDrawersMore)tile;
-            if (tileM == null) {
-                //MoreStorageDrawers.logInfo("tile is null");
-                return;
-            }
-
-            //MoreStorageDrawers.logInfo("Rendering tile " + tileM.toString());
-            Level world = tileM.getLevel();
-            if (world == null) {
-                //MoreStorageDrawers.logInfo("World is null");
-                return;
-            }
-
-            BlockState state = tileM.getBlockState();
-            if (!(state.getBlock() instanceof BlockDrawersExtended)) {
-                //MoreStorageDrawers.logInfo("BlockState not instance of BlockDrawers");
-                return;
-            }
-
-            Direction side = state.getValue(BlockDrawersExtended.FACING);
-            if (playerBehindBlock(tileM.getBlockPos(), side)) {
-                //MoreStorageDrawers.logInfo("Facing issue");
-                return;
-            }
-
-            Player player = Minecraft.getInstance().player;
-            BlockPos blockPos = tileM.getBlockPos().offset(.5, .5, .5);
-            float distance = (float) Math.sqrt(blockPos.distSqr(new Vec3i(player.position().x, player.position().y, player.position().z)));
-
-            double renderDistance = ClientConfig.RENDER.labelRenderDistance.get();
-            if (renderDistance > 0 && distance > renderDistance) {
-                //MoreStorageDrawers.logInfo("out of render distance");
-                return;
-            }
-
-            renderItem = Minecraft.getInstance().getItemRenderer();
 
             if (tileM.upgrades().hasIlluminationUpgrade()) {
                 int blockLight = Math.max(combinedLight % 65536, 208);
                 combinedLight = (combinedLight & 0xFFFF0000) | blockLight;
             }
-
-            Minecraft mc = Minecraft.getInstance();
-            GraphicsStatus cache = mc.options.graphicsMode;
-            mc.options.graphicsMode = GraphicsStatus.FANCY;
 
             if (!tileM.getDrawerAttributes().isConcealed())
                 renderFastItemSet(tileM, state, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime, distance);
@@ -117,71 +106,24 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
             if (tileM.getDrawerAttributes().hasFillLevel())
                 renderIndicator((BlockDrawersExtended) state.getBlock(), tileM, matrix, buffer, state.getValue(BlockDrawersExtended.FACING), combinedLight, combinedOverlay);
 
-            mc.options.graphicsMode = cache;
-
-            matrix.popPose();
-            Lighting.setupLevel(matrix.last().pose());
-            matrix.pushPose();
-
         } else {
-            //MoreStorageDrawers.logInfo("In Non-TileEntityDrawersMore version");
-            if (tile == null) {
-                //MoreStorageDrawers.logInfo("tile is null");
-                return;
-            }
-
-            //MoreStorageDrawers.logInfo("Rendering tile " + tile.toString());
-            Level world = tile.getLevel();
-            if (world == null) {
-                //MoreStorageDrawers.logInfo("World is null");
-                return;
-            }
-
-            BlockState state = tile.getBlockState();
-            if (!(state.getBlock() instanceof BlockDrawersExtended)) {
-                //MoreStorageDrawers.logInfo("BlockState not instance of BlockDrawers");
-                return;
-            }
-
-            Direction side = state.getValue(BlockDrawersExtended.FACING);
-            if (playerBehindBlock(tile.getBlockPos(), side)) {
-                //MoreStorageDrawers.logInfo("Facing issue");
-                return;
-            }
-
-            Player player = Minecraft.getInstance().player;
-            BlockPos blockPos = tile.getBlockPos().offset(.5, .5, .5);
-            float distance = (float) Math.sqrt(blockPos.distSqr(new Vec3i(player.position().x, player.position().y, player.position().z)));
-
-            double renderDistance = ClientConfig.RENDER.labelRenderDistance.get();
-            if (renderDistance > 0 && distance > renderDistance) {
-                //MoreStorageDrawers.logInfo("out of render distance");
-                return;
-            }
-
-            renderItem = Minecraft.getInstance().getItemRenderer();
+            logInfo("In Non-TileEntityDrawersMore version");
 
             if (tile.upgrades().hasIlluminationUpgrade()) {
                 int blockLight = Math.max(combinedLight % 65536, 208);
                 combinedLight = (combinedLight & 0xFFFF0000) | blockLight;
             }
 
-            Minecraft mc = Minecraft.getInstance();
-            GraphicsStatus cache = mc.options.graphicsMode;
-            mc.options.graphicsMode = GraphicsStatus.FANCY;
-
             if (!tile.getDrawerAttributes().isConcealed())
                 renderFastItemSet(tile, state, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime, distance);
 
             if (tile.getDrawerAttributes().hasFillLevel())
                 renderIndicator((BlockDrawersExtended) state.getBlock(), tile, matrix, buffer, state.getValue(BlockDrawersExtended.FACING), combinedLight, combinedOverlay);
-
-            mc.options.graphicsMode = cache;
-
-            matrix.popPose();
-            Lighting.setupLevel(matrix.last().pose());
-            matrix.pushPose();
         }
+
+        matrix.popPose();
+        Lighting.setupLevel(matrix.last().pose());
+        matrix.pushPose();
     }
 
     private boolean playerBehindBlock(BlockPos blockPos, Direction facing) {
@@ -206,7 +148,7 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
 
     private void renderFastItemSet (TileEntityDrawersMore tile, BlockState state, PoseStack matrix, MultiBufferSource buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime, float distance) {
         int drawerCount = tile.getGroup().getDrawerCount();
-        //MoreStorageDrawers.logInfo("Rendering item in More version");
+        logInfo("Rendering item in More version");
 
         for (int i = 0; i < drawerCount; i++) {
             renderStacks[i] = ItemStack.EMPTY;
@@ -216,18 +158,13 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
 
             ItemStack itemStack = drawer.getStoredItemPrototype();
             renderStacks[i] = itemStack;
-            renderAsBlock[i] = isItemBlockType(itemStack);
+            //renderAsBlock[i] = isItemBlockType(itemStack);
             //MoreStorageDrawers.logInfo("Found item "+itemStack.getDisplayName());
         }
 
         for (int i = 0; i < drawerCount; i++) {
-            if (!renderStacks[i].isEmpty() && !renderAsBlock[i])
-                renderFastItem(renderStacks[i], tile, state, i, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime);
-        }
-
-        for (int i = 0; i < drawerCount; i++) {
-            if (!renderStacks[i].isEmpty() && renderAsBlock[i])
-                renderFastItem(renderStacks[i], tile, state, i, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime);
+            ItemStack itemStack = renderStacks[i];
+            renderFastItem(itemStack, tile, state, i, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime);
         }
 
         if (tile.getDrawerAttributes().isShowingQuantity()) {
@@ -238,19 +175,17 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
 
             double renderDistance = ClientConfig.RENDER.quantityRenderDistance.get();
             if (renderDistance == 0 || distance < renderDistance) {
-                MultiBufferSource.BufferSource txtBuffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
                 for (int i = 0; i < drawerCount; i++) {
                     String format = CountFormatter.format(this.context.getFont(), tile.getGroup().getDrawer(i));
-                    renderText(format, state, i, matrix, txtBuffer, combinedLight, side, alpha);
+                    renderText(format, state, i, matrix, buffer, combinedLight, side, alpha);
                 }
-                txtBuffer.endBatch();
             }
         }
     }
 
     private void renderFastItemSet (TileEntityDrawers tile, BlockState state, PoseStack matrix, MultiBufferSource buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime, float distance) {
         int drawerCount = tile.getGroup().getDrawerCount();
-        //MoreStorageDrawers.logInfo("Rendering item");
+        logInfo("Rendering item set");
 
         for (int i = 0; i < drawerCount; i++) {
             renderStacks[i] = ItemStack.EMPTY;
@@ -260,18 +195,12 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
 
             ItemStack itemStack = drawer.getStoredItemPrototype();
             renderStacks[i] = itemStack;
-            renderAsBlock[i] = isItemBlockType(itemStack);
-            //MoreStorageDrawers.logInfo("Found item "+itemStack.getDisplayName());
+            logInfo("Found item "+itemStack.getDisplayName());
         }
 
         for (int i = 0; i < drawerCount; i++) {
-            if (!renderStacks[i].isEmpty() && !renderAsBlock[i])
-                renderFastItem(renderStacks[i], tile, state, i, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime);
-        }
-
-        for (int i = 0; i < drawerCount; i++) {
-            if (!renderStacks[i].isEmpty() && renderAsBlock[i])
-                renderFastItem(renderStacks[i], tile, state, i, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime);
+            ItemStack itemStack = renderStacks[i];
+            renderFastItem(itemStack, tile, state, i, matrix, buffer, combinedLight, combinedOverlay, side, partialTickTime);
         }
 
         if (tile.getDrawerAttributes().isShowingQuantity()) {
@@ -282,12 +211,10 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
 
             double renderDistance = ClientConfig.RENDER.quantityRenderDistance.get();
             if (renderDistance == 0 || distance < renderDistance) {
-                MultiBufferSource.BufferSource txtBuffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
                 for (int i = 0; i < drawerCount; i++) {
                     String format = CountFormatter.format(this.context.getFont(), tile.getGroup().getDrawer(i));
-                    renderText(format, state, i, matrix, txtBuffer, combinedLight, side, alpha);
+                    renderText(format, state, i, matrix, buffer, combinedLight, side, alpha);
                 }
-                txtBuffer.endBatch();
             }
         }
     }
@@ -319,6 +246,7 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
     }
 
     private void renderFastItem (@Nonnull ItemStack itemStack, TileEntityDrawers tile, BlockState state, int slot, PoseStack matrix, MultiBufferSource buffer, int combinedLight, int combinedOverlay, Direction side, float partialTickTime) {
+        logInfo("renderFastItem");
         BlockDrawersExtended block = (BlockDrawersExtended)state.getBlock();
         AABB labelGeometry = block.labelGeometry[slot];
 
@@ -335,43 +263,28 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
         alignRendering(matrix, side);
         moveRendering(matrix, scaleX, scaleY, moveX, moveY, moveZ);
 
-        //List<IRenderLabel> renderHandlers = StorageDrawers.renderRegistry.getRenderHandlers();
-        //for (IRenderLabel renderHandler : renderHandlers) {
-        //    renderHandler.render(tile, tile.getGroup(), slot, 0, partialTickTime);
-        //}
-
-        Consumer<MultiBufferSource> finish = (MultiBufferSource buf) -> {
-            if (buf instanceof MultiBufferSource.BufferSource)
-                ((MultiBufferSource.BufferSource) buf).endBatch();
-        };
+        matrix.translate(0, 0, 100f);
+        matrix.scale(1, -1, 1);
+        matrix.scale(16, 16, 16);
 
         try {
-            matrix.translate(0, 0, 100f);
-            matrix.scale(1, -1, 1);
-            matrix.scale(16, 16, 16);
 
-            BakedModel itemModel = renderItem.getModel(itemStack, null, null, 0);
+            BakedModel itemModel = itemRenderer.getModel(itemStack, null, null, 0);
             boolean render3D = itemModel.isGui3d();
-            finish.accept(buffer);
 
             if (render3D)
                 Lighting.setupFor3DItems();
             else
                 Lighting.setupForFlatItems();
 
-            matrix.last().normal().load(Matrix3f.createScaleMatrix(1, -1, 1));
-            renderItem.render(itemStack, ItemTransforms.TransformType.GUI, false, matrix, buffer, combinedLight, combinedOverlay, itemModel);
-            finish.accept(buffer);
+            matrix.last().normal().load(Matrix3f.createScaleMatrix(1, 1, 1));
+            itemRenderer.render(itemStack, ItemTransforms.TransformType.GUI, false, matrix, buffer, combinedLight, combinedOverlay, itemModel);
         }
         catch (Exception e) {
             // Shrug
         }
 
         matrix.popPose();
-    }
-
-    private boolean isItemBlockType (@Nonnull ItemStack itemStack) {
-        return itemStack.getItem() instanceof BlockItem; // && renderItem.shouldRenderItemIn3D(itemStack);
     }
 
     private void alignRendering (PoseStack matrix, Direction side) {
@@ -409,6 +322,7 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
     public static final ResourceLocation TEXTURE_IND_COMP = new ResourceLocation(StorageDrawers.MOD_ID, "blocks/indicator/indicator_comp_on");
 
     private void renderIndicator (BlockDrawersExtended block, TileEntityDrawers tile, PoseStack matrixStack, MultiBufferSource buffer, Direction side, int combinedLight, int combinedOverlay) {
+        logInfo("In renderIndicator");
         int count = (tile instanceof TileEntityDrawersComp) ? 1 : block.getDrawerCount();
 
         ResourceLocation resource = TEXTURE_IND_1;
@@ -503,3 +417,4 @@ public class TileEntityDrawersRenderer implements BlockEntityRenderer<TileEntity
         return x + (w * fillAmt);
     }
 }
+*/

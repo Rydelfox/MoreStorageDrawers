@@ -28,6 +28,8 @@ import java.util.List;
 
 import net.minecraft.client.renderer.entity.ItemRenderer;
 
+import static com.rydelfox.morestoragedrawers.MoreStorageDrawers.logInfo;
+
 @OnlyIn(Dist.CLIENT)
 public class StorageRenderItem extends ItemRenderer {
     private ItemRenderer parent;
@@ -91,6 +93,7 @@ public class StorageRenderItem extends ItemRenderer {
     @Override
     public void renderGuiItemDecorations (Font font, @Nonnull ItemStack item, int x, int y, String text)
     {
+        logInfo("In renderGuiItemDecorations");
         if (item != overrideStack) {
             super.renderGuiItemDecorations(font, item, x, y, text);
             return;
@@ -175,6 +178,7 @@ public class StorageRenderItem extends ItemRenderer {
     }
 
     public void draw (BufferBuilder tessellator, int x, int y, int w, int h, int r, int g, int b, int a) {
+        logInfo("Drawing on drawer");
         tessellator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         tessellator.vertex((float)(x + 0),(float)(y + 0), 0).color(r, g, b, a).endVertex();
         tessellator.vertex((float)(x + 0),(float)(y + h), 0).color(r, g, b, a).endVertex();
