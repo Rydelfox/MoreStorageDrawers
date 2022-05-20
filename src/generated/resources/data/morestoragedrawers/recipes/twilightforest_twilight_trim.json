@@ -1,21 +1,34 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "morestoragedrawers",
-  "pattern": [
-    "X/X",
-    "/X/",
-    "X/X"
-  ],
-  "key": {
-    "X": {
-      "item": "twilightforest:twilight_oak_planks"
-    },
-    "/": {
-      "tag": "forge:rods/wooden"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "twilightforest",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "pattern": [
+          "x/x",
+          "/x/",
+          "x/x"
+        ],
+        "key": {
+          "/": {
+            "tag": "forge:rods/wooden"
+          },
+          "x": {
+            "item": "twilightforest:twilight_oak_planks"
+          }
+        },
+        "result": {
+          "item": "morestoragedrawers:twilightforest_twilight_trim",
+          "count": 4
+        }
+      }
     }
-  },
-  "result": {
-    	"item": "morestoragedrawers:twilightforest_twilight_trim",
-"count": 4
-  }
+  ]
 }

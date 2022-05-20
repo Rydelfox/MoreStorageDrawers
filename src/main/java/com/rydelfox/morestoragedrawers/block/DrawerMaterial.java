@@ -182,7 +182,6 @@ public enum DrawerMaterial implements StringRepresentable {
     public String getSerializedName() {
         return resource.toString();
     }
-
     public EnumMod getMod() {
         return EnumMod.byId(namespace);
     }
