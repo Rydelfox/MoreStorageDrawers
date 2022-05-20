@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "betterendforge:umbrella_tree_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

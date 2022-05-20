@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "twilightforest:canopy_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "ars_nouveau:archwood_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

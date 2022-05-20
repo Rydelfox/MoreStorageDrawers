@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "biomesoplenty:umbran_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "naturesaura:ancient_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "wild_nature:sakura_slab"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

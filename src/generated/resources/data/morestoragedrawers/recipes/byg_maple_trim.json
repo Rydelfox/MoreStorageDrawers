@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "group": "morestoragedrawers",
   "pattern": [
-    "X/X",
-    "/X/",
-    "X/X"
+    "///",
+    " x ",
+    "///"
   ],
   "key": {
-    "X": {
+    "/": {
       "item": "byg:maple_planks"
     },
-    "/": {
-      "tag": "forge:rods/wooden"
+    "x": {
+      "tag": "forge:chests/wooden"
     }
   },
   "result": {
-    	"item": "morestoragedrawers:byg_maple_trim",
-"count": 4
+    "item": "morestoragedrawers:byg_maple_trim",
+    "count": 4
   }
 }

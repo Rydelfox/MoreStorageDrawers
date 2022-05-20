@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "hexblades:dark_polished_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

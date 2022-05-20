@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "biomesoplenty:jacaranda_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "astralsorcery:infused_wood_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

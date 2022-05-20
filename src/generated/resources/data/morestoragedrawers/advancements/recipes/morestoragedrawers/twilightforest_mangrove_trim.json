@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "twilightforest:mangrove_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

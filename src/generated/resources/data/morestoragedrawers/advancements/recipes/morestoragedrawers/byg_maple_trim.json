@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "byg:maple_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "botania:dreamwood_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }

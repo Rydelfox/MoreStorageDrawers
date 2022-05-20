@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "wild_nature:orange_bind_wood_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }
