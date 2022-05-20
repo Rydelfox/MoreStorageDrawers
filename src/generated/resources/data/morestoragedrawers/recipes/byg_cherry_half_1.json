@@ -1,20 +1,33 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "morestoragedrawers",
-  "pattern": [
-    "///",
-    " x ",
-    "///"
-  ],
-  "key": {
-    "/": {
-      "item": "byg:cherry_slab"
-    },
-    "x": {
-      "tag": "forge:chests/wooden"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "byg",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "pattern": [
+          "///",
+          " x ",
+          "///"
+        ],
+        "key": {
+          "/": {
+            "item": "byg:cherry_slab"
+          },
+          "x": {
+            "tag": "forge:chests/wooden"
+          }
+        },
+        "result": {
+          "item": "morestoragedrawers:byg_cherry_full_1"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "morestoragedrawers:byg_cherry_half_1"
-  }
+  ]
 }

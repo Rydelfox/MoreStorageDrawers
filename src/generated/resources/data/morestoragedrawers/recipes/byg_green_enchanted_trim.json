@@ -1,21 +1,34 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "morestoragedrawers",
-  "pattern": [
-    "X/X",
-    "/X/",
-    "X/X"
-  ],
-  "key": {
-    "X": {
-      "item": "byg:green_enchanted_planks"
-    },
-    "/": {
-      "tag": "forge:rods/wooden"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "byg",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "pattern": [
+          "X/X",
+          "/X/",
+          "X/X"
+        ],
+        "key": {
+          "X": {
+            "item": "byg:green_enchanted_planks"
+          },
+          "/": {
+            "tag": "forge:rods/wooden"
+          }
+        },
+        "result": {
+          "item": "morestoragedrawers:byg_green_enchanted_trim",
+          "count": 4
+        }
+      }
     }
-  },
-  "result": {
-    	"item": "morestoragedrawers:byg_green_enchanted_trim",
-"count": 4
-  }
+  ]
 }
