@@ -10,11 +10,11 @@ What mods and woods are supported?
 
 *Ars Nouveau (1.16) - Archwood <br />
 *Astral Sorcery (1.16) - Infused Wood <br />
-*Botania (1.16) - Living Wood, Mossy Living Wood¹, Dreamwood, Mossy Dreamwood¹, Shimmerwood <br />
+*Botania (1.16) - Living Wood, Mossy Living WoodÂ¹, Dreamwood, Mossy DreamwoodÂ¹, Shimmerwood <br />
 *Eidolon (1.16) - Polished Wood <br />
 *Eidolon's Hexblades (1.16) - Dark Polished Wood <br />
 *Nature's Aura (1.16) - Ancient Wood <br />
-*The Twilight Forest - Towerwood¹, Twilight Oak, Canopy, Mangrove, Darkwood, Timewood, Transwood, Minewood, Sortingwood <br />
+*The Twilight Forest - TowerwoodÂ¹, Twilight Oak, Canopy, Mangrove, Darkwood, Timewood, Transwood, Minewood, Sortingwood <br />
 *Biomes o' Plenty - Fir, Redwood, Cherry, Mahogany, Jacaranda, Plam, Willow, Deadwood, Magic Wood, Umbran, Hellbark <br />
 *Better End (1.16) - Mossy Glowshroom, Lacugrove, End Lotus, Pythadendron, Dragon Tree, Tenanea, Helix Tree, Umbrella Tree, Jellyshroom, Lucernia <br />
 *Desolation - Charred <br />
@@ -22,8 +22,8 @@ What mods and woods are supported?
 *Outer End (1.16) - Azure <br />
 *Wild Nature (1.16) - Orange Bind, End Wood, Death Wood, Sakura, Lavender, Redwood <br />
 
-¹Full-sized drawers only, as the original lacks slabs
+Â¹Full-sized drawers only, as the original lacks slabs
 
 Planned Expansion
 -----------------
-Planned support for Minecraft 1.18
+Planned support for Better Nether Reforged, Upgrade Aquatic, Quark. Possibly Traverse, Terraforged, Pam's Harvestcraft 2
