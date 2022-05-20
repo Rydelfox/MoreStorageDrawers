@@ -1,21 +1,34 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "morestoragedrawers",
-  "pattern": [
-    "/x/",
-    "///",
-    "/x/"
-  ],
-  "key": {
-    "/": {
-      "item": "outer_end:azure_slab"
-    },
-    "x": {
-      "tag": "forge:chests/wooden"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "outer_end",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "pattern": [
+          "/x/",
+          "///",
+          "/x/"
+        ],
+        "key": {
+          "/": {
+            "item": "outer_end:azure_slab"
+          },
+          "x": {
+            "tag": "forge:chests/wooden"
+          }
+        },
+        "result": {
+          "item": "morestoragedrawers:outer_end_azure_half_2",
+          "count": 2
+        }
+      }
     }
-  },
-  "result": {
-    "item": "morestoragedrawers:outer_end_azure_half_2",
-    "count": 2
-  }
+  ]
 }

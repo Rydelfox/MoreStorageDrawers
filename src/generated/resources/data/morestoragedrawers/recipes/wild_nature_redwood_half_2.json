@@ -1,21 +1,34 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "morestoragedrawers",
-  "pattern": [
-    "/x/",
-    "///",
-    "/x/"
-  ],
-  "key": {
-    "/": {
-      "item": "wild_nature:redwood_slab"
-    },
-    "x": {
-      "tag": "forge:chests/wooden"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "wild_nature",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "pattern": [
+          "/x/",
+          "///",
+          "/x/"
+        ],
+        "key": {
+          "/": {
+            "item": "wild_nature:redwood_slab"
+          },
+          "x": {
+            "tag": "forge:chests/wooden"
+          }
+        },
+        "result": {
+          "item": "morestoragedrawers:wild_nature_redwood_half_2",
+          "count": 2
+        }
+      }
     }
-  },
-  "result": {
-    "item": "morestoragedrawers:wild_nature_redwood_half_2",
-    "count": 2
-  }
+  ]
 }

@@ -1,20 +1,33 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "morestoragedrawers",
-  "pattern": [
-    "///",
-    " x ",
-    "///"
-  ],
-  "key": {
-    "/": {
-      "item": "betterendforge:umbrella_tree_planks"
-    },
-    "x": {
-      "tag": "forge:chests/wooden"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "betterendforge",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "pattern": [
+          "///",
+          " x ",
+          "///"
+        ],
+        "key": {
+          "/": {
+            "item": "betterendforge:umbrella_tree_planks"
+          },
+          "x": {
+            "tag": "forge:chests/wooden"
+          }
+        },
+        "result": {
+          "item": "morestoragedrawers:betterendforge_umbrella_tree_full_1"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "morestoragedrawers:betterendforge_umbrella_tree_full_1"
-  }
+  ]
 }

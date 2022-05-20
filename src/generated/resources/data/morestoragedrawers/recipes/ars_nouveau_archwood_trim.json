@@ -1,21 +1,34 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "morestoragedrawers",
-  "pattern": [
-    "///",
-    " x ",
-    "///"
-  ],
-  "key": {
-    "/": {
-      "item": "ars_nouveau:archwood_planks"
-    },
-    "x": {
-      "tag": "forge:chests/wooden"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "ars_nouveau",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "pattern": [
+          "///",
+          " x ",
+          "///"
+        ],
+        "key": {
+          "/": {
+            "item": "ars_nouveau:archwood_planks"
+          },
+          "x": {
+            "tag": "forge:chests/wooden"
+          }
+        },
+        "result": {
+          "item": "morestoragedrawers:ars_nouveau_archwood_trim",
+          "count": 4
+        }
+      }
     }
-  },
-  "result": {
-    "item": "morestoragedrawers:ars_nouveau_archwood_trim",
-    "count": 4
-  }
+  ]
 }

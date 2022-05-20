@@ -46,8 +46,9 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
         //RegistryObject<Item> plank = RegistryObject.of(material.getPlankResource(), ForgeRegistries.ITEMS);
         Item plank = ForgeRegistries.ITEMS.getValue(material.getPlankResource());
-        ConditionalRecipe.builder().addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
-                .addRecipe(consumer1 ->
+        ConditionalRecipe.builder()
+                .addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
+                .addRecipe(
                     ShapedRecipeBuilder.shaped(material.getDrawer(1, false))
                         .pattern("///")
                         .pattern(" x ")
@@ -56,7 +57,8 @@ public class DrawerRecipeProvider extends RecipeProvider {
                         .define('x', Tags.Items.CHESTS_WOODEN)
                         .group("morestoragedrawers")
                         .unlockedBy("has_item", has(Tags.Items.CHESTS_WOODEN))
-                        .save(consumer));
+                        ::save)
+                .build(consumer, new ResourceLocation(MoreStorageDrawers.MOD_ID, material.getNamespace()+"_"+material.getName()+"_full_1"));
     }
 
     private void build_full_2(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
@@ -67,8 +69,9 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
         //RegistryObject<Item> plank = RegistryObject.of(material.getPlankResource(), ForgeRegistries.ITEMS);
         Item plank = ForgeRegistries.ITEMS.getValue(material.getPlankResource());
-        ConditionalRecipe.builder().addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
-                .addRecipe(consumer1 ->
+        ConditionalRecipe.builder()
+                .addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
+                .addRecipe(
                         ShapedRecipeBuilder.shaped(material.getDrawer(2, false),2)
                                 .pattern("/x/")
                                 .pattern("///")
@@ -77,7 +80,8 @@ public class DrawerRecipeProvider extends RecipeProvider {
                                 .define('x', Tags.Items.CHESTS_WOODEN)
                                 .group("morestoragedrawers")
                                 .unlockedBy("has_item", has(Tags.Items.CHESTS_WOODEN))
-                                .save(consumer));
+                                ::save)
+                .build(consumer, new ResourceLocation(MoreStorageDrawers.MOD_ID, material.getNamespace()+"_"+material.getName()+"_full_2"));
     }
 
     private void build_full_4(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
@@ -88,8 +92,9 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
         //RegistryObject<Item> plank = RegistryObject.of(material.getPlankResource(), ForgeRegistries.ITEMS);
         Item plank = ForgeRegistries.ITEMS.getValue(material.getPlankResource());
-        ConditionalRecipe.builder().addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
-                .addRecipe(consumer1 ->
+        ConditionalRecipe.builder()
+                .addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
+                .addRecipe(
                         ShapedRecipeBuilder.shaped(material.getDrawer(4, false),4)
                                 .pattern("x/x")
                                 .pattern("///")
@@ -98,7 +103,8 @@ public class DrawerRecipeProvider extends RecipeProvider {
                                 .define('x', Tags.Items.CHESTS_WOODEN)
                                 .group("morestoragedrawers")
                                 .unlockedBy("has_item", has(Tags.Items.CHESTS_WOODEN))
-                                .save(consumer));
+                                ::save)
+                .build(consumer, new ResourceLocation(MoreStorageDrawers.MOD_ID, material.getNamespace()+"_"+material.getName()+"_full_4"));
     }
 
     private void build_half_1(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
@@ -107,8 +113,9 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
         //RegistryObject<Item> slab = RegistryObject.of(material.getSlabResource(), ForgeRegistries.ITEMS);
         Item slab = ForgeRegistries.ITEMS.getValue(material.getSlabResource());
-        ConditionalRecipe.builder().addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
-                .addRecipe(consumer1 ->
+        ConditionalRecipe.builder()
+                .addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
+                .addRecipe(
                         ShapedRecipeBuilder.shaped(material.getDrawer(1, true))
                                 .pattern("///")
                                 .pattern(" x ")
@@ -117,7 +124,8 @@ public class DrawerRecipeProvider extends RecipeProvider {
                                 .define('x', Tags.Items.CHESTS_WOODEN)
                                 .group("morestoragedrawers")
                                 .unlockedBy("has_item", has(Tags.Items.CHESTS_WOODEN))
-                                .save(consumer));
+                                ::save)
+                .build(consumer, new ResourceLocation(MoreStorageDrawers.MOD_ID, material.getNamespace()+"_"+material.getName()+"_half_1"));
     }
 
     private void build_half_2(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
@@ -126,8 +134,9 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
         //RegistryObject<Item> slab = RegistryObject.of(material.getSlabResource(), ForgeRegistries.ITEMS);
         Item slab = ForgeRegistries.ITEMS.getValue(material.getSlabResource());
-        ConditionalRecipe.builder().addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
-                .addRecipe(consumer1 ->
+        ConditionalRecipe.builder()
+                .addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
+                .addRecipe(
                         ShapedRecipeBuilder.shaped(material.getDrawer(2, true),2)
                                 .pattern("/x/")
                                 .pattern("///")
@@ -136,7 +145,8 @@ public class DrawerRecipeProvider extends RecipeProvider {
                                 .define('x', Tags.Items.CHESTS_WOODEN)
                                 .group("morestoragedrawers")
                                 .unlockedBy("has_item", has(Tags.Items.CHESTS_WOODEN))
-                                .save(consumer));
+                                ::save)
+                .build(consumer, new ResourceLocation(MoreStorageDrawers.MOD_ID, material.getNamespace()+"_"+material.getName()+"_half_2"));
     }
 
     private void build_half_4(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
@@ -146,8 +156,9 @@ public class DrawerRecipeProvider extends RecipeProvider {
         //RegistryObject<Item> slab = RegistryObject.of(material.getSlabResource(), ForgeRegistries.ITEMS);
         Item slab = ForgeRegistries.ITEMS.getValue(material.getSlabResource());
 
-        ConditionalRecipe.builder().addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
-                .addRecipe(consumer1 ->
+        ConditionalRecipe.builder()
+                .addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
+                .addRecipe(
                         ShapedRecipeBuilder.shaped(material.getDrawer(4, true),4)
                                 .pattern("x/x")
                                 .pattern("///")
@@ -156,7 +167,8 @@ public class DrawerRecipeProvider extends RecipeProvider {
                                 .define('x', Tags.Items.CHESTS_WOODEN)
                                 .group("morestoragedrawers")
                                 .unlockedBy("has_item", has(Tags.Items.CHESTS_WOODEN))
-                                .save(consumer));
+                                ::save)
+                .build(consumer, new ResourceLocation(MoreStorageDrawers.MOD_ID, material.getNamespace()+"_"+material.getName()+"_half_4"));
     }
 
     private void build_trim(DrawerMaterial material, Consumer<IFinishedRecipe> consumer) {
@@ -166,8 +178,9 @@ public class DrawerRecipeProvider extends RecipeProvider {
         }
         //RegistryObject<Item> plank = RegistryObject.of(material.getPlankResource(), ForgeRegistries.ITEMS);
         Item plank = ForgeRegistries.ITEMS.getValue(material.getPlankResource());
-        ConditionalRecipe.builder().addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
-                .addRecipe(consumer1 ->
+        ConditionalRecipe.builder()
+                .addCondition( new ModLoadedCondition(material.getMod().getSerializedName()) )
+                .addRecipe(
                         ShapedRecipeBuilder.shaped(material.getTrim(),4)
                                 .pattern("///")
                                 .pattern(" x ")
@@ -176,6 +189,7 @@ public class DrawerRecipeProvider extends RecipeProvider {
                                 .define('x', Tags.Items.CHESTS_WOODEN)
                                 .group("morestoragedrawers")
                                 .unlockedBy("has_item", has(Tags.Items.CHESTS_WOODEN))
-                                .save(consumer));
+                                ::save)
+                .build(consumer, new ResourceLocation(MoreStorageDrawers.MOD_ID, material.getNamespace()+"_"+material.getName()+"_trim"));
     }
 }

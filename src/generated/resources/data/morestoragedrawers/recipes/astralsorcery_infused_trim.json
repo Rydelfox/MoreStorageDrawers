@@ -1,21 +1,34 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "morestoragedrawers",
-  "pattern": [
-    "///",
-    " x ",
-    "///"
-  ],
-  "key": {
-    "/": {
-      "item": "astralsorcery:infused_wood_planks"
-    },
-    "x": {
-      "tag": "forge:chests/wooden"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "astralsorcery",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "pattern": [
+          "///",
+          " x ",
+          "///"
+        ],
+        "key": {
+          "/": {
+            "item": "astralsorcery:infused_wood_planks"
+          },
+          "x": {
+            "tag": "forge:chests/wooden"
+          }
+        },
+        "result": {
+          "item": "morestoragedrawers:astralsorcery_infused_trim",
+          "count": 4
+        }
+      }
     }
-  },
-  "result": {
-    "item": "morestoragedrawers:astralsorcery_infused_trim",
-    "count": 4
-  }
+  ]
 }

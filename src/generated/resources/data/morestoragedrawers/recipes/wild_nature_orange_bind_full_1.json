@@ -1,20 +1,33 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "morestoragedrawers",
-  "pattern": [
-    "///",
-    " x ",
-    "///"
-  ],
-  "key": {
-    "/": {
-      "item": "wild_nature:orange_bind_wood_planks"
-    },
-    "x": {
-      "tag": "forge:chests/wooden"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "wild_nature",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "pattern": [
+          "///",
+          " x ",
+          "///"
+        ],
+        "key": {
+          "/": {
+            "item": "wild_nature:orange_bind_wood_planks"
+          },
+          "x": {
+            "tag": "forge:chests/wooden"
+          }
+        },
+        "result": {
+          "item": "morestoragedrawers:wild_nature_orange_bind_full_1"
+        }
+      }
     }
-  },
-  "result": {
-    "item": "morestoragedrawers:wild_nature_orange_bind_full_1"
-  }
+  ]
 }
