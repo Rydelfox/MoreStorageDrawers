@@ -1,19 +1,32 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "morestoragedrawers",
-  "pattern": [
-    "X/X",
-    "/X/",
-    "X/X"
-  ],
-  "key": {
-    "X": [],
-    "/": {
-      "tag": "forge:rods/wooden"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "twilightforest",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "pattern": [
+          "x/x",
+          "/x/",
+          "x/x"
+        ],
+        "key": {
+          "/": {
+            "tag": "forge:rods/wooden"
+          },
+          "x": []
+        },
+        "result": {
+          "item": "morestoragedrawers:twilightforest_trans_trim",
+          "count": 4
+        }
+      }
     }
-  },
-  "result": {
-    	"item": "morestoragedrawers:twilightforest_trans_trim",
-"count": 4
-  }
+  ]
 }

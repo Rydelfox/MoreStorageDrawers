@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "morestoragedrawers",
+  "pattern": [
+    "///",
+    " x ",
+    "///"
+  ],
+  "key": {
+    "/": {
+      "item": "biomesoplenty:fir_planks"
+    },
+    "x": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "morestoragedrawers:biomesoplenty_fir_trim",
+    "count": 4
+  }
+}

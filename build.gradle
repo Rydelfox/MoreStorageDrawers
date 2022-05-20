@@ -154,7 +154,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:3528319")
     runtimeOnly fg.deobf("curse.maven:blueprint-382216:3535460")
     //runtimeOnly fg.deobf("curse.maven:astralsorcery-241721:3333980")
-    runtimeOnly fg.deobf("curse.maven:biomesoplenty-220318:3432927")
+    //runtimeOnly fg.deobf("curse.maven:biomesoplenty-220318:3432927") //Supported, but maven getting 403 forbidden errors
     //runtimeOnly fg.deobf("curse.maven:ars-nouveau-401955:3648653")
     //runtimeOnly fg.deobf("curse.maven:botania-225643:3608755")
     //runtimeOnly fg.deobf("curse.maven:eidolon-429625:3157832")

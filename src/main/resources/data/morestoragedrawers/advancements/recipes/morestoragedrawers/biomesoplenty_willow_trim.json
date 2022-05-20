@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_planks": {
+    "has_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "biomesoplenty:willow_planks"
+            "tag": "forge:chests/wooden"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_planks",
+      "has_item",
       "has_the_recipe"
     ]
   ]
