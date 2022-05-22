@@ -1,0 +1,2153 @@
+{
+  "replace": "false",
+  "values": [
+    {
+		"id": "morestoragedrawers:ars_nouveau_archwood_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:ars_nouveau_archwood_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:ars_nouveau_archwood_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:ars_nouveau_archwood_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:ars_nouveau_archwood_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:ars_nouveau_archwood_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:ars_nouveau_archwood_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:astral_sorcery_infused_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:astral_sorcery_infused_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:astral_sorcery_infused_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:astral_sorcery_infused_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:astral_sorcery_infused_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:astral_sorcery_infused_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:astral_sorcery_infused_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_livingwood_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_livingwood_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_livingwood_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_livingwood_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_livingwood_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_livingwood_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_livingwood_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_mossy_livingwood_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_mossy_livingwood_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_mossy_livingwood_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_mossy_livingwood_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_dreamwood_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_dreamwood_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_dreamwood_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_dreamwood_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_dreamwood_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_dreamwood_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_dreamwood_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_mossy_dreamwood_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_mossy_dreamwood_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_mossy_dreamwood_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_mossy_dreamwood_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_shimmerwood_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_shimmerwood_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_shimmerwood_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_shimmerwood_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_shimmerwood_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_shimmerwood_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:botania_shimmerwood_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:eidolon_polished_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:eidolon_polished_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:eidolon_polished_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:eidolon_polished_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:eidolon_polished_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:eidolon_polished_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:eidolon_polished_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:hexblades_dark_polished_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:hexblades_dark_polished_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:hexblades_dark_polished_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:hexblades_dark_polished_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:hexblades_dark_polished_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:hexblades_dark_polished_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:hexblades_dark_polished_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:naturesaura_ancient_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:naturesaura_ancient_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:naturesaura_ancient_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:naturesaura_ancient_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:naturesaura_ancient_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:naturesaura_ancient_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:naturesaura_ancient_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_tower_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_tower_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_tower_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_tower_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_twilight_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_twilight_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_twilight_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_twilight_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_twilight_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_twilight_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_twilight_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_canopy_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_canopy_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_canopy_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_canopy_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_canopy_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_canopy_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_canopy_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mangrove_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mangrove_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mangrove_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mangrove_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mangrove_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mangrove_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mangrove_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_dark_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_dark_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_dark_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_dark_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_dark_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_dark_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_dark_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_time_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_time_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_time_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_time_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_time_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_time_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_time_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_trans_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_trans_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_trans_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_trans_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_trans_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_trans_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_trans_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mine_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mine_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mine_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mine_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mine_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mine_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_mine_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_sort_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_sort_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_sort_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_sort_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_sort_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_sort_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:twilightforest_sort_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_fir_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_fir_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_fir_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_fir_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_fir_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_fir_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_fir_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_redwood_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_redwood_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_redwood_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_redwood_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_redwood_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_redwood_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_redwood_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_cherry_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_cherry_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_cherry_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_cherry_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_cherry_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_cherry_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_cherry_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_mahogany_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_mahogany_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_mahogany_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_mahogany_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_mahogany_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_mahogany_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_mahogany_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_jacaranda_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_jacaranda_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_jacaranda_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_jacaranda_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_jacaranda_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_jacaranda_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_jacaranda_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_palm_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_palm_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_palm_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_palm_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_palm_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_palm_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_palm_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_willow_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_willow_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_willow_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_willow_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_willow_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_willow_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_willow_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_dead_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_dead_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_dead_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_dead_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_dead_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_dead_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_dead_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_magic_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_magic_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_magic_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_magic_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_magic_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_magic_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_magic_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_umbran_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_umbran_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_umbran_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_umbran_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_umbran_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_umbran_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_umbran_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_hellbark_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_hellbark_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_hellbark_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_hellbark_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_hellbark_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_hellbark_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:biomesoplenty_hellbark_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_mossy_glowshroom_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_mossy_glowshroom_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_mossy_glowshroom_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_mossy_glowshroom_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_mossy_glowshroom_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_mossy_glowshroom_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_mossy_glowshroom_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lacugrove_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lacugrove_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lacugrove_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lacugrove_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lacugrove_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lacugrove_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lacugrove_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_end_lotus_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_end_lotus_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_end_lotus_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_end_lotus_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_end_lotus_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_end_lotus_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_end_lotus_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_pythadendron_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_pythadendron_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_pythadendron_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_pythadendron_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_pythadendron_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_pythadendron_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_pythadendron_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_dragon_tree_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_dragon_tree_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_dragon_tree_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_dragon_tree_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_dragon_tree_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_dragon_tree_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_dragon_tree_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_tenanea_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_tenanea_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_tenanea_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_tenanea_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_tenanea_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_tenanea_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_tenanea_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_helix_tree_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_helix_tree_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_helix_tree_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_helix_tree_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_helix_tree_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_helix_tree_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_helix_tree_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_umbrella_tree_tree_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_umbrella_tree_tree_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_umbrella_tree_tree_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_umbrella_tree_tree_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_umbrella_tree_tree_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_umbrella_tree_tree_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_umbrella_tree_tree_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_jellyshroom_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_jellyshroom_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_jellyshroom_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_jellyshroom_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_jellyshroom_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_jellyshroom_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_jellyshroom_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lucernia_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lucernia_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lucernia_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lucernia_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lucernia_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lucernia_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:betterendforge_lucernia_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:desolation_charred_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:desolation_charred_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:desolation_charred_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:desolation_charred_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:desolation_charred_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:desolation_charred_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:desolation_charred_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_aspen_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_aspen_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_aspen_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_aspen_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_aspen_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_aspen_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_aspen_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_baobab_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_baobab_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_baobab_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_baobab_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_baobab_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_baobab_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_baobab_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_blue_enchanted_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_blue_enchanted_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_blue_enchanted_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_blue_enchanted_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_blue_enchanted_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_blue_enchanted_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_blue_enchanted_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_bulbis_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_bulbis_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_bulbis_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_bulbis_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_bulbis_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_bulbis_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_bulbis_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cherry_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cherry_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cherry_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cherry_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cherry_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cherry_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cherry_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cika_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cika_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cika_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cika_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cika_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cika_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cika_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cypress_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cypress_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cypress_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cypress_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cypress_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cypress_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_cypress_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ebony_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ebony_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ebony_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ebony_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ebony_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ebony_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ebony_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ether_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ether_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ether_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ether_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ether_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ether_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_ether_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_fir_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_fir_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_fir_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_fir_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_fir_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_fir_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_fir_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:yg_green_enchanted_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:yg_green_enchanted_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:yg_green_enchanted_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:yg_green_enchanted_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:yg_green_enchanted_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:yg_green_enchanted_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:yg_green_enchanted_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_holly_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_holly_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_holly_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_holly_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_holly_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_holly_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_holly_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_imparius_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_imparius_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_imparius_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_imparius_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_imparius_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_imparius_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_imparius_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_jacaranda_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_jacaranda_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_jacaranda_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_jacaranda_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_jacaranda_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_jacaranda_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_jacaranda_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_lament_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_lament_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_lament_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_lament_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_lament_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_lament_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_lament_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mahogany_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mahogany_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mahogany_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mahogany_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mahogany_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mahogany_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mahogany_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mangrove_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mangrove_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mangrove_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mangrove_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mangrove_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mangrove_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_mangrove_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_maple_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_maple_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_maple_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_maple_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_maple_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_maple_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_maple_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_nightshade_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_nightshade_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_nightshade_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_nightshade_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_nightshade_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_nightshade_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_nightshade_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_palm_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_palm_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_palm_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_palm_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_palm_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_palm_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_palm_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_pine_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_pine_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_pine_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_pine_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_pine_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_pine_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_pine_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_rainbow_eucalyptus_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_rainbow_eucalyptus_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_rainbow_eucalyptus_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_rainbow_eucalyptus_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_rainbow_eucalyptus_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_rainbow_eucalyptus_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_rainbow_eucalyptus_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_redwood_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_redwood_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_redwood_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_redwood_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_redwood_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_redwood_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_redwood_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_skyris_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_skyris_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_skyris_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_skyris_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_skyris_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_skyris_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_skyris_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_willow_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_willow_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_willow_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_willow_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_willow_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_willow_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_willow_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_witch_hazel_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_witch_hazel_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_witch_hazel_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_witch_hazel_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_witch_hazel_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_witch_hazel_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_witch_hazel_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_zelkova_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_zelkova_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_zelkova_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_zelkova_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_zelkova_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_zelkova_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_zelkova_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_sythian_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_sythian_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_sythian_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_sythian_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_sythian_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_sythian_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_sythian_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_embur_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_embur_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_embur_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_embur_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_embur_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_embur_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:byg_embur_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:outer_end_azure_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:outer_end_azure_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:outer_end_azure_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:outer_end_azure_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:outer_end_azure_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:outer_end_azure_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:outer_end_azure_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:traverse_fir_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:traverse_fir_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:traverse_fir_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:traverse_fir_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:traverse_fir_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:traverse_fir_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:traverse_fir_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_orange_bind_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_orange_bind_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_orange_bind_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_orange_bind_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_orange_bind_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_orange_bind_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_orange_bind_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_end_wood_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_end_wood_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_end_wood_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_end_wood_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_end_wood_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_end_wood_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_end_wood_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_death_wood_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_death_wood_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_death_wood_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_death_wood_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_death_wood_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_death_wood_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_death_wood_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_sakura_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_sakura_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_sakura_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_sakura_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_sakura_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_sakura_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_sakura_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_lavender_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_lavender_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_lavender_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_lavender_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_lavender_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_lavender_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_lavender_trim",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_redwood_full_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_redwood_full_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_redwood_full_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_redwood_half_1",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_redwood_half_2",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_redwood_half_4",
+		"required": false
+	},
+    {
+		"id": "morestoragedrawers:wild_nature_redwood_trim",
+		"required": false
+	}
+  ]
+}
