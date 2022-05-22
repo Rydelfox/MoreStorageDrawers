@@ -165,8 +165,10 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:byg-247560:3485079")
     runtimeOnly fg.deobf("curse.maven:outerend-430404:3404058")
     runtimeOnly fg.deobf("curse.maven:wildnaturebiomes-539889:3503810")
-    //runtimeOnly fg.deobf("curse.maven:JEI-238222:3681089") // Only for testing
-    //runtimeOnly fg.deobf("curse.maven:Jade-324717:3597364") // Only for testing
+    runtimeOnly fg.deobf("curse.maven:JEI-238222:3681089") // Only for testing
+    runtimeOnly fg.deobf("curse.maven:Jade-324717:3597364") // Only for testing
+    runtimeOnly fg.deobf("curse.maven:JEIIntegration-265917:3202331") // Only for testing
+    runtimeOnly fg.deobf("curse.maven:ExtendedItemInformation-285166:3775867") // Only for testing
 
 }
 
