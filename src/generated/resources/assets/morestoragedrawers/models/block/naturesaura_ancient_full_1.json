@@ -1,13 +1,13 @@
 {
   "parent": "morestoragedrawers:block/full_drawers",
   "textures": {
-    "particle": "morestoragedrawers:blocks/naturesaura_ancient_front_1",
-    "east": "morestoragedrawers:blocks/naturesaura_ancient_side",
-    "west": "morestoragedrawers:blocks/naturesaura_ancient_side",
-    "north": "morestoragedrawers:blocks/naturesaura_ancient_front_1",
-    "up": "morestoragedrawers:blocks/naturesaura_ancient_side",
     "down": "morestoragedrawers:blocks/naturesaura_ancient_side",
+    "east": "morestoragedrawers:blocks/naturesaura_ancient_side",
+    "north": "morestoragedrawers:blocks/naturesaura_ancient_front_1",
+    "particle": "morestoragedrawers:blocks/naturesaura_ancient_front_1",
     "south": "morestoragedrawers:blocks/naturesaura_ancient_side",
-    "trim": "morestoragedrawers:blocks/naturesaura_ancient_trim"
+    "trim": "morestoragedrawers:blocks/naturesaura_ancient_trim",
+    "up": "morestoragedrawers:blocks/naturesaura_ancient_side",
+    "west": "morestoragedrawers:blocks/naturesaura_ancient_side"
   }
 }
