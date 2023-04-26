@@ -1,5 +1,9 @@
 {
   "variants": {
+    "facing=east": {
+      "model": "morestoragedrawers:block/byg_holly_full_1",
+      "y": 90
+    },
     "facing=north": {
       "model": "morestoragedrawers:block/byg_holly_full_1"
     },
@@ -10,10 +14,6 @@
     "facing=west": {
       "model": "morestoragedrawers:block/byg_holly_full_1",
       "y": 270
-    },
-    "facing=east": {
-      "model": "morestoragedrawers:block/byg_holly_full_1",
-      "y": 90
     }
   }
 }

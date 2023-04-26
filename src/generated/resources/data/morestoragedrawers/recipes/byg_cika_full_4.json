@@ -4,18 +4,13 @@
     {
       "conditions": [
         {
-          "modid": "byg",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "byg"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
         "group": "morestoragedrawers",
-        "pattern": [
-          "x/x",
-          "///",
-          "x/x"
-        ],
         "key": {
           "/": {
             "item": "byg:cika_planks"
@@ -24,9 +19,14 @@
             "tag": "forge:chests/wooden"
           }
         },
+        "pattern": [
+          "x/x",
+          "///",
+          "x/x"
+        ],
         "result": {
-          "item": "morestoragedrawers:byg_cika_full_4",
-          "count": 4
+          "count": 4,
+          "item": "morestoragedrawers:byg_cika_full_4"
         }
       }
     }

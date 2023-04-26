@@ -4,29 +4,27 @@
     {
       "conditions": [
         {
-          "modid": "byg",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "byg"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
         "group": "morestoragedrawers",
+        "key": {
+          "/": [],
+          "x": {
+            "tag": "forge:chests/wooden"
+          }
+        },
         "pattern": [
           "x/x",
           "///",
           "x/x"
         ],
-        "key": {
-          "/": {
-            "item": "byg:mangrove_planks"
-          },
-          "x": {
-            "tag": "forge:chests/wooden"
-          }
-        },
         "result": {
-          "item": "morestoragedrawers:byg_mangrove_full_4",
-          "count": 4
+          "count": 4,
+          "item": "morestoragedrawers:byg_mangrove_full_4"
         }
       }
     }

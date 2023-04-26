@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_nbt",
+              "ops": [],
+              "source": "block_entity"
+            }
+          ],
+          "name": "morestoragedrawers:twilightforest_dark_trim"
+        }
+      ],
+      "name": "dark_trim",
+      "rolls": 1.0
+    }
+  ]
+}

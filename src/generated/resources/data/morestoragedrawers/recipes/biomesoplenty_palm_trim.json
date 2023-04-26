@@ -1,0 +1,34 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "biomesoplenty"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "key": {
+          "/": {
+            "tag": "forge:rods/wooden"
+          },
+          "X": {
+            "item": "biomesoplenty:palm_planks"
+          }
+        },
+        "pattern": [
+          "X/X",
+          "/X/",
+          "X/X"
+        ],
+        "result": {
+          "count": 4,
+          "item": "morestoragedrawers:biomesoplenty_palm_trim"
+        }
+      }
+    }
+  ]
+}

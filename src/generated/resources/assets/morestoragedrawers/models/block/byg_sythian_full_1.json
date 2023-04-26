@@ -1,13 +1,13 @@
 {
   "parent": "morestoragedrawers:block/full_drawers",
   "textures": {
-    "particle": "morestoragedrawers:blocks/byg_sythian_front_1",
-    "east": "morestoragedrawers:blocks/byg_sythian_side",
-    "west": "morestoragedrawers:blocks/byg_sythian_side",
-    "north": "morestoragedrawers:blocks/byg_sythian_front_1",
-    "up": "morestoragedrawers:blocks/byg_sythian_side",
     "down": "morestoragedrawers:blocks/byg_sythian_side",
+    "east": "morestoragedrawers:blocks/byg_sythian_side",
+    "north": "morestoragedrawers:blocks/byg_sythian_front_1",
+    "particle": "morestoragedrawers:blocks/byg_sythian_front_1",
     "south": "morestoragedrawers:blocks/byg_sythian_side",
-    "trim": "morestoragedrawers:blocks/byg_sythian_trim"
+    "trim": "morestoragedrawers:blocks/byg_sythian_trim",
+    "up": "morestoragedrawers:blocks/byg_sythian_side",
+    "west": "morestoragedrawers:blocks/byg_sythian_side"
   }
 }

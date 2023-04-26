@@ -4,18 +4,13 @@
     {
       "conditions": [
         {
-          "modid": "byg",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "byg"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
         "group": "morestoragedrawers",
-        "pattern": [
-          "///",
-          " x ",
-          "///"
-        ],
         "key": {
           "/": {
             "item": "byg:nightshade_planks"
@@ -24,6 +19,11 @@
             "tag": "forge:chests/wooden"
           }
         },
+        "pattern": [
+          "///",
+          " x ",
+          "///"
+        ],
         "result": {
           "item": "morestoragedrawers:byg_nightshade_full_1"
         }

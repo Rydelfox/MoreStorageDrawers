@@ -1,0 +1,34 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "twilightforest"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "key": {
+          "/": {
+            "item": "twilightforest:twilight_oak_planks"
+          },
+          "x": {
+            "tag": "forge:chests/wooden"
+          }
+        },
+        "pattern": [
+          "x/x",
+          "///",
+          "x/x"
+        ],
+        "result": {
+          "count": 4,
+          "item": "morestoragedrawers:twilightforest_twilight_full_4"
+        }
+      }
+    }
+  ]
+}

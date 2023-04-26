@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/half_drawers",
+  "textures": {
+    "down": "morestoragedrawers:blocks/biomesoplenty_cherry_side_h",
+    "east": "morestoragedrawers:blocks/biomesoplenty_cherry_side_v",
+    "north": "morestoragedrawers:blocks/biomesoplenty_cherry_front_2",
+    "particle": "morestoragedrawers:blocks/biomesoplenty_cherry_front_2",
+    "south": "morestoragedrawers:blocks/biomesoplenty_cherry_side",
+    "trim": "morestoragedrawers:blocks/biomesoplenty_cherry_trim",
+    "up": "morestoragedrawers:blocks/biomesoplenty_cherry_side_h",
+    "west": "morestoragedrawers:blocks/biomesoplenty_cherry_side_v"
+  }
+}

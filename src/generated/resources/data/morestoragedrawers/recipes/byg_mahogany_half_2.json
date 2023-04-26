@@ -4,27 +4,27 @@
     {
       "conditions": [
         {
-          "modid": "byg",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "byg"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
         "group": "morestoragedrawers",
-        "pattern": [
-          "/x/",
-          "///",
-          "/x/"
-        ],
         "key": {
           "/": [],
           "x": {
             "tag": "forge:chests/wooden"
           }
         },
+        "pattern": [
+          "/x/",
+          "///",
+          "/x/"
+        ],
         "result": {
-          "item": "morestoragedrawers:byg_mahogany_full_2",
-          "count": 2
+          "count": 2,
+          "item": "morestoragedrawers:byg_mahogany_full_2"
         }
       }
     }

@@ -1,0 +1,33 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "twilightforest"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "key": {
+          "/": {
+            "item": "twilightforest:dark_slab"
+          },
+          "x": {
+            "tag": "forge:chests/wooden"
+          }
+        },
+        "pattern": [
+          "///",
+          " x ",
+          "///"
+        ],
+        "result": {
+          "item": "morestoragedrawers:twilightforest_dark_full_1"
+        }
+      }
+    }
+  ]
+}

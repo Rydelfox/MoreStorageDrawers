@@ -14,7 +14,7 @@ public enum EnumMod implements StringRepresentable {
     //EIDOLON("eidolon", DrawerMaterial.EIDOLON_POLISHED),
     //HEXBLADES("hexblades", DrawerMaterial.HEXBLADES_DARK_POLISHED),
     NATURESAURA("naturesaura", DrawerMaterial.NATURESAURA_ANCIENT),
-    //TWILIGHTFOREST("twilightforest", DrawerMaterial.TWILIGHTFOREST_TOWER),
+    TWILIGHTFOREST("twilightforest", DrawerMaterial.TWILIGHTFOREST_TOWER),
     BIOMESOPLENTY("biomesoplenty", DrawerMaterial.BIOMESOPLENTY_FIR),
     //BETTERENDFORGE("betterendforge", DrawerMaterial.BETTERENDFORGE_MOSSY_GLOWSHRROM),
     //DESOLATION("desolation", DrawerMaterial.DESOLATION_CHARRED),

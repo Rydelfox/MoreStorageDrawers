@@ -154,17 +154,18 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:4031402")
     runtimeOnly fg.deobf("curse.maven:blueprint-382216:4442628")
     runtimeOnly fg.deobf("curse.maven:terrablender-563928:4205732")
+    runtimeOnly fg.deobf("curse.maven:corgilib-693313:4416614") // for BYG
     //runtimeOnly fg.deobf("curse.maven:astralsorcery-241721:3333980")
-    // runtimeOnly fg.deobf("curse.maven:biomesoplenty-220318:3616582") //1.18.1
-    runtimeOnly fg.deobf("curse.maven:ars-nouveau-401955:4468989") //1.18.1
-    //runtimeOnly fg.deobf("curse.maven:botania-225643:3664223") //1.18.1
+    runtimeOnly fg.deobf("curse.maven:biomesoplenty-220318:4473556")
+    runtimeOnly fg.deobf("curse.maven:ars-nouveau-401955:4468989")
+    runtimeOnly fg.deobf("curse.maven:botania-225643:4415871")
     //runtimeOnly fg.deobf("curse.maven:eidolon-429625:3157832")
     //runtimeOnly fg.deobf("curse.maven:hexblades-528079:3646326")
     runtimeOnly fg.deobf("curse.maven:naturesaura-306626:4419637")
-    //runtimeOnly fg.deobf("curse.maven:twilightforest-227639:3590758")
+    runtimeOnly fg.deobf("curse.maven:twilightforest-227639:4389567")
     //runtimeOnly fg.deobf("curse.maven:betterendforge-428877:3467948")
-    //runtimeOnly fg.deobf("curse.maven:desolation-445926:3520974")
-   // runtimeOnly fg.deobf("curse.maven:byg-247560:4426501")
+    runtimeOnly fg.deobf("curse.maven:desolation-445926:4271429")
+    runtimeOnly fg.deobf("curse.maven:byg-247560:4426501")
     //runtimeOnly fg.deobf("curse.maven:outerend-430404:3404058")
     //runtimeOnly fg.deobf("curse.maven:wildnaturebiomes-539889:3503810")
     runtimeOnly fg.deobf("curse.maven:JEI-238222:4434397") // Only for testing

@@ -1,13 +1,13 @@
 {
   "parent": "morestoragedrawers:block/full_drawers",
   "textures": {
-    "particle": "morestoragedrawers:blocks/byg_pine_front_4",
-    "east": "morestoragedrawers:blocks/byg_pine_side",
-    "west": "morestoragedrawers:blocks/byg_pine_side",
-    "north": "morestoragedrawers:blocks/byg_pine_front_4",
-    "up": "morestoragedrawers:blocks/byg_pine_side",
     "down": "morestoragedrawers:blocks/byg_pine_side",
+    "east": "morestoragedrawers:blocks/byg_pine_side",
+    "north": "morestoragedrawers:blocks/byg_pine_front_4",
+    "particle": "morestoragedrawers:blocks/byg_pine_front_4",
     "south": "morestoragedrawers:blocks/byg_pine_side",
-    "trim": "morestoragedrawers:blocks/byg_pine_trim"
+    "trim": "morestoragedrawers:blocks/byg_pine_trim",
+    "up": "morestoragedrawers:blocks/byg_pine_side",
+    "west": "morestoragedrawers:blocks/byg_pine_side"
   }
 }

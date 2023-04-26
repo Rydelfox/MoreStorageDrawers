@@ -1,0 +1,33 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botania"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "group": "morestoragedrawers",
+        "key": {
+          "/": {
+            "item": "botania:dreamwood_planks"
+          },
+          "x": {
+            "tag": "forge:chests/wooden"
+          }
+        },
+        "pattern": [
+          "///",
+          " x ",
+          "///"
+        ],
+        "result": {
+          "item": "morestoragedrawers:botania_dreamwood_full_1"
+        }
+      }
+    }
+  ]
+}
