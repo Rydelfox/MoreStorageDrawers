@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/half_drawers",
+  "textures": {
+    "down": "morestoragedrawers:blocks/twilightforest_tower_side_h",
+    "east": "morestoragedrawers:blocks/twilightforest_tower_side_v",
+    "north": "morestoragedrawers:blocks/twilightforest_tower_front_2",
+    "particle": "morestoragedrawers:blocks/twilightforest_tower_front_2",
+    "south": "morestoragedrawers:blocks/twilightforest_tower_side",
+    "trim": "morestoragedrawers:blocks/twilightforest_tower_trim",
+    "up": "morestoragedrawers:blocks/twilightforest_tower_side_h",
+    "west": "morestoragedrawers:blocks/twilightforest_tower_side_v"
+  }
+}

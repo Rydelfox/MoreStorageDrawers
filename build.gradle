@@ -34,7 +34,7 @@ minecraft {
     //
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'official', version: '1.18.2'
+    mappings channel: 'official', version: mc_version
     //mappings channel: 'snapshot', version: '20200723-1.16.1'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
@@ -148,28 +148,30 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    runtimeOnly fg.deobf('software.bernie.geckolib:geckolib-1.18-forge:3.0.12')
-    runtimeOnly fg.deobf("curse.maven:curios-309927:3670447")
+    runtimeOnly fg.deobf('curse.maven:geckolib-388172:4407241')
+    runtimeOnly fg.deobf("curse.maven:curios-309927:4418021")
     //runtimeOnly fg.deobf("curse.maven:observerlib-316833:3333962")
-    runtimeOnly fg.deobf("curse.maven:patchouli-306770:3680301")
-    runtimeOnly fg.deobf("curse.maven:blueprint-382216:3717596")
-    runtimeOnly fg.deobf("curse.maven:terrablender-563928:3704222")
+    runtimeOnly fg.deobf("curse.maven:patchouli-306770:4031402")
+    runtimeOnly fg.deobf("curse.maven:blueprint-382216:4442628")
+    runtimeOnly fg.deobf("curse.maven:terrablender-563928:4205732")
+    runtimeOnly fg.deobf("curse.maven:corgilib-693313:4416614") // for BYG
     //runtimeOnly fg.deobf("curse.maven:astralsorcery-241721:3333980")
-    // runtimeOnly fg.deobf("curse.maven:biomesoplenty-220318:3616582") //1.18.1
-    //runtimeOnly fg.deobf("curse.maven:ars-nouveau-401955:3704010") //1.18.1
-    //runtimeOnly fg.deobf("curse.maven:botania-225643:3664223") //1.18.1
+    runtimeOnly fg.deobf("curse.maven:biomesoplenty-220318:4473556")
+    runtimeOnly fg.deobf("curse.maven:ars-nouveau-401955:4468989")
+    runtimeOnly fg.deobf("curse.maven:botania-225643:4415871")
     //runtimeOnly fg.deobf("curse.maven:eidolon-429625:3157832")
     //runtimeOnly fg.deobf("curse.maven:hexblades-528079:3646326")
-    runtimeOnly fg.deobf("curse.maven:naturesaura-306626:3672128")
-    //runtimeOnly fg.deobf("curse.maven:twilightforest-227639:3590758")
+    runtimeOnly fg.deobf("curse.maven:naturesaura-306626:4419637")
+    runtimeOnly fg.deobf("curse.maven:twilightforest-227639:4389567")
     //runtimeOnly fg.deobf("curse.maven:betterendforge-428877:3467948")
-    //runtimeOnly fg.deobf("curse.maven:desolation-445926:3520974")
-    runtimeOnly fg.deobf("curse.maven:byg-247560:3712165")
+    runtimeOnly fg.deobf("curse.maven:desolation-445926:4271429")
+    runtimeOnly fg.deobf("curse.maven:byg-247560:4426501")
     //runtimeOnly fg.deobf("curse.maven:outerend-430404:3404058")
     //runtimeOnly fg.deobf("curse.maven:wildnaturebiomes-539889:3503810")
-    runtimeOnly fg.deobf("curse.maven:JEI-238222:3723913") // Only for testing
+    runtimeOnly fg.deobf("curse.maven:JEI-238222:4434397") // Only for testing
     //runtimeOnly fg.deobf("curse.maven:Jade-324717:3681458") // Only for testing
-    runtimeOnly fg.deobf("curse.maven:WTHIT-455982:3735870") // Only for testing
+    runtimeOnly fg.deobf("curse.maven:WTHIT-455982:4463703") // Only for testing
+    runtimeOnly fg.deobf('curse.maven:bad-packets-615134:4073854')
 
 }
 

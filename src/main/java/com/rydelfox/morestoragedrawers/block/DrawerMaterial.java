@@ -4,15 +4,15 @@ import com.jaquadro.minecraft.storagedrawers.block.BlockTrim;
 import com.rydelfox.morestoragedrawers.MoreCreative;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.tile.TileEntityDrawersMore;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.util.StringRepresentable;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -33,15 +33,15 @@ public enum DrawerMaterial implements StringRepresentable {
     //EIDOLON_POLISHED(ID.EIDOLON, "polished", "Polished", 8, "polished_planks", "polished_planks_slab", 4, 5, 0),
     //HEXBLADES_DARK_POLISHED(ID.HEXBLADES, "dark_polished", "Dark Polished", 9, "dark_polished_planks", "dark_polished_planks_slab", 4, 5, 0),
     NATURESAURA_ANCIENT(ID.NATURESAURA, "ancient", "Ancient", 10, "ancient_planks", "ancient_slab"),
-    //TWILIGHTFOREST_TOWER(ID.TWILIGHTFOREST, "tower", "Towerwood", 11, "tower_wood", null, 25, 20, 0),
-    //TWILIGHTFOREST_TWILIGHT(ID.TWILIGHTFOREST, "twilight", "Twilight Oak", 12, "twilight_oak_planks", "twilight_oak_slab"),
-    //TWILIGHTFOREST_CANOPY(ID.TWILIGHTFOREST, "canopy", "Canopy", 13, "canopy_planks", "canopy_slab"),
-    //TWILIGHTFOREST_MANGROVE(ID.TWILIGHTFOREST, "mangrove", "Mangrove", 14, "mangrove_planks", "mangrove_slab"),
-    //TWILIGHTFOREST_DARK(ID.TWILIGHTFOREST, "dark", "Darkwood", 15, "dark_planks", "dark_slab"),
-    //TWILIGHTFOREST_TIME(ID.TWILIGHTFOREST, "time", "Timewood", 16, "time_planks", "time_slab"),
-    //TWILIGHTFOREST_TRANS(ID.TWILIGHTFOREST, "trans", "Transwood", 17, "trans_planks", "trans_slab"),
-    //TWILIGHTFOREST_MINE(ID.TWILIGHTFOREST, "mine", "Minewood", 18, "mine_planks", "mine_slab"),
-    //TWILIGHTFOREST_SORT(ID.TWILIGHTFOREST, "sort", "Sortingwood", 19, "sort_planks", "sort_slab"),
+    TWILIGHTFOREST_TOWER(ID.TWILIGHTFOREST, "tower", "Towerwood", 11, "tower_wood", null, 25, 20, 0),
+    TWILIGHTFOREST_TWILIGHT(ID.TWILIGHTFOREST, "twilight", "Twilight Oak", 12, "twilight_oak_planks", "twilight_oak_slab"),
+    TWILIGHTFOREST_CANOPY(ID.TWILIGHTFOREST, "canopy", "Canopy", 13, "canopy_planks", "canopy_slab"),
+    TWILIGHTFOREST_MANGROVE(ID.TWILIGHTFOREST, "mangrove", "Mangrove", 14, "mangrove_planks", "mangrove_slab"),
+    TWILIGHTFOREST_DARK(ID.TWILIGHTFOREST, "dark", "Darkwood", 15, "dark_planks", "dark_slab"),
+    TWILIGHTFOREST_TIME(ID.TWILIGHTFOREST, "time", "Timewood", 16, "time_planks", "time_slab"),
+    TWILIGHTFOREST_TRANS(ID.TWILIGHTFOREST, "trans", "Transwood", 17, "trans_planks", "trans_slab"),
+    TWILIGHTFOREST_MINE(ID.TWILIGHTFOREST, "mine", "Minewood", 18, "mine_planks", "mine_slab"),
+    TWILIGHTFOREST_SORT(ID.TWILIGHTFOREST, "sort", "Sortingwood", 19, "sort_planks", "sort_slab"),
     BIOMESOPLENTY_FIR(ID.BIOMESOPLENTY, "fir", "Fir", 20, "fir_planks", "fir_slab"),
     BIOMESOPLENTY_REDWOOD(ID.BIOMESOPLENTY, "redwood", "Redwood", 21, "redwood_planks", "redwood_slab"),
     BIOMESOPLENTY_CHERRY(ID.BIOMESOPLENTY, "cherry", "Cherry", 22, "cherry_planks", "cherry_slab"),
@@ -240,7 +240,7 @@ public enum DrawerMaterial implements StringRepresentable {
     }
 
     public BlockMoreDrawers getDrawer(int slots, boolean halfDepth) {
-        if(halfDepth) {
+        if (halfDepth) {
             switch (slots) {
                 case 4:
                     return (BlockMoreDrawers) blockHalfFour;
@@ -298,54 +298,54 @@ public enum DrawerMaterial implements StringRepresentable {
         if (this == DEFAULT)
             return;
         if (this.blockTrim != null)
-            throw new IllegalStateException(this.getEnglishName()+" blocks have already been registered!");
+            throw new IllegalStateException(this.getEnglishName() + " blocks have already been registered!");
         BlockBehaviour.Properties properties = BlockBehaviour.Properties
-                .of(Material.WOOD)
-                .strength(hardness, blastResistance)
-                .lightLevel((p1) -> light)
-                .isSuffocating((p1, p2, p3) -> false)
-                .isRedstoneConductor((p1, p2, p3) -> false);
-        MoreStorageDrawers.logInfo("Registering blocks for "+englishName);
-        this.blockTrim = new BlockTrim(properties).setRegistryName(namespace+"_"+name+"_trim");
-        this.blockFullOne = new BlockMoreDrawers(1, false, properties).setRegistryName(namespace+"_"+name+"_full_1");
-        this.blockFullTwo = new BlockMoreDrawers(2, false, properties).setRegistryName(namespace+"_"+name+"_full_2");
-        this.blockFullFour = new BlockMoreDrawers(4, false, properties).setRegistryName(namespace+"_"+name+"_full_4");
-        this.blockHalfOne = new BlockMoreDrawers(1, true, properties).setRegistryName(namespace+"_"+name+"_half_1");
-        this.blockHalfTwo = new BlockMoreDrawers(2, true, properties).setRegistryName(namespace+"_"+name+"_half_2");
-        this.blockHalfFour = new BlockMoreDrawers(4, true, properties).setRegistryName(namespace+"_"+name+"_half_4");
+            .of(Material.WOOD)
+            .strength(hardness, blastResistance)
+            .lightLevel((p1) -> light)
+            .isSuffocating((p1, p2, p3) -> false)
+            .isRedstoneConductor((p1, p2, p3) -> false);
+        MoreStorageDrawers.logInfo("Registering blocks for " + englishName);
+        this.blockTrim = new BlockTrim(properties);
+        this.blockFullOne = new BlockMoreDrawers(1, false, properties);
+        this.blockFullTwo = new BlockMoreDrawers(2, false, properties);
+        this.blockFullFour = new BlockMoreDrawers(4, false, properties);
+        this.blockHalfOne = new BlockMoreDrawers(1, true, properties);
+        this.blockHalfTwo = new BlockMoreDrawers(2, true, properties);
+        this.blockHalfFour = new BlockMoreDrawers(4, true, properties);
 
-        registry.register(blockTrim);
-        registry.register(blockFullOne);
-        registry.register(blockFullTwo);
-        registry.register(blockFullFour);
-        registry.register(blockHalfOne);
-        registry.register(blockHalfTwo);
-        registry.register(blockHalfFour);
+        registry.register(namespace + "_" + name + "_trim", blockTrim);
+        registry.register(namespace + "_" + name + "_full_1", blockFullOne);
+        registry.register(namespace + "_" + name + "_full_2", blockFullTwo);
+        registry.register(namespace + "_" + name + "_full_4", blockFullFour);
+        registry.register(namespace + "_" + name + "_half_1", blockHalfOne);
+        registry.register(namespace + "_" + name + "_half_2", blockHalfTwo);
+        registry.register(namespace + "_" + name + "_half_4", blockHalfFour);
     }
 
     public void registerItems(IForgeRegistry<Item> registry) {
         if (this == DEFAULT)
             return;
-        if(this.itemTrim != null)
-            throw new IllegalStateException(this.getEnglishName()+" items have already been registered!");
-        if(this.blockTrim == null)
+        if (this.itemTrim != null)
+            throw new IllegalStateException(this.getEnglishName() + " items have already been registered!");
+        if (this.blockTrim == null)
             throw new IllegalStateException("Blocks must be registered before registering items!");
 
-        this.itemTrim = new BlockItem(this.blockTrim, new Item.Properties().tab(MoreCreative.TAB)).setRegistryName(this.blockTrim.getRegistryName());
-        this.itemFullOne = new BlockItem(this.blockFullOne, new Item.Properties().tab(MoreCreative.TAB)).setRegistryName(this.blockFullOne.getRegistryName());
-        this.itemFullTwo = new BlockItem(this.blockFullTwo, new Item.Properties().tab(MoreCreative.TAB)).setRegistryName(this.blockFullTwo.getRegistryName());
-        this.itemFullFour = new BlockItem(this.blockFullFour, new Item.Properties().tab(MoreCreative.TAB)).setRegistryName(this.blockFullFour.getRegistryName());
-        this.itemHalfOne = new BlockItem(this.blockHalfOne, new Item.Properties().tab(MoreCreative.TAB)).setRegistryName(this.blockHalfOne.getRegistryName());
-        this.itemHalfTwo = new BlockItem(this.blockHalfTwo, new Item.Properties().tab(MoreCreative.TAB)).setRegistryName(this.blockHalfTwo.getRegistryName());
-        this.itemHalfFour = new BlockItem(this.blockHalfFour, new Item.Properties().tab(MoreCreative.TAB)).setRegistryName(this.blockHalfFour.getRegistryName());
+        this.itemTrim = new BlockItem(this.blockTrim, new Item.Properties().tab(MoreCreative.TAB));
+        this.itemFullOne = new BlockItem(this.blockFullOne, new Item.Properties().tab(MoreCreative.TAB));
+        this.itemFullTwo = new BlockItem(this.blockFullTwo, new Item.Properties().tab(MoreCreative.TAB));
+        this.itemFullFour = new BlockItem(this.blockFullFour, new Item.Properties().tab(MoreCreative.TAB));
+        this.itemHalfOne = new BlockItem(this.blockHalfOne, new Item.Properties().tab(MoreCreative.TAB));
+        this.itemHalfTwo = new BlockItem(this.blockHalfTwo, new Item.Properties().tab(MoreCreative.TAB));
+        this.itemHalfFour = new BlockItem(this.blockHalfFour, new Item.Properties().tab(MoreCreative.TAB));
 
-        registry.register(itemTrim);
-        registry.register(itemFullOne);
-        registry.register(itemFullTwo);
-        registry.register(itemFullFour);
-        registry.register(itemHalfOne);
-        registry.register(itemHalfTwo);
-        registry.register(itemHalfFour);
+        registry.register(namespace + "_" + name + "_trim", itemTrim);
+        registry.register(namespace + "_" + name + "_full_1", itemFullOne);
+        registry.register(namespace + "_" + name + "_full_2", itemFullTwo);
+        registry.register(namespace + "_" + name + "_full_4", itemFullFour);
+        registry.register(namespace + "_" + name + "_half_1", itemHalfOne);
+        registry.register(namespace + "_" + name + "_half_2", itemHalfTwo);
+        registry.register(namespace + "_" + name + "_half_4", itemHalfFour);
     }
 
     public RegistryObject<Block> getRegisteredTrim() {
@@ -391,6 +391,4 @@ public enum DrawerMaterial implements StringRepresentable {
         public static final String TRAVERSE = "traverse";
         public static final String WILDNATURE = "wild_nature";
     }
-
-
 }

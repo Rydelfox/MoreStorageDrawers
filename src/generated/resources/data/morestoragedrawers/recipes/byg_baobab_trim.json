@@ -4,29 +4,29 @@
     {
       "conditions": [
         {
-          "modid": "byg",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "byg"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
         "group": "morestoragedrawers",
+        "key": {
+          "/": {
+            "tag": "forge:rods/wooden"
+          },
+          "X": {
+            "item": "byg:baobab_planks"
+          }
+        },
         "pattern": [
           "X/X",
           "/X/",
           "X/X"
         ],
-        "key": {
-          "X": {
-            "item": "byg:baobab_planks"
-          },
-          "/": {
-            "tag": "forge:rods/wooden"
-          }
-        },
         "result": {
-          "item": "morestoragedrawers:byg_baobab_trim",
-          "count": 4
+          "count": 4,
+          "item": "morestoragedrawers:byg_baobab_trim"
         }
       }
     }

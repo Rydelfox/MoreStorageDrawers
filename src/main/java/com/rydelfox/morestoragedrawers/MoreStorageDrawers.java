@@ -1,20 +1,17 @@
 package com.rydelfox.morestoragedrawers;
 
+import com.jaquadro.minecraft.storagedrawers.client.renderer.BlockEntityDrawersRenderer;
 import com.jaquadro.minecraft.storagedrawers.config.ClientConfig;
 import com.jaquadro.minecraft.storagedrawers.config.CommonConfig;
 import com.jaquadro.minecraft.storagedrawers.config.CompTierRegistry;
-import com.jaquadro.minecraft.storagedrawers.core.ClientProxy;
-import com.jaquadro.minecraft.storagedrawers.core.CommonProxy;
-import com.jaquadro.minecraft.storagedrawers.client.renderer.TileEntityDrawersRenderer;
 import com.rydelfox.morestoragedrawers.block.EnumMod;
 import com.rydelfox.morestoragedrawers.block.tile.Tiles;
-//import com.rydelfox.morestoragedrawers.client.renderer.TileEntityDrawersRenderer;
 import com.rydelfox.morestoragedrawers.core.Registration;
 import com.rydelfox.morestoragedrawers.network.MoreStorageDrawersPacketHandler;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -27,18 +24,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(MoreStorageDrawers.MOD_ID)
+@Mod.EventBusSubscriber(modid = MoreStorageDrawers.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class MoreStorageDrawers {
     // Directly reference a log4j logger.
     public static final String MOD_ID = "morestoragedrawers";
     public static final Logger LOGGER = LogManager.getLogger();
     public static final boolean DEBUG = true;
 
-    public static CommonProxy proxy;
     public static CompTierRegistry compRegistry;
 
     public MoreStorageDrawers() {
         logInfo("Loading MoreStorageDrawers");
-        proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
         //IEventBus eb = FMLJavaModLoadingContext.get().getModEventBus();
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.spec);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.spec);
@@ -47,12 +43,13 @@ public class MoreStorageDrawers {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onModQueueEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onModConfigEvent);
+        Tiles.BLOCK_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup (final FMLCommonSetupEvent event) {
+    private void setup(final FMLCommonSetupEvent event) {
         MoreStorageDrawersPacketHandler.init();
         compRegistry = new CompTierRegistry();
         compRegistry.initialize();
@@ -64,9 +61,9 @@ public class MoreStorageDrawers {
 
     @SubscribeEvent
     public static void registerEntityRenderers(final EntityRenderersEvent.RegisterRenderers evt) {
-        evt.registerBlockEntityRenderer(Tiles.Tile.MORE_DRAWERS_1, TileEntityDrawersRenderer::new);
-        evt.registerBlockEntityRenderer(Tiles.Tile.MORE_DRAWERS_2, TileEntityDrawersRenderer::new);
-        evt.registerBlockEntityRenderer(Tiles.Tile.MORE_DRAWERS_4, TileEntityDrawersRenderer::new);
+        evt.registerBlockEntityRenderer(Tiles.MORE_DRAWERS_1.get(), BlockEntityDrawersRenderer::new);
+        evt.registerBlockEntityRenderer(Tiles.MORE_DRAWERS_2.get(), BlockEntityDrawersRenderer::new);
+        evt.registerBlockEntityRenderer(Tiles.MORE_DRAWERS_4.get(), BlockEntityDrawersRenderer::new);
     }
 
     @SuppressWarnings("Convert2MethodRef")
@@ -89,9 +86,9 @@ public class MoreStorageDrawers {
     }
 
     public static void logLoadedMods() {
-        for(EnumMod mod : EnumMod.values()) {
+        for (EnumMod mod : EnumMod.values()) {
             if (mod.isLoaded()) {
-                logInfo("MoreStorageDrawers: "+mod.getSerializedName() + " mod loaded");
+                logInfo("MoreStorageDrawers: " + mod.getSerializedName() + " mod loaded");
             }
         }
     }

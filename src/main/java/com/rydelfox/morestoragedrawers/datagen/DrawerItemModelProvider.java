@@ -6,6 +6,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import static com.rydelfox.morestoragedrawers.PortUtil.*;
+
 public class DrawerItemModelProvider extends ItemModelProvider {
 
     public DrawerItemModelProvider(DataGenerator generator, ExistingFileHelper helper) {
@@ -18,13 +20,13 @@ public class DrawerItemModelProvider extends ItemModelProvider {
             if (material.getMod() != null && material.getMod().isLoaded()) {
                 // Trim blocks already created by DrawerBlockStateProvider
 
-                withExistingParent(material.getDrawer(1, false).getRegistryName().getPath(), modLoc( "block/" + material.prefix() + "_full_1"));
-                withExistingParent(material.getDrawer(2, false).getRegistryName().getPath(), modLoc( "block/" + material.prefix() + "_full_2"));
-                withExistingParent(material.getDrawer(4, false).getRegistryName().getPath(), modLoc( "block/" + material.prefix() + "_full_4"));
+                withExistingParent(getRegistryName(material.getDrawer(1, false)).getPath(), modLoc( "block/" + material.prefix() + "_full_1"));
+                withExistingParent(getRegistryName(material.getDrawer(2, false)).getPath(), modLoc( "block/" + material.prefix() + "_full_2"));
+                withExistingParent(getRegistryName(material.getDrawer(4, false)).getPath(), modLoc( "block/" + material.prefix() + "_full_4"));
                 if (material.getSlabResource() != null) {
-                    withExistingParent(material.getDrawer(1, true).getRegistryName().getPath(), modLoc( "block/" + material.prefix() + "_half_1"));
-                    withExistingParent(material.getDrawer(2, true).getRegistryName().getPath(), modLoc( "block/" + material.prefix() + "_half_2"));
-                    withExistingParent(material.getDrawer(4, true).getRegistryName().getPath(), modLoc( "block/" + material.prefix() + "_half_4"));
+                    withExistingParent(getRegistryName(material.getDrawer(1, true)).getPath(), modLoc( "block/" + material.prefix() + "_half_1"));
+                    withExistingParent(getRegistryName(material.getDrawer(2, true)).getPath(), modLoc( "block/" + material.prefix() + "_half_2"));
+                    withExistingParent(getRegistryName(material.getDrawer(4, true)).getPath(), modLoc( "block/" + material.prefix() + "_half_4"));
                 }
             }
         }

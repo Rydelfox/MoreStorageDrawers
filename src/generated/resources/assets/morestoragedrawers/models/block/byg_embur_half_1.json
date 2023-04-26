@@ -1,13 +1,13 @@
 {
   "parent": "morestoragedrawers:block/half_drawers",
   "textures": {
-    "particle": "morestoragedrawers:blocks/byg_embur_front_1",
-    "east": "morestoragedrawers:blocks/byg_embur_side_v",
-    "west": "morestoragedrawers:blocks/byg_embur_side_v",
-    "north": "morestoragedrawers:blocks/byg_embur_front_1",
-    "up": "morestoragedrawers:blocks/byg_embur_side_h",
     "down": "morestoragedrawers:blocks/byg_embur_side_h",
+    "east": "morestoragedrawers:blocks/byg_embur_side_v",
+    "north": "morestoragedrawers:blocks/byg_embur_front_1",
+    "particle": "morestoragedrawers:blocks/byg_embur_front_1",
     "south": "morestoragedrawers:blocks/byg_embur_side",
-    "trim": "morestoragedrawers:blocks/byg_embur_trim"
+    "trim": "morestoragedrawers:blocks/byg_embur_trim",
+    "up": "morestoragedrawers:blocks/byg_embur_side_h",
+    "west": "morestoragedrawers:blocks/byg_embur_side_v"
   }
 }

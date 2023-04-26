@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/full_drawers",
+  "textures": {
+    "down": "morestoragedrawers:blocks/twilightforest_time_side",
+    "east": "morestoragedrawers:blocks/twilightforest_time_side",
+    "north": "morestoragedrawers:blocks/twilightforest_time_front_2",
+    "particle": "morestoragedrawers:blocks/twilightforest_time_front_2",
+    "south": "morestoragedrawers:blocks/twilightforest_time_side",
+    "trim": "morestoragedrawers:blocks/twilightforest_time_trim",
+    "up": "morestoragedrawers:blocks/twilightforest_time_side",
+    "west": "morestoragedrawers:blocks/twilightforest_time_side"
+  }
+}

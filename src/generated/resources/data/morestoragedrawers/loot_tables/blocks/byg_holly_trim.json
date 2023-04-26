@@ -2,8 +2,6 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "holly_trim",
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
         {
@@ -15,13 +13,15 @@
             },
             {
               "function": "minecraft:copy_nbt",
-              "source": "block_entity",
-              "ops": []
+              "ops": [],
+              "source": "block_entity"
             }
           ],
           "name": "morestoragedrawers:byg_holly_trim"
         }
-      ]
+      ],
+      "name": "holly_trim",
+      "rolls": 1.0
     }
   ]
 }

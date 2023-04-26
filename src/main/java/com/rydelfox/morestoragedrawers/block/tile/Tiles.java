@@ -1,36 +1,44 @@
 package com.rydelfox.morestoragedrawers.block.tile;
 
-import com.google.common.collect.ImmutableSet;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.BlockMoreDrawers;
 import com.rydelfox.morestoragedrawers.block.DrawerMaterial;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Tiles {
-    @ObjectHolder(MoreStorageDrawers.MOD_ID)
-    public static final class Tile {
-        public static final BlockEntityType<TileEntityDrawersMore> MORE_DRAWERS_1 = null;
-        public static final BlockEntityType<TileEntityDrawersMore> MORE_DRAWERS_2 = null;
-        public static final BlockEntityType<TileEntityDrawersMore> MORE_DRAWERS_4 = null;
-    }
-
     public static BlockEntityType<TileEntityDrawersMore.Slot1> TILE_DRAWERS_1 = null;
     public static BlockEntityType<TileEntityDrawersMore.Slot2> TILE_DRAWERS_2 = null;
     public static BlockEntityType<TileEntityDrawersMore.Slot4> TILE_DRAWERS_4 = null;
+
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, MoreStorageDrawers.MOD_ID);
+
+    public static RegistryObject<BlockEntityType<? extends TileEntityDrawersMore>> MORE_DRAWERS_1 = BLOCK_ENTITY_TYPES.register("more_drawers_1", () -> TILE_DRAWERS_1);
+    public static RegistryObject<BlockEntityType<? extends TileEntityDrawersMore>> MORE_DRAWERS_2 = BLOCK_ENTITY_TYPES.register("more_drawers_2", () -> TILE_DRAWERS_2);
+    public static RegistryObject<BlockEntityType<? extends TileEntityDrawersMore>> MORE_DRAWERS_4 = BLOCK_ENTITY_TYPES.register("more_drawers_4", () -> TILE_DRAWERS_4);
+
+    public static void initializeTiles() {
+        MoreStorageDrawers.logInfo("MoreStorageDrawers: Registering Tile Entities");
+        buildDrawers();
+        if (TILE_DRAWERS_1 == null)
+            MoreStorageDrawers.logInfo("Failed to build 1 slot tiles!");
+        if (TILE_DRAWERS_2 == null)
+            MoreStorageDrawers.logInfo("Failed to build 2 slot tiles!");
+        if (TILE_DRAWERS_4 == null)
+            MoreStorageDrawers.logInfo("Failed to build 4 slot tiles!");
+    }
 
     public static void buildDrawers() {
         MoreStorageDrawers.logInfo("In buildDrawers");
         List<BlockMoreDrawers> oneDrawers = new ArrayList<>();
         List<BlockMoreDrawers> twoDrawers = new ArrayList<>();
         List<BlockMoreDrawers> fourDrawers = new ArrayList<>();
-        for(DrawerMaterial material : DrawerMaterial.values()) {
+        for (DrawerMaterial material : DrawerMaterial.values()) {
             if (material.getDrawer(1, false) != null)
                 oneDrawers.add(material.getDrawer(1, false));
             if (material.getDrawer(1, true) != null)
@@ -47,21 +55,5 @@ public class Tiles {
         TILE_DRAWERS_1 = (BlockEntityType.Builder.of((TileEntityDrawersMore.Slot1::new), oneDrawers.stream().toArray(BlockMoreDrawers[]::new)).build(null));
         TILE_DRAWERS_2 = (BlockEntityType.Builder.of((TileEntityDrawersMore.Slot2::new), twoDrawers.stream().toArray(BlockMoreDrawers[]::new)).build(null));
         TILE_DRAWERS_4 = (BlockEntityType.Builder.of((TileEntityDrawersMore.Slot4::new), fourDrawers.stream().toArray(BlockMoreDrawers[]::new)).build(null));
-        TILE_DRAWERS_1.setRegistryName(new ResourceLocation(MoreStorageDrawers.MOD_ID, "more_drawers_1"));
-        TILE_DRAWERS_2.setRegistryName(new ResourceLocation(MoreStorageDrawers.MOD_ID, "more_drawers_2"));
-        TILE_DRAWERS_4.setRegistryName(new ResourceLocation(MoreStorageDrawers.MOD_ID, "more_drawers_4"));
-    }
-
-    public static void registerTiles(IForgeRegistry<BlockEntityType<?>> registry) {
-        buildDrawers();
-        if (TILE_DRAWERS_1 == null)
-            MoreStorageDrawers.logInfo("Failed to build 1 slot tiles!");
-        if (TILE_DRAWERS_2 == null)
-            MoreStorageDrawers.logInfo("Failed to build 2 slot tiles!");
-        if (TILE_DRAWERS_4 == null)
-            MoreStorageDrawers.logInfo("Failed to build 4 slot tiles!");
-        registry.register(TILE_DRAWERS_1);
-        registry.register(TILE_DRAWERS_2);
-        registry.register(TILE_DRAWERS_4);
     }
 }

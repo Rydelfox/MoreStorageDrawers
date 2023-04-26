@@ -4,29 +4,29 @@
     {
       "conditions": [
         {
-          "modid": "naturesaura",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "naturesaura"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
         "group": "morestoragedrawers",
+        "key": {
+          "/": {
+            "tag": "forge:rods/wooden"
+          },
+          "X": {
+            "item": "naturesaura:ancient_planks"
+          }
+        },
         "pattern": [
           "X/X",
           "/X/",
           "X/X"
         ],
-        "key": {
-          "X": {
-            "item": "naturesaura:ancient_planks"
-          },
-          "/": {
-            "tag": "forge:rods/wooden"
-          }
-        },
         "result": {
-          "item": "morestoragedrawers:naturesaura_ancient_trim",
-          "count": 4
+          "count": 4,
+          "item": "morestoragedrawers:naturesaura_ancient_trim"
         }
       }
     }

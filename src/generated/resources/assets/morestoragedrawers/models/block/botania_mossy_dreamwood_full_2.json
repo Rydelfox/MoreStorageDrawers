@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/full_drawers",
+  "textures": {
+    "down": "morestoragedrawers:blocks/botania_mossy_dreamwood_side",
+    "east": "morestoragedrawers:blocks/botania_mossy_dreamwood_side",
+    "north": "morestoragedrawers:blocks/botania_mossy_dreamwood_front_2",
+    "particle": "morestoragedrawers:blocks/botania_mossy_dreamwood_front_2",
+    "south": "morestoragedrawers:blocks/botania_mossy_dreamwood_side",
+    "trim": "morestoragedrawers:blocks/botania_mossy_dreamwood_trim",
+    "up": "morestoragedrawers:blocks/botania_mossy_dreamwood_side",
+    "west": "morestoragedrawers:blocks/botania_mossy_dreamwood_side"
+  }
+}

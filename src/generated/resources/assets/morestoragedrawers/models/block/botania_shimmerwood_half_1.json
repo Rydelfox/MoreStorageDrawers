@@ -1,0 +1,13 @@
+{
+  "parent": "morestoragedrawers:block/half_drawers",
+  "textures": {
+    "down": "morestoragedrawers:blocks/botania_shimmerwood_side_h",
+    "east": "morestoragedrawers:blocks/botania_shimmerwood_side_v",
+    "north": "morestoragedrawers:blocks/botania_shimmerwood_front_1",
+    "particle": "morestoragedrawers:blocks/botania_shimmerwood_front_1",
+    "south": "morestoragedrawers:blocks/botania_shimmerwood_side",
+    "trim": "morestoragedrawers:blocks/botania_shimmerwood_trim",
+    "up": "morestoragedrawers:blocks/botania_shimmerwood_side_h",
+    "west": "morestoragedrawers:blocks/botania_shimmerwood_side_v"
+  }
+}

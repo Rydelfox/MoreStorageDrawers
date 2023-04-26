@@ -1,13 +1,13 @@
 {
   "parent": "morestoragedrawers:block/full_drawers",
   "textures": {
-    "particle": "morestoragedrawers:blocks/byg_lament_front_4",
-    "east": "morestoragedrawers:blocks/byg_lament_side",
-    "west": "morestoragedrawers:blocks/byg_lament_side",
-    "north": "morestoragedrawers:blocks/byg_lament_front_4",
-    "up": "morestoragedrawers:blocks/byg_lament_side",
     "down": "morestoragedrawers:blocks/byg_lament_side",
+    "east": "morestoragedrawers:blocks/byg_lament_side",
+    "north": "morestoragedrawers:blocks/byg_lament_front_4",
+    "particle": "morestoragedrawers:blocks/byg_lament_front_4",
     "south": "morestoragedrawers:blocks/byg_lament_side",
-    "trim": "morestoragedrawers:blocks/byg_lament_trim"
+    "trim": "morestoragedrawers:blocks/byg_lament_trim",
+    "up": "morestoragedrawers:blocks/byg_lament_side",
+    "west": "morestoragedrawers:blocks/byg_lament_side"
   }
 }

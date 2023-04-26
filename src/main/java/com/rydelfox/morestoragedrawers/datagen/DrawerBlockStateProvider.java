@@ -6,6 +6,7 @@ import com.rydelfox.morestoragedrawers.block.BlockMoreDrawers;
 import com.rydelfox.morestoragedrawers.block.DrawerMaterial;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.KelpBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +17,8 @@ import java.util.function.Function;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+
+import static com.rydelfox.morestoragedrawers.PortUtil.*;
 
 public class DrawerBlockStateProvider extends BlockStateProvider {
 
@@ -95,7 +98,7 @@ public class DrawerBlockStateProvider extends BlockStateProvider {
             parent = modLoc("block/half_drawers");
 
         ModelFile model = models()  //.getBuilder(block.getRegistryName().getPath())
-                .withExistingParent(block.getRegistryName().getPath(),parent)
+                .withExistingParent(getRegistryName(block).getPath(),parent)
                 .texture("particle", front)
                 .texture("east", side)
                 .texture("west", side)
@@ -118,6 +121,6 @@ public class DrawerBlockStateProvider extends BlockStateProvider {
     }
 
     protected void buildDrawerItem(Item block) {
-        models().withExistingParent(block.getRegistryName().getPath(), modLoc("block/"+block.getRegistryName().getPath()));
+        models().withExistingParent(getRegistryName(block).getPath(), modLoc("block/"+getRegistryName(block).getPath()));
     }
 }

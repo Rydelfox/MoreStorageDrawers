@@ -4,18 +4,13 @@
     {
       "conditions": [
         {
-          "modid": "byg",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "byg"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
         "group": "morestoragedrawers",
-        "pattern": [
-          "/x/",
-          "///",
-          "/x/"
-        ],
         "key": {
           "/": {
             "item": "byg:skyris_planks"
@@ -24,9 +19,14 @@
             "tag": "forge:chests/wooden"
           }
         },
+        "pattern": [
+          "/x/",
+          "///",
+          "/x/"
+        ],
         "result": {
-          "item": "morestoragedrawers:byg_skyris_full_2",
-          "count": 2
+          "count": 2,
+          "item": "morestoragedrawers:byg_skyris_full_2"
         }
       }
     }

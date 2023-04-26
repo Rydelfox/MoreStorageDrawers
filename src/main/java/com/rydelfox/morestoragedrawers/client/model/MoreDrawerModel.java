@@ -5,29 +5,36 @@ import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.jaquadro.minecraft.storagedrawers.api.storage.IDrawerAttributes;
 import com.jaquadro.minecraft.storagedrawers.api.storage.attribute.LockAttribute;
 import com.jaquadro.minecraft.storagedrawers.block.BlockCompDrawers;
-//import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
-import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawers;
+import com.jaquadro.minecraft.storagedrawers.block.tile.BlockEntityDrawers;
 import com.mojang.datafixers.util.Either;
+import com.mojang.math.Vector3f;
 import com.rydelfox.morestoragedrawers.MoreStorageDrawers;
 import com.rydelfox.morestoragedrawers.block.BlockDrawersExtended;
 import com.rydelfox.morestoragedrawers.block.BlockMoreDrawers;
 import com.rydelfox.morestoragedrawers.block.DrawerMaterial;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockModelShaper;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.BlockModel;
+import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.BlockModelRotation;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import com.mojang.math.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.event.ModelEvent.BakingCompleted;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.client.model.ForgeModelBakery;
-import net.minecraftforge.client.model.data.IDynamicBakedModel;
-import net.minecraftforge.client.model.data.IModelData;
+import net.minecraftforge.client.model.IDynamicBakedModel;
+import net.minecraftforge.client.model.data.ModelData;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -39,15 +46,6 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Function;
-
-
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.BlockModel;
-import net.minecraft.client.renderer.block.model.ItemOverrides;
-import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.resources.model.BlockModelRotation;
-import net.minecraft.client.resources.model.Material;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 
 public class MoreDrawerModel {
 
@@ -68,8 +66,7 @@ public class MoreDrawerModel {
     private static boolean geometryDataLoaded = false;
 
     @Mod.EventBusSubscriber(modid = MoreStorageDrawers.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class Register
-    {
+    public static class Register {
         @SubscribeEvent
         public static void registerTextures(TextureStitchEvent.Pre event) {
             MoreStorageDrawers.logInfo("MoreStorageDrawers: Registering Textures");
@@ -85,7 +82,7 @@ public class MoreDrawerModel {
         }
 
         private static void loadGeometryData() {
-            if(geometryDataLoaded)
+            if (geometryDataLoaded)
                 return;
             geometryDataLoaded = true;
 
@@ -95,7 +92,7 @@ public class MoreDrawerModel {
             List<BlockMoreDrawers> halfDrawers1 = new ArrayList<>();
             List<BlockMoreDrawers> halfDrawers2 = new ArrayList<>();
             List<BlockMoreDrawers> halfDrawers4 = new ArrayList<>();
-            for(DrawerMaterial material : DrawerMaterial.values()) {
+            for (DrawerMaterial material : DrawerMaterial.values()) {
                 fullDrawers1.add(material.getDrawer(1, false));
                 fullDrawers1.add(material.getDrawer(1, true));
                 fullDrawers2.add(material.getDrawer(2, false));
@@ -106,35 +103,35 @@ public class MoreDrawerModel {
 
             MoreStorageDrawers.logInfo("MoreStorageDrawers: Populating Geometry");
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_icon_area_1.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_count_area_1.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_ind_area_1.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_indbase_area_1.json"),
-                    fullDrawers1.stream().toArray(BlockMoreDrawers[]::new));
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_count_area_1.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_ind_area_1.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_indbase_area_1.json"),
+                fullDrawers1.stream().toArray(BlockMoreDrawers[]::new));
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_icon_area_2.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_count_area_2.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_ind_area_2.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_indbase_area_2.json"),
-                    fullDrawers2.stream().toArray(BlockDrawersExtended[]::new));
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_count_area_2.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_ind_area_2.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_indbase_area_2.json"),
+                fullDrawers2.stream().toArray(BlockDrawersExtended[]::new));
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_icon_area_4.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_count_area_4.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_ind_area_4.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_indbase_area_4.json"),
-                    fullDrawers4.stream().toArray(BlockDrawersExtended[]::new));
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_count_area_4.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_ind_area_4.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/full_drawers_indbase_area_4.json"),
+                fullDrawers4.stream().toArray(BlockDrawersExtended[]::new));
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_icon_area_1.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_count_area_1.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_ind_area_1.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_indbase_area_1.json"),
-                    halfDrawers1.stream().toArray(BlockDrawersExtended[]::new));
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_count_area_1.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_ind_area_1.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_indbase_area_1.json"),
+                halfDrawers1.stream().toArray(BlockDrawersExtended[]::new));
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_icon_area_2.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_count_area_2.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_ind_area_2.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_indbase_area_2.json"),
-                    halfDrawers2.stream().toArray(BlockDrawersExtended[]::new));
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_count_area_2.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_ind_area_2.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_indbase_area_2.json"),
+                halfDrawers2.stream().toArray(BlockDrawersExtended[]::new));
             populateGeometryData(new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_icon_area_4.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_count_area_4.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_ind_area_4.json"),
-                    new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_indbase_area_4.json"),
-                    halfDrawers4.stream().toArray(BlockDrawersExtended[]::new));
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_count_area_4.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_ind_area_4.json"),
+                new ResourceLocation(StorageDrawers.MOD_ID, "models/block/geometry/half_drawers_indbase_area_4.json"),
+                halfDrawers4.stream().toArray(BlockDrawersExtended[]::new));
         }
 
         private static void populateGeometryData(ResourceLocation locationIcon,
@@ -184,40 +181,42 @@ public class MoreDrawerModel {
             }
         }
 
-        private static BlockModel getBlockModel (ResourceLocation location) {
-            try (Resource iresource = Minecraft.getInstance().getResourceManager().getResource(location)){
-                try (Reader reader = new InputStreamReader(iresource.getInputStream(), StandardCharsets.UTF_8)){
+        private static BlockModel getBlockModel(ResourceLocation location) {
+            Optional<Resource> resource = Minecraft.getInstance().getResourceManager().getResource(location);
+            if (resource.isPresent()) {
+                try (Reader reader = new InputStreamReader(resource.get().open(), StandardCharsets.UTF_8)) {
                     return BlockModel.fromStream(reader);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (IOException e) {
-                return null;
             }
+            return null;
         }
 
         @SubscribeEvent
-        public static void registerModels (ModelBakeEvent event) {
+        public static void registerModels(BakingCompleted event) {
             MoreStorageDrawers.logInfo("MoreStorageDrawers: Registering Models");
             for (int i = 0; i < 4; i++) {
                 Direction dir = Direction.from2DDataValue(i);
-                BlockModelRotation rot = BlockModelRotation.by(0, (int)dir.toYRot() + 180);
-                Function<Material, TextureAtlasSprite> texGet = ForgeModelBakery.defaultTextureGetter();
+                BlockModelRotation rot = BlockModelRotation.by(0, (int) dir.toYRot() + 180);
+                Function<Material, TextureAtlasSprite> texGet = Material::sprite;
 
-                lockOverlaysFull.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_lock"), rot, texGet));
-                lockOverlaysHalf.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_lock"), rot, texGet));
-                voidOverlaysFull.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_void"), rot, texGet));
-                voidOverlaysHalf.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_void"), rot, texGet));
-                shroudOverlaysFull.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_shroud"), rot, texGet));
-                shroudOverlaysHalf.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_shroud"), rot, texGet));
-                indicator1Full.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_1"), rot, texGet));
-                indicator1Half.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_1"), rot, texGet));
-                indicator2Full.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_2"), rot, texGet));
-                indicator2Half.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_2"), rot, texGet));
-                indicator4Full.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_4"), rot, texGet));
-                indicator4Half.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_4"), rot, texGet));
-                indicatorComp.put(dir, event.getModelLoader().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/compdrawers_indicator"), rot, texGet));
+                lockOverlaysFull.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_lock"), rot, texGet));
+                lockOverlaysHalf.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_lock"), rot, texGet));
+                voidOverlaysFull.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_void"), rot, texGet));
+                voidOverlaysHalf.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_void"), rot, texGet));
+                shroudOverlaysFull.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_shroud"), rot, texGet));
+                shroudOverlaysHalf.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_shroud"), rot, texGet));
+                indicator1Full.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_1"), rot, texGet));
+                indicator1Half.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_1"), rot, texGet));
+                indicator2Full.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_2"), rot, texGet));
+                indicator2Half.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_2"), rot, texGet));
+                indicator4Full.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/full_drawers_indicator_4"), rot, texGet));
+                indicator4Half.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/half_drawers_indicator_4"), rot, texGet));
+                indicatorComp.put(dir, event.getModelBakery().bake(new ResourceLocation(StorageDrawers.MOD_ID, "block/compdrawers_indicator"), rot, texGet));
             }
 
-            for(DrawerMaterial material : DrawerMaterial.values()) {
+            for (DrawerMaterial material : DrawerMaterial.values()) {
                 if (material.getMod() != null && material.getMod().isLoaded()) {
                     replaceBlock(event, material.getDrawer(1, false));
                     replaceBlock(event, material.getDrawer(2, false));
@@ -229,7 +228,7 @@ public class MoreDrawerModel {
             }
         }
 
-        public static void replaceBlock(ModelBakeEvent event, BlockDrawersExtended block) {
+        public static void replaceBlock(BakingCompleted event, BlockDrawersExtended block) {
             for (BlockState state : block.getStateDefinition().getPossibleStates()) {
                 ModelResourceLocation modelResource = BlockModelShaper.stateToModelLocation(state);
                 BakedModel parentModel = event.getModelManager().getModel(modelResource);
@@ -240,13 +239,13 @@ public class MoreDrawerModel {
                 }
 
                 if (block.isHalfDepth())
-                    event.getModelRegistry().put(modelResource, new Model2.HalfModel(parentModel));
+                    event.getModels().put(modelResource, new Model2.HalfModel(parentModel));
                 else
-                    event.getModelRegistry().put(modelResource, new Model2.FullModel(parentModel));
+                    event.getModels().put(modelResource, new Model2.FullModel(parentModel));
             }
         }
 
-        public static void replaceBlock(ModelBakeEvent event, BlockMoreDrawers block) {
+        public static void replaceBlock(BakingCompleted event, BlockMoreDrawers block) {
             for (BlockState state : block.getStateDefinition().getPossibleStates()) {
                 ModelResourceLocation modelResource = BlockModelShaper.stateToModelLocation(state);
                 BakedModel parentModel = event.getModelManager().getModel(modelResource);
@@ -257,9 +256,9 @@ public class MoreDrawerModel {
                 }
 
                 if (block.isHalfDepth())
-                    event.getModelRegistry().put(modelResource, new Model2.HalfModel(parentModel));
+                    event.getModels().put(modelResource, new Model2.HalfModel(parentModel));
                 else
-                    event.getModelRegistry().put(modelResource, new Model2.FullModel(parentModel));
+                    event.getModels().put(modelResource, new Model2.FullModel(parentModel));
             }
         }
 
@@ -304,38 +303,38 @@ public class MoreDrawerModel {
             }
 
             @Override
-            public boolean usesBlockLight () {
+            public boolean usesBlockLight() {
                 return mainModel.usesBlockLight();
             }
 
             @Nonnull
             @Override
-            public List<BakedQuad> getQuads (@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData extraData) {
+            public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull RandomSource rand, @Nonnull ModelData extraData, @org.jetbrains.annotations.Nullable RenderType renderType) {
                 List<BakedQuad> quads = Lists.newArrayList();
-                quads.addAll(mainModel.getQuads(state, side, rand, extraData));
+                quads.addAll(mainModel.getQuads(state, side, rand, extraData, renderType));
 
-                if (state != null && extraData.hasProperty(TileEntityDrawers.ATTRIBUTES)) {
-                    IDrawerAttributes attr = extraData.getData(TileEntityDrawers.ATTRIBUTES);
+                if (state != null && extraData.has(BlockEntityDrawers.ATTRIBUTES)) {
+                    IDrawerAttributes attr = extraData.get(BlockEntityDrawers.ATTRIBUTES);
                     Direction dir = state.getValue(BlockDrawersExtended.FACING);
 
                     if (attr.isItemLocked(LockAttribute.LOCK_EMPTY) || attr.isItemLocked(LockAttribute.LOCK_POPULATED))
-                        quads.addAll(lockOverlay.get(dir).getQuads(state, side, rand, extraData));
+                        quads.addAll(lockOverlay.get(dir).getQuads(state, side, rand, extraData, renderType));
                     if (attr.isVoid())
-                        quads.addAll(voidOverlay.get(dir).getQuads(state, side, rand, extraData));
+                        quads.addAll(voidOverlay.get(dir).getQuads(state, side, rand, extraData, renderType));
                     if (attr.isConcealed())
-                        quads.addAll(shroudOverlay.get(dir).getQuads(state, side, rand, extraData));
+                        quads.addAll(shroudOverlay.get(dir).getQuads(state, side, rand, extraData, renderType));
                     if (attr.hasFillLevel()) {
                         Block block = state.getBlock();
                         if (block instanceof BlockCompDrawers)
-                            quads.addAll((indicatorCompOverlay.get(dir).getQuads(state, side, rand, extraData)));
+                            quads.addAll((indicatorCompOverlay.get(dir).getQuads(state, side, rand, extraData, renderType)));
                         else if (block instanceof BlockDrawersExtended) {
                             int count = ((BlockDrawersExtended) block).getDrawerCount();
                             if (count == 1)
-                                quads.addAll((indicator1Overlay.get(dir).getQuads(state, side, rand, extraData)));
+                                quads.addAll((indicator1Overlay.get(dir).getQuads(state, side, rand, extraData, renderType)));
                             else if (count == 2)
-                                quads.addAll((indicator2Overlay.get(dir).getQuads(state, side, rand, extraData)));
+                                quads.addAll((indicator2Overlay.get(dir).getQuads(state, side, rand, extraData, renderType)));
                             else if (count == 4)
-                                quads.addAll((indicator4Overlay.get(dir).getQuads(state, side, rand, extraData)));
+                                quads.addAll((indicator4Overlay.get(dir).getQuads(state, side, rand, extraData, renderType)));
                         }
                     }
                 }
@@ -344,27 +343,27 @@ public class MoreDrawerModel {
             }
 
             @Override
-            public boolean useAmbientOcclusion () {
+            public boolean useAmbientOcclusion() {
                 return mainModel.useAmbientOcclusion();
             }
 
             @Override
-            public boolean isGui3d () {
+            public boolean isGui3d() {
                 return mainModel.isGui3d();
             }
 
             @Override
-            public boolean isCustomRenderer () {
+            public boolean isCustomRenderer() {
                 return mainModel.isCustomRenderer();
             }
 
             @Override
-            public TextureAtlasSprite getParticleIcon () {
+            public TextureAtlasSprite getParticleIcon() {
                 return mainModel.getParticleIcon();
             }
 
             @Override
-            public ItemOverrides getOverrides () {
+            public ItemOverrides getOverrides() {
                 return mainModel.getOverrides();
             }
         }
